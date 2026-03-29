@@ -30,9 +30,7 @@
   transform: translateY(0);
 }
 
-.filter-bar__button {
-  padding: 6px 12px;
-  
+.filter-bar__button {  
   background: var(--color-secondary-default);
   color: var(--color-text-primary);
   border: 1px solid var(--color-secondary-border);

@@ -9,6 +9,10 @@
   font: inherit;
 }
 
+.btn-sm {
+  padding: 6px 12px;
+}
+
 .btn-primary {
   background: var(--color-primary-default);
   color: var(--color-text-on-primary);

@@ -32,7 +32,7 @@ export function FilterBar() {
             <button
               key={filterValue}
               onClick={() => setFilter(filterValue)}
-              className={`btn filter-bar__button ${filter === filterValue ? "active" : ""}`}
+              className={`btn btn-sm filter-bar__button ${filter === filterValue ? "active" : ""}`}
             >
               {filterValue}
             </button>
