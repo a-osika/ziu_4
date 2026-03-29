@@ -1,0 +1,44 @@
+body {
+  margin: 0;
+  font-family: var(--font-family-base);
+  font-size: var(--body1-size);
+  line-height: var(--body1-line);
+  font-weight: var(--body1-weight);
+
+  color: var(--color-text-primary);
+  background: var(--color-surface-background);
+}
+
+.app-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr 320px;
+  min-height: calc(100vh - 72px);
+}
+
+.sidebar {
+  border-right: 1px solid var(--color-primary-border);
+  background: var(--color-surface-card);
+  padding: 16px;
+}
+
+.app-main {
+  padding: 24px;
+
+  display: flex;
+  justify-content: center;
+}
+
+.app-content {
+  width: 100%;
+  max-width: 720px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.details-panel {
+  border-left: 1px solid var(--color-primary-border);
+  background: var(--color-surface-card);
+  padding: 16px;
+}

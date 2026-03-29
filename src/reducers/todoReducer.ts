@@ -1,42 +1,51 @@
-import { Todo } from '../types/todo.types';
+import { TodoState, TodoAction } from "../types/todo.types";
 
-export type TodoAction =
-  | { type: 'ADD_TODO'; payload: Todo }
-  | { type: 'UPDATE_TODO'; payload: { id: string; updates: Partial<Todo> } }
-  | { type: 'DELETE_TODO'; payload: string }
-  | { type: 'TOGGLE_TODO'; payload: string }
-  | { type: 'CLEAR_COMPLETED' }
-  | { type: 'SET_TODOS'; payload: Todo[] };
+import {
+  addTodo,
+  toggleTodo,
+  deleteTodo,
+  editTodo,
+  selectTodo,
+  clearSelection,
+  setMode,
+  openCreate,
+} from "../handlers/todoHandlers";
 
-export const todoReducer = (state: Todo[], action: TodoAction): Todo[] => {
+export const initialState: TodoState = {
+  todos: [],
+  selectedTodo: null,
+  panelMode: null
+};
+
+export function todoReducer(
+  state: TodoState,
+  action: TodoAction
+): TodoState {
   switch (action.type) {
-    case 'ADD_TODO':
-      return [...state, action.payload];
+    case "OPEN_CREATE":
+      return openCreate(state)
+    case "ADD":
+      return addTodo(state, action.payload);
 
-    case 'UPDATE_TODO':
-      return state.map(todo =>
-        todo.id === action.payload.id
-          ? { ...todo, ...action.payload.updates }
-          : todo
-      );
+    case "TOGGLE":
+      return toggleTodo(state, action.payload);
 
-    case 'DELETE_TODO':
-      return state.filter(todo => todo.id !== action.payload);
+    case "DELETE":
+      return deleteTodo(state, action.payload);
 
-    case 'TOGGLE_TODO':
-      return state.map(todo =>
-        todo.id === action.payload
-          ? { ...todo, completed: !todo.completed }
-          : todo
-      );
+    case "EDIT":
+      return editTodo(state, action.payload);
 
-    case 'CLEAR_COMPLETED':
-      return state.filter(todo => !todo.completed);
+    case "SELECT":
+      return selectTodo(state, action.payload);
 
-    case 'SET_TODOS':
-      return action.payload;
+    case "SET_MODE":
+      return setMode(state, action.payload);
+
+    case "CLEAR_SELECTION":
+      return clearSelection(state);
 
     default:
       return state;
   }
-};
+}

@@ -1,11 +1,17 @@
 export interface Todo {
-  id: string;
-  title: string;
-  description?: string;
-  completed: boolean;
-  createdAt: Date;
-  dueDate?: Date;
+id: string;
+title: string;
+completed: boolean;
+createdAt: Date;
 }
+
+export interface TodoState {
+  todos: Todo[];
+  selectedTodo: Todo | null;
+  panelMode: PanelMode;
+}
+
+export type PanelMode = "view" | "edit" | "create" | null;
 
 export type FilterType = "all" | "active" | "completed";
 
@@ -15,17 +21,8 @@ export type TodoAction =
   | { type: "ADD"; payload: string }
   | { type: "TOGGLE"; payload: string }
   | { type: "DELETE"; payload: string }
-  | { type: "EDIT"; payload: { id: string; title: string } };
-
-export interface TodoContextType {
-  todos: Todo[];
-  addTodo: (title: string, description?: string) => void;
-  updateTodo: (id: string, updates: Partial<Todo>) => void;
-  deleteTodo: (id: string) => void;
-  toggleTodo: (id: string) => void;
-  clearCompleted: () => void;
-  filter: FilterType;
-  setFilter: (filter: FilterType) => void;
-  theme: Theme;
-  toggleTheme: () => void;
-}
+  | { type: "EDIT"; payload: { id: string; title: string } }
+  | { type: "OPEN_CREATE" }
+  | { type: "SELECT"; payload: string }
+  | { type: "SET_MODE"; payload: PanelMode }
+  | { type: "CLEAR_SELECTION" }

@@ -1,36 +1,42 @@
-import { useTodoContext } from '../context/TodoContext';
-import { FilterType } from '../types/todo.types';
+import { useTodoContext } from "../context/TodoContext";
+import { useTheme } from "../context/ThemeContext";
 
-type FilterOption = FilterType;
+const FILTERS: ("all" | "active" | "completed")[] = ["all", "active", "completed"];
 
-const FILTERS: FilterOption[] = ['all', 'active', 'completed'];
+export function FilterBar() {
+  const { filter, setFilter } = useTodoContext();
+  const { theme } = useTheme();
 
-export const FilterBar = () => {
-  const { filter, setFilter, clearCompleted } = useTodoContext();
+  const buttonStyle = (active: boolean) => ({
+    padding: "0.5rem 1rem",
+    borderRadius: "8px",
+    border: active
+      ? `2px solid ${theme === "light" ? "#007bff" : "#00d4ff"}`
+      : "2px solid #ccc",
+    background: active
+      ? theme === "light"
+        ? "#007bff"
+        : "#00d4ff"
+      : theme === "light"
+      ? "white"
+      : "#333",
+    color: active
+      ? "white"
+      : theme === "light"
+      ? "black"
+      : "white",
+    cursor: "pointer",
+  });
 
   return (
-    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "2rem", padding: "1rem", border: "1px solid #ccc", borderRadius: "8px" }}>
+    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "2rem" }}>
       <div style={{ display: "flex", gap: "0.5rem" }}>
         {FILTERS.map((f) => (
-          <button
-            key={f}
-            onClick={() => setFilter(f)}
-            style={{
-              padding: "0.5rem 1rem",
-              border: filter === f ? "2px solid #007bff" : "2px solid #ccc",
-              background: filter === f ? "#007bff" : "white",
-              color: filter === f ? "white" : "black",
-              borderRadius: "8px",
-              cursor: "pointer"
-            }}
-          >
+          <button key={f} onClick={() => setFilter(f)} style={buttonStyle(filter === f)}>
             {f.charAt(0).toUpperCase() + f.slice(1)}
           </button>
         ))}
       </div>
-      <button onClick={clearCompleted} style={{ padding: "0.5rem 1rem", background: "#6c757d", color: "white", border: "none", borderRadius: "4px", cursor: "pointer" }}>
-        Clear Completed
-      </button>
     </div>
   );
-};
+}

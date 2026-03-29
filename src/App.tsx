@@ -1,22 +1,34 @@
 import { TodoProvider } from "./context/TodoContext";
-import { AddTodoForm } from "./components/AddTodoForm";
+import { ThemeProvider } from "./context/ThemeContext";
+import { SearchBar } from "./components/SearchBar";
 import { FilterBar } from "./components/FilterBar";
-import { TodoList } from "./components/TodoList";
-import { ThemeToggle } from "./components/ThemeToggle";
+import { TodoList } from "./components/TodoList/TodoList";
+import { Navbar } from "./components/Navbar";
+import { Sidebar } from "./components/Sidebar";
+import { SidePanel } from "./components/SidePanel/SidePanel";
+import "./index.css";
+import { Fab } from "./components/Fab/Fab";
 
 export default function App() {
   return (
-    <TodoProvider>
-      <div style={{ padding: "2rem", fontFamily: "sans-serif" }}>
-        <header style={{ textAlign: "center", marginBottom: "2rem" }}>
-          <h1>✨ Todo App</h1>
-          <p>Stay organized and get things done</p>
-        </header>
+    <ThemeProvider>
+      <TodoProvider>
+        <Navbar />
 
-        <AddTodoForm />
-        <FilterBar />
-        <TodoList />
-      </div>
-    </TodoProvider>
+        <div className="app-layout">
+          <Sidebar />
+          <main className="app-main">
+            <div className="app-content">
+              <SearchBar />
+              <FilterBar />
+              <TodoList />
+            </div>
+          </main>
+        </div>
+
+        <SidePanel />
+        <Fab />
+      </TodoProvider>
+    </ThemeProvider>
   );
 }

@@ -1,0 +1,54 @@
+
+:root {
+  --color-primary-default: #1E40AF;
+  --color-primary-hover: #1E3A8A;
+  --color-primary-border: #E2E8F0;
+  --color-ghost-default: #FFFFFF;
+  --color-ghost-hover: #DBEAFE;
+  --color-secondary-default: #F1F5F9;
+  --color-secondary-hover: #E2E8F0;
+  --color-secondary-border: #E2E8F0;
+  --color-disabled-default: #F8FAFC;
+  --color-disabled-hover: #E2E8F0;
+  --color-disabled-border: #F1F5F9;
+  --color-surface-background: #FFFFFF;
+  --color-surface-card: #F8FAFC;
+  --color-surface-card-completed: #F1F5F9;
+  --color-surface-input: #FFFFFF;
+  --color-text-primary: #111827;
+  --color-text-secondary: #0F172A;
+  --color-text-ghost: #1E40AF;
+  --color-text-danger: #FFFFFF;
+  --color-text-disabled: #CBD5E1;
+  --color-text-completed: #9CA3AF;
+  --color-text-on-primary: #FFFFFF;
+  --color-semantic-error: #DC2626;
+  --color-semantic-success: #059669;
+}
+
+.dark {
+  --color-primary-default: #60A5FA;
+  --color-primary-hover: #93C5FD;
+  --color-primary-border: #334155;
+  --color-ghost-default: #FFFFFF;
+  --color-ghost-hover: #3B82F6;
+  --color-secondary-default: #1E293B;
+  --color-secondary-hover: #334155;
+  --color-secondary-border: #334155;
+  --color-disabled-default: #0F172A;
+  --color-disabled-hover: #334155;
+  --color-disabled-border: #1E293B;
+  --color-surface-background: #0F172A;
+  --color-surface-card: #1E293B;
+  --color-surface-card-completed: #334155;
+  --color-surface-input: #334155;
+  --color-text-primary: #F9FAFB;
+  --color-text-secondary: #E2E8F0;
+  --color-text-ghost: #3B82F6;
+  --color-text-danger: #FFFFFF;
+  --color-text-disabled: #334155;
+  --color-text-completed: #E0E7FF;
+  --color-text-on-primary: #111827;
+  --color-semantic-error: #F87171;
+  --color-semantic-success: #34D399;
+}

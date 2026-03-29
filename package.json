@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
+    "dev": "npm run tokens && vite",
+    "build": "npm run tokens && tsc && vite build",
     "lint": "eslint src --ext ts,tsx",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "tokens": "node tokens/generateTokens.js"
   },
   "dependencies": {
     "react": "^18.3.1",

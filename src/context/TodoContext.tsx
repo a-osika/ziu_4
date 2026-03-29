@@ -1,86 +1,44 @@
-import { createContext, useContext, useCallback, useMemo } from 'react';
-import { Todo, FilterType, TodoContextType, Theme } from '../types/todo.types';
-import { useLocalStorage } from '../hooks/useLocalStorage';
-import React from 'react';
+import { createContext, useContext, ReactNode, useReducer } from "react";
+import { TodoAction, TodoState } from "../types/todo.types";
+import { todoReducer, initialState } from "../reducers/todoReducer";
+import React from "react";
 
+interface TodoContextType extends TodoState {
+  dispatch: React.Dispatch<TodoAction>;
+  filter: "all" | "active" | "completed";
+  setFilter: (f: "all" | "active" | "completed") => void;
+  query: string;
+  setQuery: (q: string) => void;
+}
 const TodoContext = createContext<TodoContextType | undefined>(undefined);
 
-export const TodoProvider = ({ children }: { children: React.ReactNode }) => {
-  const [todos, setTodos] = useLocalStorage<Todo[]>('todos', []);
-  const [filter, setFilter] = useLocalStorage<FilterType>('todoFilter', 'all');
-  const [theme, setTheme] = useLocalStorage<Theme>('theme', 'light');
+export function TodoProvider({ children }: { children: ReactNode }) {
+  const [state, dispatch] = useReducer(todoReducer, initialState);
 
-  // Apply theme to document
-  React.useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
+  const [filter, setFilter] = React.useState<
+    "all" | "active" | "completed"
+  >("all");
 
-  const addTodo = useCallback((title: string, description?: string) => {
-    const newTodo: Todo = {
-      id: Date.now().toString(),
-      title,
-      description,
-      completed: false,
-      createdAt: new Date(),
-    };
-    setTodos(prevTodos => [...prevTodos, newTodo]);
-  }, [setTodos]);
-
-  const updateTodo = useCallback((id: string, updates: Partial<Todo>) => {
-    setTodos(prevTodos =>
-      prevTodos.map(todo =>
-        todo.id === id ? { ...todo, ...updates } : todo
-      )
-    );
-  }, [setTodos]);
-
-  const deleteTodo = useCallback((id: string) => {
-    setTodos(prevTodos => prevTodos.filter(todo => todo.id !== id));
-  }, [setTodos]);
-
-  const toggleTodo = useCallback((id: string) => {
-    setTodos(prevTodos =>
-      prevTodos.map(todo =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
-    );
-  }, [setTodos]);
-
-  const clearCompleted = useCallback(() => {
-    setTodos(prevTodos => prevTodos.filter(todo => !todo.completed));
-  }, [setTodos]);
-
-  const toggleTheme = useCallback(() => {
-    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
-  }, [setTheme]);
-
-  const value = useMemo<TodoContextType>(
-    () => ({
-      todos,
-      addTodo,
-      updateTodo,
-      deleteTodo,
-      toggleTodo,
-      clearCompleted,
-      filter,
-      setFilter,
-      theme,
-      toggleTheme,
-    }),
-    [todos, addTodo, updateTodo, deleteTodo, toggleTodo, clearCompleted, filter, setFilter, theme, toggleTheme]
-  );
+  const [query, setQuery] = React.useState("");
 
   return (
-    <TodoContext.Provider value={value}>
+    <TodoContext.Provider
+      value={{
+        ...state,
+        dispatch,
+        filter,
+        setFilter,
+        query,
+        setQuery,
+      }}
+    >
       {children}
     </TodoContext.Provider>
   );
-};
+}
 
-export const useTodoContext = (): TodoContextType => {
+export function useTodoContext() {
   const context = useContext(TodoContext);
-  if (context === undefined) {
-    throw new Error('useTodoContext must be used within a TodoProvider');
-  }
+  if (!context) throw new Error("useTodoContext must be used within TodoProvider");
   return context;
-};
+}

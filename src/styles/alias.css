@@ -1,0 +1,13 @@
+:root {
+  --navbar-bg: var(--color-primary-default);
+  --navbar-text: var(--color-text-on-primary);
+  --navbar-avatar-bg: rgba(255, 255, 255, 0.2);
+  --navbar-avatar-border: rgba(255, 255, 255, 0.3);
+}
+
+.dark {
+  --navbar-bg: var(--color-primary-default);
+  --navbar-text: var(--color-text-on-primary);
+  --navbar-avatar-bg: rgba(255, 255, 255, 0.15);
+  --navbar-avatar-border: rgba(255, 255, 255, 0.25);
+}
