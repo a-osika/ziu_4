@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useTodoContext } from "../../context/TodoContext";
+import { Input } from "../Input/Input";
 
 export function CreateMode() {
   const { dispatch, setFilter, setQuery } = useTodoContext();
@@ -22,18 +23,35 @@ export function CreateMode() {
         <h2 className="h2">Nowe zadanie</h2>
       </div>
 
-      <div className="details-panel__body">
-        <input
-          className="input"
-          placeholder="Nazwa zadania..."
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleAdd();
+        }}
+      >
+        <div className="details-panel__body">
+          <Input
+            label="Tytuł"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Np. Zakupy"
+          />
 
-        <button className="btn-primary" onClick={handleAdd}>
-          Dodaj
-        </button>
-      </div>
+          <div className="details-panel__actions">
+            <button
+              type="button"
+              className="btn btn-ghost"
+              onClick={() => dispatch({ type: "CLEAR_SELECTION" })}
+            >
+              Anuluj
+            </button>
+
+            <button type="submit" className="btn btn-primary">
+              Zapisz
+            </button>
+          </div>
+        </div>
+      </form>
     </>
   );
 }

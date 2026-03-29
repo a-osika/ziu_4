@@ -35,7 +35,7 @@ export function TodoItem({ todo }: TodoItemProps) {
         <div className="todo-item__content">
           <span className="todo-item__title h3">{todo.title}</span>
           <span className="todo-item__date body2">
-            {todo.createdAt.toLocaleString()}
+            {todo.createdAt.toLocaleDateString()}
           </span>
         </div>
 

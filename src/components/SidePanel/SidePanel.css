@@ -54,10 +54,11 @@
 .details-panel__body {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 24px;
 }
 
 .details-panel__actions {
   display: flex;
+  justify-content: space-between;
   gap: 12px;
 }

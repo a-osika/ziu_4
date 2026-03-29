@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useTodoContext } from "../../context/TodoContext";
 import { Icon } from "../Icon/Icon";
-import  "./FilterBar.css";
+import "./FilterBar.css";
 
 const FILTERS: ("all" | "active" | "completed")[] = [
   "all",
@@ -27,14 +27,14 @@ export function FilterBar() {
       </div>
 
       {open && (
-        <div   className={`filter-bar__content ${open ? "open" : ""}`}>
-          {FILTERS.map((f) => (
+        <div className={`filter-bar__content ${open ? "open" : ""}`}>
+          {FILTERS.map((filterValue) => (
             <button
-              key={f}
-              onClick={() => setFilter(f)}
-              className={`filter-bar__button ${filter === f ? "active" : ""}`}
+              key={filterValue}
+              onClick={() => setFilter(filterValue)}
+              className={`btn filter-bar__button ${filter === filterValue ? "active" : ""}`}
             >
-              {f}
+              {filterValue}
             </button>
           ))}
         </div>

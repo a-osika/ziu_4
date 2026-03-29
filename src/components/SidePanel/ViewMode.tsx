@@ -1,4 +1,5 @@
 import { useTodoContext } from "../../context/TodoContext";
+import { Input } from "../Input/Input";
 
 export function ViewMode() {
   const { selectedTodo, dispatch } = useTodoContext();
@@ -9,16 +10,30 @@ export function ViewMode() {
         <h2 className="h2">Szczegóły</h2>
       </div>
       <div className="details-panel__body">
-        <h3 className="h3">{selectedTodo!.title}</h3>
+        <Input
+          label="Tytuł"
+          value={selectedTodo!.title}
+          onChange={() => {}}
+          disabled
+        />
 
-        <p className="body2">{selectedTodo!.createdAt.toLocaleString()}</p>
+        <div className="body2">Dodano: {selectedTodo!.createdAt.toLocaleDateString()}</div>
 
-        <button
-          className="btn-primary"
-          onClick={() => dispatch({ type: "SET_MODE", payload: "edit" })}
-        >
-          Edytuj
-        </button>
+        <div className="details-panel__actions">
+          <button
+            className="btn btn-ghost"
+            onClick={() => dispatch({ type: "CLEAR_SELECTION" })}
+          >
+            Zamknij
+          </button>
+
+          <button
+            className="btn btn-primary"
+            onClick={() => dispatch({ type: "SET_MODE", payload: "edit" })}
+          >
+            Edytuj
+          </button>
+        </div>
       </div>
     </>
   );

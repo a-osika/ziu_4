@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useTodoContext } from "../../context/TodoContext";
+import { Input } from "../Input/Input";
 
 export function EditMode() {
   const { selectedTodo, dispatch } = useTodoContext();
@@ -12,7 +13,7 @@ export function EditMode() {
       payload: { id: selectedTodo!.id, title },
     });
 
-    dispatch({ type: "SET_MODE", payload: "edit" });
+    dispatch({ type: "SET_MODE", payload: "view" });
   };
 
   return (
@@ -20,25 +21,36 @@ export function EditMode() {
       <div className="details-panel__header">
         <h2 className="h2">Edycja</h2>
       </div>
-      <div className="details-panel__body">
-        <input
-          className="input"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
 
-        <div className="details-panel__actions">
-          <button onClick={handleSave} className="btn-primary">
-            Zapisz
-          </button>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSave();
+        }}
+      >
+        <div className="details-panel__body">
+          <Input
+            label="Tytuł"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Wpisz tekst..."
+          />
 
-          <button
-            onClick={() => dispatch({ type: "SET_MODE", payload: "view" })}
-          >
-            Anuluj
-          </button>
+          <div className="details-panel__actions">
+            <button
+              type="button"
+              onClick={() => dispatch({ type: "SET_MODE", payload: "view" })}
+              className="btn btn-ghost"
+            >
+              Anuluj
+            </button>
+
+            <button type="submit" className="btn btn-primary">
+              Zapisz
+            </button>
+          </div>
         </div>
-      </div>
+      </form>
     </>
   );
 }
