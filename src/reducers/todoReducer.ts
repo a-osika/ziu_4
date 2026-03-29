@@ -1,4 +1,4 @@
-import { TodoState, TodoAction } from "../types/todo.types";
+import { TodoState, TodoAction } from '../types/todo.types';
 
 import {
   addTodo,
@@ -9,40 +9,37 @@ import {
   clearSelection,
   setMode,
   openCreate,
-} from "../handlers/todoHandlers";
+} from '../handlers/todoHandlers';
 
 export const initialState: TodoState = {
   todos: [],
   selectedTodo: null,
-  panelMode: null
+  panelMode: null,
 };
 
-export function todoReducer(
-  state: TodoState,
-  action: TodoAction
-): TodoState {
+export function todoReducer(state: TodoState, action: TodoAction): TodoState {
   switch (action.type) {
-    case "OPEN_CREATE":
-      return openCreate(state)
-    case "ADD":
+    case 'OPEN_CREATE':
+      return openCreate(state);
+    case 'ADD':
       return addTodo(state, action.payload);
 
-    case "TOGGLE":
+    case 'TOGGLE':
       return toggleTodo(state, action.payload);
 
-    case "DELETE":
+    case 'DELETE':
       return deleteTodo(state, action.payload);
 
-    case "EDIT":
+    case 'EDIT':
       return editTodo(state, action.payload);
 
-    case "SELECT":
+    case 'SELECT':
       return selectTodo(state, action.payload);
 
-    case "SET_MODE":
+    case 'SET_MODE':
       return setMode(state, action.payload);
 
-    case "CLEAR_SELECTION":
+    case 'CLEAR_SELECTION':
       return clearSelection(state);
 
     default:

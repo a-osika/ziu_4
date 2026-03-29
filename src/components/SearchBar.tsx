@@ -1,4 +1,4 @@
-import { useTodoContext } from "../context/TodoContext";
+import { useTodoContext } from '../context/TodoContext';
 
 export function SearchBar() {
   const { query, setQuery } = useTodoContext();

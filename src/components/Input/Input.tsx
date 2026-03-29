@@ -1,6 +1,6 @@
-import "./Input.css";
+import './Input.css';
 
-type InputVariant = "default" | "error";
+type InputVariant = 'default' | 'error';
 
 export function Input({
   label,
@@ -8,7 +8,7 @@ export function Input({
   onChange,
   placeholder,
   disabled = false,
-  variant = "default",
+  variant = 'default',
 }: {
   label: string;
   value: string;
@@ -18,11 +18,11 @@ export function Input({
   variant?: InputVariant;
 }) {
   return (
-    <div className={`input-group ${disabled ? "disabled" : ""}`}>
+    <div className={`input-group ${disabled ? 'disabled' : ''}`}>
       <label className="input-label">{label}</label>
 
       <input
-        className={`input-field ${variant === "error" ? "error" : ""}`}
+        className={`input-field ${variant === 'error' ? 'error' : ''}`}
         value={value}
         onChange={onChange}
         placeholder={placeholder}

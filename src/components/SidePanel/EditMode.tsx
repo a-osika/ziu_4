@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { useTodoContext } from "../../context/TodoContext";
-import { Input } from "../Input/Input";
+import { useState } from 'react';
+import { useTodoContext } from '../../context/TodoContext';
+import { Input } from '../Input/Input';
 
 export function EditMode() {
   const { selectedTodo, dispatch } = useTodoContext();
@@ -9,11 +9,11 @@ export function EditMode() {
 
   const handleSave = () => {
     dispatch({
-      type: "EDIT",
+      type: 'EDIT',
       payload: { id: selectedTodo!.id, title },
     });
 
-    dispatch({ type: "SET_MODE", payload: "view" });
+    dispatch({ type: 'SET_MODE', payload: 'view' });
   };
 
   return (
@@ -39,7 +39,7 @@ export function EditMode() {
           <div className="details-panel__actions">
             <button
               type="button"
-              onClick={() => dispatch({ type: "SET_MODE", payload: "view" })}
+              onClick={() => dispatch({ type: 'SET_MODE', payload: 'view' })}
               className="btn btn-ghost"
             >
               Anuluj

@@ -1,18 +1,18 @@
-import fs from "fs";
+import fs from 'fs';
 
-const light = JSON.parse(fs.readFileSync("./tokens/Light.tokens.json", "utf-8"));
-const dark = JSON.parse(fs.readFileSync("./tokens/Dark.tokens.json", "utf-8"));
+const light = JSON.parse(fs.readFileSync('./tokens/Light.tokens.json', 'utf-8'));
+const dark = JSON.parse(fs.readFileSync('./tokens/Dark.tokens.json', 'utf-8'));
 
-function extractTokens(obj, prefix = "") {
+function extractTokens(obj, prefix = '') {
   let result = {};
 
   for (const key in obj) {
     const value = obj[key];
 
     if (value?.$value?.hex) {
-      const varName = prefix + key.replace(/\s+/g, "-");
+      const varName = prefix + key.replace(/\s+/g, '-');
       result[varName] = value.$value.hex;
-    } else if (typeof value === "object") {
+    } else if (typeof value === 'object') {
       const nested = extractTokens(value, `${prefix}${key}-`);
       result = { ...result, ...nested };
     }
@@ -24,7 +24,7 @@ function extractTokens(obj, prefix = "") {
 function toCSSVariables(tokens) {
   return Object.entries(tokens)
     .map(([key, value]) => `  --${key}: ${value};`)
-    .join("\n");
+    .join('\n');
 }
 
 const lightTokens = extractTokens(light);
@@ -40,6 +40,6 @@ ${toCSSVariables(darkTokens)}
 }
 `;
 
-fs.writeFileSync("./src/styles/tokens.css", css);
+fs.writeFileSync('./src/styles/tokens.css', css);
 
-console.log("tokens.css generated");
+console.log('tokens.css generated');

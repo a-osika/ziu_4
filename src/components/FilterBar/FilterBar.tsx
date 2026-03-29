@@ -1,13 +1,9 @@
-import { useState } from "react";
-import { useTodoContext } from "../../context/TodoContext";
-import { Icon } from "../Icon/Icon";
-import "./FilterBar.css";
+import { useState } from 'react';
+import { useTodoContext } from '../../context/TodoContext';
+import { Icon } from '../Icon/Icon';
+import './FilterBar.css';
 
-const FILTERS: ("all" | "active" | "completed")[] = [
-  "all",
-  "active",
-  "completed",
-];
+const FILTERS: ('all' | 'active' | 'completed')[] = ['all', 'active', 'completed'];
 
 export function FilterBar() {
   const { filter, setFilter } = useTodoContext();
@@ -15,24 +11,18 @@ export function FilterBar() {
 
   return (
     <div className="filter-bar">
-      <div
-        className="filter-bar__header"
-        onClick={() => setOpen((prev) => !prev)}
-      >
+      <div className="filter-bar__header" onClick={() => setOpen((prev) => !prev)}>
         <span className="h5">Filtry</span>
-        <Icon
-          name="filter"
-          className={`icon-rotatable ${open ? "open" : ""}`}
-        />
+        <Icon name="filter" className={`icon-rotatable ${open ? 'open' : ''}`} />
       </div>
 
       {open && (
-        <div className={`filter-bar__content ${open ? "open" : ""}`}>
+        <div className={`filter-bar__content ${open ? 'open' : ''}`}>
           {FILTERS.map((filterValue) => (
             <button
               key={filterValue}
               onClick={() => setFilter(filterValue)}
-              className={`btn btn-sm filter-bar__button ${filter === filterValue ? "active" : ""}`}
+              className={`btn btn-sm ${filter === filterValue ? 'btn-primary' : 'btn-secondary'}`}
             >
               {filterValue}
             </button>

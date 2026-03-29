@@ -1,11 +1,11 @@
-import { icons } from "./icons";
+import { icons } from './icons';
 
 type IconName = keyof typeof icons;
 
 export function Icon({
   name,
   size = 18,
-  className = "",
+  className = '',
 }: {
   name: IconName;
   size?: number;

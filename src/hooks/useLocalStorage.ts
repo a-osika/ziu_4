@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
  * @param initialValue - The initial value if nothing exists in localStorage
  * @returns A tuple of [value, setValue] similar to useState
  */
-export const useLocalStorage = <T,>(key: string, initialValue: T) => {
+export const useLocalStorage = <T>(key: string, initialValue: T) => {
   // Get from local storage by key
   const readValue = (): T => {
     // Prevent build-time errors of running this code on the server
@@ -30,8 +30,7 @@ export const useLocalStorage = <T,>(key: string, initialValue: T) => {
   const setValue = (value: T | ((val: T) => T)) => {
     try {
       // Allow value to be a function so we have same API as useState
-      const valueToStore =
-        value instanceof Function ? value(storedValue) : value;
+      const valueToStore = value instanceof Function ? value(storedValue) : value;
       // Save state
       setStoredValue(valueToStore);
       // Save to local storage

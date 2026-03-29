@@ -1,7 +1,7 @@
-import { useTodoContext } from "../../context/TodoContext";
-import { Todo } from "../../types/todo.types";
-import { Icon } from "../Icon/Icon";
-import "./TodoItem.css";
+import { useTodoContext } from '../../context/TodoContext';
+import { Todo } from '../../types/todo.types';
+import { Icon } from '../Icon/Icon';
+import './TodoItem.css';
 
 interface TodoItemProps {
   todo: Todo;
@@ -10,19 +10,16 @@ interface TodoItemProps {
 export function TodoItem({ todo }: TodoItemProps) {
   const { dispatch } = useTodoContext();
 
-  const handleToggle = () => dispatch({ type: "TOGGLE", payload: todo.id });
-  const handleDelete = () => dispatch({ type: "DELETE", payload: todo.id });
+  const handleToggle = () => dispatch({ type: 'TOGGLE', payload: todo.id });
+  const handleDelete = () => dispatch({ type: 'DELETE', payload: todo.id });
 
   return (
     <li
-      onClick={() => dispatch({ type: "SELECT", payload: todo.id })}
-      className={`todo-item ${todo.completed ? "todo-item--completed" : ""}`}
+      onClick={() => dispatch({ type: 'SELECT', payload: todo.id })}
+      className={`todo-item ${todo.completed ? 'todo-item--completed' : ''}`}
     >
       <div className="todo-item__row">
-        <div
-          onClick={(e) => e.stopPropagation()}
-          className="todo-item__checkbox-wrapper"
-        >
+        <div onClick={(e) => e.stopPropagation()} className="todo-item__checkbox-wrapper">
           <input
             type="checkbox"
             checked={todo.completed}
@@ -34,9 +31,7 @@ export function TodoItem({ todo }: TodoItemProps) {
 
         <div className="todo-item__content">
           <span className="todo-item__title h3">{todo.title}</span>
-          <span className="todo-item__date body2">
-            {todo.createdAt.toLocaleDateString()}
-          </span>
+          <span className="todo-item__date body2">{todo.createdAt.toLocaleDateString()}</span>
         </div>
 
         <button

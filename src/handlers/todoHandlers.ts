@@ -1,10 +1,10 @@
-import { TodoState, Todo, PanelMode } from "../types/todo.types";
+import { TodoState, Todo, PanelMode } from '../types/todo.types';
 
 export function openCreate(state: TodoState): TodoState {
   return {
     ...state,
     selectedTodo: null,
-    panelMode: "create",
+    panelMode: 'create',
   };
 }
 
@@ -25,9 +25,7 @@ export function addTodo(state: TodoState, title: string): TodoState {
 export function toggleTodo(state: TodoState, id: string): TodoState {
   return {
     ...state,
-    todos: state.todos.map((t) =>
-      t.id === id ? { ...t, completed: !t.completed } : t
-    ),
+    todos: state.todos.map((t) => (t.id === id ? { ...t, completed: !t.completed } : t)),
   };
 }
 
@@ -35,15 +33,11 @@ export function deleteTodo(state: TodoState, id: string): TodoState {
   return {
     ...state,
     todos: state.todos.filter((t) => t.id !== id),
-    selectedTodo:
-      state.selectedTodo?.id === id ? null : state.selectedTodo,
+    selectedTodo: state.selectedTodo?.id === id ? null : state.selectedTodo,
   };
 }
 
-export function editTodo(
-  state: TodoState,
-  payload: { id: string; title: string }
-): TodoState {
+export function editTodo(state: TodoState, payload: { id: string; title: string }): TodoState {
   const updatedTodos = state.todos.map((t) =>
     t.id === payload.id ? { ...t, title: payload.title } : t
   );
@@ -51,17 +45,15 @@ export function editTodo(
   return {
     ...state,
     todos: updatedTodos,
-    selectedTodo:
-      updatedTodos.find((t) => t.id === payload.id) || null,
+    selectedTodo: updatedTodos.find((t) => t.id === payload.id) || null,
   };
 }
 
 export function selectTodo(state: TodoState, id: string): TodoState {
   return {
     ...state,
-    selectedTodo:
-      state.todos.find((t) => t.id === id) || null,
-    panelMode: "view",
+    selectedTodo: state.todos.find((t) => t.id === id) || null,
+    panelMode: 'view',
   };
 }
 
@@ -73,10 +65,7 @@ export function clearSelection(state: TodoState): TodoState {
   };
 }
 
-export function setMode(
-  state: TodoState,
-  mode: PanelMode
-): TodoState {
+export function setMode(state: TodoState, mode: PanelMode): TodoState {
   return {
     ...state,
     panelMode: mode,

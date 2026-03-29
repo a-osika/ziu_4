@@ -1,13 +1,13 @@
-import { TodoProvider } from "./context/TodoContext";
-import { ThemeProvider } from "./context/ThemeContext";
-import { SearchBar } from "./components/SearchBar";
-import { FilterBar } from "./components/FilterBar/FilterBar";
-import { TodoList } from "./components/TodoList/TodoList";
-import { Navbar } from "./components/Navbar";
-import { Sidebar } from "./components/Sidebar";
-import { SidePanel } from "./components/SidePanel/SidePanel";
-import "./index.css";
-import { Fab } from "./components/Fab/Fab";
+import { TodoProvider } from './context/TodoContext';
+import { ThemeProvider } from './context/ThemeContext';
+import { SearchBar } from './components/SearchBar';
+import { FilterBar } from './components/FilterBar/FilterBar';
+import { TodoList } from './components/TodoList/TodoList';
+import { Navbar } from './components/Navbar';
+import { Sidebar } from './components/Sidebar';
+import { SidePanel } from './components/SidePanel/SidePanel';
+import './index.css';
+import { Fab } from './components/Fab/Fab';
 
 export default function App() {
   return (

@@ -1,20 +1,20 @@
-import { useState } from "react";
-import { useTodoContext } from "../../context/TodoContext";
-import { Input } from "../Input/Input";
+import { useState } from 'react';
+import { useTodoContext } from '../../context/TodoContext';
+import { Input } from '../Input/Input';
 
 export function CreateMode() {
   const { dispatch, setFilter, setQuery } = useTodoContext();
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState('');
 
   const handleAdd = () => {
     if (!title.trim()) return;
 
-    dispatch({ type: "ADD", payload: title });
+    dispatch({ type: 'ADD', payload: title });
 
-    setFilter("all");
-    setQuery("");
+    setFilter('all');
+    setQuery('');
 
-    dispatch({ type: "CLEAR_SELECTION" });
+    dispatch({ type: 'CLEAR_SELECTION' });
   };
 
   return (
@@ -41,7 +41,7 @@ export function CreateMode() {
             <button
               type="button"
               className="btn btn-ghost"
-              onClick={() => dispatch({ type: "CLEAR_SELECTION" })}
+              onClick={() => dispatch({ type: 'CLEAR_SELECTION' })}
             >
               Anuluj
             </button>
