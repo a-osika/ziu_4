@@ -15,20 +15,22 @@ export function TodoItem({ todo }: TodoItemProps) {
 
   return (
     <li
-      onClick={() =>
-        dispatch({ type: "SELECT", payload: todo.id })
-      }
-      className={`todo-item ${todo.completed ? "todo-item--completed" : ""}`}>
+      onClick={() => dispatch({ type: "SELECT", payload: todo.id })}
+      className={`todo-item ${todo.completed ? "todo-item--completed" : ""}`}
+    >
       <div className="todo-item__row">
-        <input
-          type="checkbox"
-          checked={todo.completed}
-          onChange={(e) => {
-            e.stopPropagation();
-            handleToggle();
-          }}
-          className="todo-item__checkbox"
-        />
+        <div
+          onClick={(e) => e.stopPropagation()}
+          className="todo-item__checkbox-wrapper"
+        >
+          <input
+            type="checkbox"
+            checked={todo.completed}
+            onClick={(e) => e.stopPropagation()}
+            onChange={handleToggle}
+            className="todo-item__checkbox"
+          />
+        </div>
 
         <div className="todo-item__content">
           <span className="todo-item__title h3">{todo.title}</span>
@@ -37,11 +39,13 @@ export function TodoItem({ todo }: TodoItemProps) {
           </span>
         </div>
 
-        <button className="todo-item__delete"
+        <button
+          className="todo-item__delete"
           onClick={(e) => {
             e.stopPropagation();
             handleDelete();
-          }}>
+          }}
+        >
           <Icon name="trash" />
         </button>
       </div>
