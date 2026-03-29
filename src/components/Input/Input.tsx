@@ -8,21 +8,21 @@ export function Input({
   onChange,
   placeholder,
   disabled = false,
-  variant = 'default',
+  variant = "default",
 }: {
-  label: string;
+  label?: string;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   disabled?: boolean;
-  variant?: InputVariant;
+  variant?: "default" | "error";
 }) {
   return (
-    <div className={`input-group ${disabled ? 'disabled' : ''}`}>
-      <label className="input-label">{label}</label>
+    <div className={`input-group ${disabled ? "disabled" : ""}`}>
+      {label && <label className="input-label">{label}</label>}
 
       <input
-        className={`input-field ${variant === 'error' ? 'error' : ''}`}
+        className={`input-field ${variant === "error" ? "error" : ""}`}
         value={value}
         onChange={onChange}
         placeholder={placeholder}

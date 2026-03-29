@@ -13,4 +13,10 @@ export const icons = {
       <path d="M4 6h16l-6 7v5l-4 2v-7L4 6z" />
     </>
   ),
+  search: (
+    <>
+      <circle cx="11" cy="11" r="8" />
+      <path d="M21 21l-4.3-4.3" />
+    </>
+  ),
 };
