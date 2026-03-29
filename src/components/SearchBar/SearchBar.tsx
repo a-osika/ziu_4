@@ -1,5 +1,5 @@
-import { useTodoContext } from "../../context/TodoContext";
-import { Input } from "../../components/Input/Input";
+import { useTodoContext } from '../../context/TodoContext';
+import { Input } from '../../components/Input/Input';
 
 export function SearchBar() {
   const { query, setQuery } = useTodoContext();
