@@ -1,32 +1,46 @@
 import { useTodoContext } from '../../context/TodoContext';
-import { Input } from '../Input/Input';
+
+import { Box, Typography, TextField, Button, Stack, Chip } from '@mui/material';
 
 export function ViewMode() {
   const { selectedTodo, dispatch } = useTodoContext();
 
+  if (!selectedTodo) return null;
+
   return (
-    <>
-      <div className="details-panel__header">
-        <h2 className="h2">Szczegóły</h2>
-      </div>
-      <div className="details-panel__body">
-        <Input label="Tytuł" value={selectedTodo!.title} onChange={() => {}} disabled />
+    <Box>
+      <Typography variant="h6" sx={{ mb: 2 }}>
+        Szczegóły
+      </Typography>
 
-        <div className="body2">Dodano: {selectedTodo!.createdAt.toLocaleDateString()}</div>
+      <Stack spacing={2}>
+        <TextField label="Tytuł" value={selectedTodo.title} fullWidth disabled />
 
-        <div className="details-panel__actions">
-          <button className="btn btn-ghost" onClick={() => dispatch({ type: 'CLEAR_SELECTION' })}>
+        <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
+          <Chip
+            label={selectedTodo.completed ? 'Ukończone' : 'Oczekujące'}
+            color={selectedTodo.completed ? 'success' : 'default'}
+            size="small"
+          />
+
+          <Typography variant="body2" color="text.secondary">
+            Dodano: {selectedTodo.createdAt.toLocaleDateString()}
+          </Typography>
+        </Stack>
+
+        <Stack direction="row" spacing={1} sx={{ justifyContent: 'space-between' }}>
+          <Button variant="outlined" onClick={() => dispatch({ type: 'CLEAR_SELECTION' })}>
             Zamknij
-          </button>
+          </Button>
 
-          <button
-            className="btn btn-primary"
+          <Button
+            variant="contained"
             onClick={() => dispatch({ type: 'SET_MODE', payload: 'edit' })}
           >
             Edytuj
-          </button>
-        </div>
-      </div>
-    </>
+          </Button>
+        </Stack>
+      </Stack>
+    </Box>
   );
 }

@@ -1,12 +1,23 @@
 import { useTodoContext } from '../../context/TodoContext';
-import './Fab.css';
+
+import { Fab as MuiFab } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 
 export function Fab() {
   const { dispatch } = useTodoContext();
 
   return (
-    <button className="fab" onClick={() => dispatch({ type: 'OPEN_CREATE' })}>
-      +
-    </button>
+    <MuiFab
+      color="primary"
+      onClick={() => dispatch({ type: 'OPEN_CREATE' })}
+      sx={{
+        position: 'fixed',
+        bottom: 24,
+        right: 24,
+        boxShadow: 6,
+      }}
+    >
+      <AddIcon />
+    </MuiFab>
   );
 }

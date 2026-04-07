@@ -1,4 +1,4 @@
-import './Input.css';
+import { TextField } from '@mui/material';
 
 type InputVariant = 'default' | 'error';
 
@@ -15,19 +15,18 @@ export function Input({
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   disabled?: boolean;
-  variant?: 'default' | 'error';
+  variant?: InputVariant;
 }) {
   return (
-    <div className={`input-group ${disabled ? 'disabled' : ''}`}>
-      {label && <label className="input-label">{label}</label>}
-
-      <input
-        className={`input-field ${variant === 'error' ? 'error' : ''}`}
-        value={value}
-        onChange={onChange}
-        placeholder={placeholder}
-        disabled={disabled}
-      />
-    </div>
+    <TextField
+      fullWidth
+      label={label}
+      value={value}
+      onChange={onChange}
+      placeholder={placeholder}
+      disabled={disabled}
+      error={variant === 'error'}
+      variant="outlined"
+    />
   );
 }

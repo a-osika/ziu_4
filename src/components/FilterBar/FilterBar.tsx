@@ -1,34 +1,20 @@
-import { useState } from 'react';
 import { useTodoContext } from '../../context/TodoContext';
-import { Icon } from '../Icon/Icon';
-import './FilterBar.css';
 
-const FILTERS: ('all' | 'active' | 'completed')[] = ['all', 'active', 'completed'];
+import { ToggleButton, ToggleButtonGroup } from '@mui/material';
 
 export function FilterBar() {
   const { filter, setFilter } = useTodoContext();
-  const [open, setOpen] = useState(false);
 
   return (
-    <div className="filter-bar">
-      <div className="filter-bar__header" onClick={() => setOpen((prev) => !prev)}>
-        <span className="h5">Filtry</span>
-        <Icon name="filter" className={`icon-rotatable ${open ? 'open' : ''}`} />
-      </div>
-
-      {open && (
-        <div className={`filter-bar__content ${open ? 'open' : ''}`}>
-          {FILTERS.map((filterValue) => (
-            <button
-              key={filterValue}
-              onClick={() => setFilter(filterValue)}
-              className={`btn btn-sm ${filter === filterValue ? 'btn-primary' : 'btn-secondary'}`}
-            >
-              {filterValue}
-            </button>
-          ))}
-        </div>
-      )}
-    </div>
+    <ToggleButtonGroup
+      value={filter}
+      exclusive
+      onChange={(_, value) => value && setFilter(value)}
+      sx={{ mb: 2 }}
+    >
+      <ToggleButton value="all">All</ToggleButton>
+      <ToggleButton value="active">Active</ToggleButton>
+      <ToggleButton value="completed">Completed</ToggleButton>
+    </ToggleButtonGroup>
   );
 }

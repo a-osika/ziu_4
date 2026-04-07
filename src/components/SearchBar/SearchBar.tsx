@@ -1,14 +1,36 @@
 import { useTodoContext } from '../../context/TodoContext';
-import { Input } from '../../components/Input/Input';
+
+import { TextField, InputAdornment, IconButton } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
+import ClearIcon from '@mui/icons-material/Clear';
 
 export function SearchBar() {
   const { query, setQuery } = useTodoContext();
 
   return (
-    <Input
+    <TextField
+      fullWidth
+      placeholder="Szukaj zadania..."
       value={query}
       onChange={(e) => setQuery(e.target.value)}
-      placeholder="Szukaj zadania..."
+      variant="outlined"
+      sx={{ mb: 2 }}
+      slotProps={{
+        input: {
+          startAdornment: (
+            <InputAdornment position="start">
+              <SearchIcon />
+            </InputAdornment>
+          ),
+          endAdornment: query ? (
+            <InputAdornment position="end">
+              <IconButton onClick={() => setQuery('')}>
+                <ClearIcon />
+              </IconButton>
+            </InputAdornment>
+          ) : undefined,
+        },
+      }}
     />
   );
 }
