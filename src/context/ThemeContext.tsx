@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode, useMemo } from 'react';
+import { createContext, useContext, useState, ReactNode, useMemo, useEffect } from 'react';
 
 import { ThemeProvider as MuiThemeProvider, createTheme, CssBaseline } from '@mui/material';
 
@@ -21,6 +21,15 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       }),
     [theme]
   );
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === 'dark') {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
+    }
+  }, [theme]);
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
