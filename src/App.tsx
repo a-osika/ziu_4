@@ -1,33 +1,67 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 import { TodoProvider } from './context/TodoContext';
 import { ThemeProvider } from './context/ThemeContext';
+
+import DashboardLayout from './components/dashboard/DashboardLayout';
+import StatsGrid from './components/dashboard/StatsGrid';
+
 import { SearchBar } from './components/SearchBar/SearchBar';
 import { FilterBar } from './components/FilterBar/FilterBar';
 import { TodoList } from './components/TodoList/TodoList';
-import { Navbar } from './components/Navbar';
-import { Sidebar } from './components/Sidebar';
 import { SidePanel } from './components/SidePanel/SidePanel';
-import './index.css';
 import { Fab } from './components/Fab/Fab';
+import { Box } from '@mui/material';
+import RecentTodosTimeline from './components/dashboard/RecentTodosTimeline';
+
+function TodosPage() {
+  return (
+    <>
+      <SearchBar />
+      <FilterBar />
+      <TodoList />
+      <SidePanel />
+      <Fab />
+    </>
+  );
+}
+
+function DashboardPage() {
+  return (
+    <>
+      <StatsGrid />
+      <Box sx={{ mt: 4 }}>
+        <RecentTodosTimeline />
+      </Box>
+    </>
+  );
+}
 
 export default function App() {
   return (
     <ThemeProvider>
       <TodoProvider>
-        <Navbar />
+        <BrowserRouter>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <DashboardLayout>
+                  <DashboardPage />
+                </DashboardLayout>
+              }
+            />
 
-        <div className="app-layout">
-          <Sidebar />
-          <main className="app-main">
-            <div className="app-content">
-              <SearchBar />
-              <FilterBar />
-              <TodoList />
-            </div>
-          </main>
-        </div>
-
-        <SidePanel />
-        <Fab />
+            <Route
+              path="/todos"
+              element={
+                <DashboardLayout>
+                  <TodosPage />
+                </DashboardLayout>
+              }
+            />
+          </Routes>
+        </BrowserRouter>
       </TodoProvider>
     </ThemeProvider>
   );

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useTodoContext } from '../../context/TodoContext';
-import { Input } from '../Input/Input';
+
+import { Box, Typography, TextField, Button, Stack } from '@mui/material';
 
 export function EditMode() {
   const { selectedTodo, dispatch } = useTodoContext();
@@ -8,6 +9,8 @@ export function EditMode() {
   const [title, setTitle] = useState(selectedTodo!.title);
 
   const handleSave = () => {
+    if (!title.trim()) return;
+
     dispatch({
       type: 'EDIT',
       payload: { id: selectedTodo!.id, title },
@@ -17,40 +20,39 @@ export function EditMode() {
   };
 
   return (
-    <>
-      <div className="details-panel__header">
-        <h2 className="h2">Edycja</h2>
-      </div>
+    <Box
+      component="form"
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleSave();
+      }}
+    >
+      <Typography variant="h6" sx={{ mb: 2 }}>
+        Edycja
+      </Typography>
 
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleSave();
-        }}
-      >
-        <div className="details-panel__body">
-          <Input
-            label="Tytuł"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            placeholder="Wpisz tekst..."
-          />
+      <Stack spacing={2}>
+        <TextField
+          label="Tytuł"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Wpisz tekst..."
+          fullWidth
+        />
 
-          <div className="details-panel__actions">
-            <button
-              type="button"
-              onClick={() => dispatch({ type: 'SET_MODE', payload: 'view' })}
-              className="btn btn-ghost"
-            >
-              Anuluj
-            </button>
+        <Stack direction="row" spacing={1} sx={{ justifyContent: 'space-between' }}>
+          <Button
+            variant="outlined"
+            onClick={() => dispatch({ type: 'SET_MODE', payload: 'view' })}
+          >
+            Anuluj
+          </Button>
 
-            <button type="submit" className="btn btn-primary">
-              Zapisz
-            </button>
-          </div>
-        </div>
-      </form>
-    </>
+          <Button type="submit" variant="contained" disabled={!title.trim()}>
+            Zapisz
+          </Button>
+        </Stack>
+      </Stack>
+    </Box>
   );
 }

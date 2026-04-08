@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { useTodoContext } from '../../context/TodoContext';
 import { Input } from '../Input/Input';
 
+import { Box, Button, Typography } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+
 export function CreateMode() {
   const { dispatch, setFilter, setQuery } = useTodoContext();
   const [title, setTitle] = useState('');
@@ -15,43 +18,38 @@ export function CreateMode() {
     setQuery('');
 
     dispatch({ type: 'CLEAR_SELECTION' });
+    setTitle('');
   };
 
   return (
-    <>
-      <div className="details-panel__header">
-        <h2 className="h2">Nowe zadanie</h2>
-      </div>
+    <Box>
+      <Typography variant="h6" sx={{ mb: 2 }}>
+        Nowe zadanie
+      </Typography>
 
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleAdd();
-        }}
-      >
-        <div className="details-panel__body">
-          <Input
-            label="Tytuł"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            placeholder="Np. Zakupy"
-          />
+      <Box sx={{ display: 'flex', gap: 1 }}>
+        <Input
+          label="Tytuł"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Np. Zakupy"
+        />
 
-          <div className="details-panel__actions">
-            <button
-              type="button"
-              className="btn btn-ghost"
-              onClick={() => dispatch({ type: 'CLEAR_SELECTION' })}
-            >
-              Anuluj
-            </button>
+        <Button
+          variant="contained"
+          startIcon={<AddIcon />}
+          onClick={handleAdd}
+          disabled={!title.trim()}
+        >
+          Dodaj
+        </Button>
+      </Box>
 
-            <button type="submit" className="btn btn-primary">
-              Zapisz
-            </button>
-          </div>
-        </div>
-      </form>
-    </>
+      <Box sx={{ mt: 2 }}>
+        <Button variant="outlined" onClick={() => dispatch({ type: 'CLEAR_SELECTION' })}>
+          Anuluj
+        </Button>
+      </Box>
+    </Box>
   );
 }
