@@ -2,6 +2,7 @@ import { AppBar, Toolbar, Typography, IconButton, Box } from '@mui/material';
 
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import { ThemeToggle } from '../../components/ThemeToggle';
+import { ViewSwitch } from '../../components/ViewSwitch';
 
 export default function AppHeader() {
   return (
@@ -9,8 +10,17 @@ export default function AppHeader() {
       <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <Typography variant="h6">Dashboard</Typography>
 
-        <Box>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 1,
+          }}
+        >
+          <ViewSwitch />
+
           <ThemeToggle />
+
           <IconButton>
             <NotificationsNoneIcon />
           </IconButton>
