@@ -23,12 +23,22 @@ const navItems = [
   { label: 'Zadania', icon: TaskIcon, path: '/todos' },
 ];
 
-export default function Sidebar() {
+export default function Sidebar({
+  open,
+  onClose,
+  variant,
+}: {
+  open: boolean;
+  onClose: () => void;
+  variant: 'permanent' | 'temporary';
+}) {
   const location = useLocation();
 
   return (
     <Drawer
-      variant="permanent"
+      variant={variant}
+      open={variant === 'temporary' ? open : true}
+      onClose={onClose}
       sx={{ width: DRAWER_WIDTH }}
       slotProps={{
         paper: {
