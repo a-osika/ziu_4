@@ -52,12 +52,10 @@ export default function Sidebar({
       }}
     >
       <Toolbar>
-        <Typography variant="h6" sx={{ fontWeight: 700 }}>
-          TodoApp
-        </Typography>
+        <Typography variant="h6">32032 TodoApp</Typography>
       </Toolbar>
 
-      <Divider sx={{ borderColor: 'rgba(255,255,255,0.2)' }} />
+      <Divider />
 
       <List>
         {navItems.map((item) => {
@@ -69,6 +67,7 @@ export default function Sidebar({
               component={Link}
               to={item.path}
               selected={location.pathname === item.path}
+              aria-label={item.label}
             >
               <ListItemIcon sx={{ color: 'white' }}>
                 <Icon />

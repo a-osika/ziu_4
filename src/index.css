@@ -1,0 +1,23 @@
+.card {
+  container-type: inline-size;
+  break-inside: avoid;
+}
+
+@container (min-width: 400px) {
+  .card {
+    display: flex;
+  }
+}
+
+@media print {
+  .sidebar,
+  .fab,
+  button {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+  }
+}

@@ -22,7 +22,7 @@ export function SidePanel() {
       slotProps={{
         paper: {
           sx: {
-            width: { xs: '100%', sm: 500, md: 600 },
+            width: { xs: '100%', sm: 420, md: 480 },
             p: 3,
             display: 'flex',
             flexDirection: 'column',

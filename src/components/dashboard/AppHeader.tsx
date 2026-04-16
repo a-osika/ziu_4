@@ -1,4 +1,4 @@
-import { AppBar, Toolbar, Typography, IconButton, Box } from '@mui/material';
+import { AppBar, Toolbar, IconButton, Box } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 
 import { ThemeToggle } from '../../components/ThemeToggle';
@@ -15,12 +15,10 @@ export default function AppHeader({
       <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           {isMobile && (
-            <IconButton onClick={onMenuClick}>
+            <IconButton onClick={onMenuClick} aria-label="Pokaż menu">
               <MenuIcon />
             </IconButton>
           )}
-
-          <Typography variant="h6">Dashboard</Typography>
         </Box>
 
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>

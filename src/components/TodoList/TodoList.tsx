@@ -41,6 +41,7 @@ export function TodoList() {
       <List disablePadding>
         {filteredTodos.map((todo, idx) => (
           <ListItem
+            className="card"
             key={todo.id}
             divider={idx < filteredTodos.length - 1}
             onClick={() => dispatch({ type: 'SELECT', payload: todo.id })}

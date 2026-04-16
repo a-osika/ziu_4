@@ -34,6 +34,12 @@ export function CreateMode() {
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Np. Zakupy"
         />
+      </Box>
+
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
+        <Button variant="outlined" onClick={() => dispatch({ type: 'CLEAR_SELECTION' })}>
+          Anuluj
+        </Button>
 
         <Button
           variant="contained"
@@ -42,12 +48,6 @@ export function CreateMode() {
           disabled={!title.trim()}
         >
           Dodaj
-        </Button>
-      </Box>
-
-      <Box sx={{ mt: 2 }}>
-        <Button variant="outlined" onClick={() => dispatch({ type: 'CLEAR_SELECTION' })}>
-          Anuluj
         </Button>
       </Box>
     </Box>

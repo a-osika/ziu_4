@@ -11,7 +11,7 @@ interface StatsCardProps {
 
 export default function StatsCard({ title, value, icon: Icon, color, bgColor }: StatsCardProps) {
   return (
-    <Card>
+    <Card sx={{ aspectRatio: '16/9' }}>
       <CardContent>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
           <Box>
@@ -19,9 +19,7 @@ export default function StatsCard({ title, value, icon: Icon, color, bgColor }: 
               {title}
             </Typography>
 
-            <Typography variant="h4" sx={{ fontWeight: 700 }}>
-              {value}
-            </Typography>
+            <Typography variant="h4">{value}</Typography>
           </Box>
 
           <Avatar sx={{ bgcolor: bgColor, color, width: 48, height: 48 }}>

@@ -7,7 +7,7 @@ export function ThemeToggle() {
   const { mode, toggleMode } = useThemeMode();
 
   return (
-    <IconButton onClick={toggleMode} color="inherit">
+    <IconButton onClick={toggleMode} color="inherit" aria-label="Przełącz motyw">
       {mode === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
     </IconButton>
   );
