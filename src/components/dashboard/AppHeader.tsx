@@ -1,9 +1,7 @@
 import { AppBar, Toolbar, Typography, IconButton, Box } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import { ThemeToggle } from '../../components/ThemeToggle';
-import { ViewSwitch } from '../../components/ViewSwitch';
 
 export default function AppHeader({
   onMenuClick,
@@ -26,11 +24,7 @@ export default function AppHeader({
         </Box>
 
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-          <ViewSwitch />
           <ThemeToggle />
-          <IconButton>
-            <NotificationsNoneIcon />
-          </IconButton>
         </Box>
       </Toolbar>
     </AppBar>

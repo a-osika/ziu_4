@@ -1,11 +1,11 @@
 :root {
   --font-family-base: 'Inter', sans-serif;
 
-  --h1-size: 40px;
+  --h1-size: clamp(1.5rem, 4vw, 2.5rem);
   --h1-weight: 700;
   --h1-line: 1.2;
 
-  --h2-size: 32px;
+  --h2-size: clamp(1.25rem, 3vw, 2rem);
   --h2-weight: 700;
   --h2-line: 1.25;
 
@@ -25,7 +25,7 @@
   --h6-weight: 600;
   --h6-line: 1.4;
 
-  --body1-size: 16px;
+  --body1-size: clamp(0.875rem, 2vw, 1.125rem);
   --body1-weight: 400;
   --body1-line: 1.5;
 
@@ -33,7 +33,7 @@
   --body2-weight: 400;
   --body2-line: 1.5;
 
-  --caption-size: 12px;
+  --caption-size: clamp(0.75rem, 1.5vw, 0.875rem);
   --caption-weight: 400;
   --caption-line: 1.6;
 
