@@ -23,7 +23,7 @@ export default function RecentTodosTimeline() {
 
   return (
     <Paper sx={{ p: 2 }}>
-      <Typography variant="h6" sx={{ mb: 2 }}>
+      <Typography variant="h4" sx={{ mb: 2 }}>
         Ostatnie zadania
       </Typography>
 
@@ -36,9 +36,7 @@ export default function RecentTodosTimeline() {
             </TimelineSeparator>
 
             <TimelineContent>
-              <Typography variant="body2" sx={{ fontWeight: 500 }}>
-                {todo.title}
-              </Typography>
+              <Typography variant="body2">{todo.title}</Typography>
 
               <Typography variant="caption" color="text.secondary">
                 {new Date(todo.createdAt).toLocaleDateString()}

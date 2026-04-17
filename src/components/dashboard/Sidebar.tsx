@@ -23,12 +23,22 @@ const navItems = [
   { label: 'Zadania', icon: TaskIcon, path: '/todos' },
 ];
 
-export default function Sidebar() {
+export default function Sidebar({
+  open,
+  onClose,
+  variant,
+}: {
+  open: boolean;
+  onClose: () => void;
+  variant: 'permanent' | 'temporary';
+}) {
   const location = useLocation();
 
   return (
     <Drawer
-      variant="permanent"
+      variant={variant}
+      open={variant === 'temporary' ? open : true}
+      onClose={onClose}
       sx={{ width: DRAWER_WIDTH }}
       slotProps={{
         paper: {
@@ -42,12 +52,10 @@ export default function Sidebar() {
       }}
     >
       <Toolbar>
-        <Typography variant="h6" sx={{ fontWeight: 700 }}>
-          TodoApp
-        </Typography>
+        <Typography variant="h6">32032 TodoApp</Typography>
       </Toolbar>
 
-      <Divider sx={{ borderColor: 'rgba(255,255,255,0.2)' }} />
+      <Divider />
 
       <List>
         {navItems.map((item) => {
@@ -59,6 +67,7 @@ export default function Sidebar() {
               component={Link}
               to={item.path}
               selected={location.pathname === item.path}
+              aria-label={item.label}
             >
               <ListItemIcon sx={{ color: 'white' }}>
                 <Icon />

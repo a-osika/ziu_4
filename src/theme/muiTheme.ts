@@ -1,73 +1,135 @@
 import { createTheme } from '@mui/material/styles';
+import { lightTokens, darkTokens } from './tokens';
 
-const muiTheme = createTheme({
-  palette: {
-    primary: {
-      main: '#1565C0', // brand blue
+export const createAppTheme = (mode: 'light' | 'dark') => {
+  const t = mode === 'light' ? lightTokens : darkTokens;
 
-      light: '#1E88E5',
+  return createTheme({
+    palette: {
+      mode,
 
-      dark: '#0D47A1',
+      primary: {
+        main: t.primary.main,
+        contrastText: t.text.onPrimary,
+      },
 
-      contrastText: '#FFFFFF',
-    },
+      secondary: {
+        main: t.secondary.main,
+      },
 
-    secondary: {
-      main: '#E65100', // accent orange
+      background: {
+        default: t.surface.background,
+        paper: t.surface.card,
+      },
 
-      light: '#FF8A65',
+      text: {
+        primary: t.text.primary,
+        secondary: t.text.secondary,
+        // disabled: t.text.disabled,
+      },
 
-      dark: '#BF360C',
-    },
+      error: {
+        main: t.semantic.error,
+      },
 
-    success: { main: '#2E7D32' },
-
-    error: { main: '#B71C1C' },
-
-    background: {
-      default: '#F5F7FA',
-
-      paper: '#FFFFFF',
-    },
-  },
-
-  typography: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-
-    h4: { fontWeight: 700, letterSpacing: '-0.02em' },
-
-    h5: { fontWeight: 600 },
-
-    h6: { fontWeight: 600 },
-
-    button: { textTransform: 'none', fontWeight: 600 },
-  },
-
-  shape: {
-    borderRadius: 10,
-  },
-
-  spacing: 8,
-
-  components: {
-    MuiButton: {
-      defaultProps: { disableElevation: true },
-
-      styleOverrides: {
-        root: { borderRadius: 8, paddingLeft: 20, paddingRight: 20 },
+      success: {
+        main: t.semantic.success,
       },
     },
 
-    MuiTextField: {
-      defaultProps: { variant: 'outlined', size: 'small' },
-    },
+    typography: {
+      fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
 
-    MuiCard: {
-      styleOverrides: {
-        root: { boxShadow: '0 2px 12px rgba(0,0,0,0.08)', borderRadius: 12 },
+      h1: {
+        fontSize: 'clamp(2rem, 4vw, 3rem)',
+        fontWeight: 700,
+        letterSpacing: '-0.03em',
+      },
+
+      h2: {
+        fontSize: 'clamp(1.75rem, 3.2vw, 2.5rem)',
+        fontWeight: 700,
+        letterSpacing: '-0.025em',
+      },
+
+      h3: {
+        fontSize: 'clamp(1.5rem, 2.8vw, 2rem)',
+        fontWeight: 700,
+        letterSpacing: '-0.02em',
+      },
+
+      h4: {
+        fontSize: 'clamp(1.25rem, 2.2vw, 1.75rem)',
+        fontWeight: 700,
+        letterSpacing: '-0.02em',
+      },
+
+      h5: {
+        fontSize: 'clamp(1.125rem, 1.8vw, 1.5rem)',
+        fontWeight: 600,
+        letterSpacing: '-0.015em',
+      },
+
+      h6: {
+        fontSize: 'clamp(1rem, 1.5vw, 1.25rem)',
+        fontWeight: 600,
+        letterSpacing: '-0.01em',
+      },
+
+      body1: {
+        fontSize: 'clamp(1rem, 1.2vw, 1.125rem)',
+        lineHeight: 1.6,
+      },
+
+      body2: {
+        fontSize: 'clamp(0.875rem, 1vw, 1rem)',
+        lineHeight: 1.5,
+      },
+
+      button: {
+        fontSize: 'clamp(0.875rem, 1vw, 0.95rem)',
+        textTransform: 'none',
+        fontWeight: 600,
+      },
+
+      caption: {
+        fontSize: 'clamp(0.75rem, 0.9vw, 0.875rem)',
+      },
+
+      overline: {
+        fontSize: 'clamp(0.7rem, 0.8vw, 0.75rem)',
+        letterSpacing: '0.08em',
+        textTransform: 'uppercase',
       },
     },
-  },
-});
 
-export default muiTheme;
+    shape: {
+      borderRadius: 10,
+    },
+
+    spacing: 8,
+
+    components: {
+      MuiButton: {
+        defaultProps: { disableElevation: true },
+        styleOverrides: {
+          root: { borderRadius: 8, paddingLeft: 20, paddingRight: 20 },
+        },
+      },
+
+      MuiTextField: {
+        defaultProps: { variant: 'outlined', size: 'small' },
+      },
+
+      MuiCard: {
+        styleOverrides: {
+          root: {
+            boxShadow:
+              mode === 'dark' ? '0 2px 12px rgba(0,0,0,0.5)' : '0 2px 12px rgba(0,0,0,0.08)',
+            borderRadius: 12,
+          },
+        },
+      },
+    },
+  });
+};

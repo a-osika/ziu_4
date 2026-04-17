@@ -16,6 +16,7 @@ export function Fab() {
         right: 24,
         boxShadow: 6,
       }}
+      aria-label="Dodaj zadanie"
     >
       <AddIcon />
     </MuiFab>
