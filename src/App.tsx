@@ -5,6 +5,9 @@ import { TodoProvider } from './context/TodoContext';
 import DashboardLayout from './components/dashboard/DashboardLayout';
 import StatsGrid from './components/dashboard/StatsGrid';
 
+import AuthLayout from './components/auth/AuthLayout';
+import RegisterPage from './pages/RegisterPage';
+
 import { SearchBar } from './components/SearchBar/SearchBar';
 import { FilterBar } from './components/FilterBar/FilterBar';
 import { TodoList } from './components/TodoList/TodoList';
@@ -56,6 +59,15 @@ export default function App() {
               <DashboardLayout>
                 <TodosPage />
               </DashboardLayout>
+            }
+          />
+
+          <Route
+            path="/register"
+            element={
+              <AuthLayout>
+                <RegisterPage />
+              </AuthLayout>
             }
           />
         </Routes>
