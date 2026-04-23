@@ -38,8 +38,6 @@ export const step3Schema = z.object({
   }),
 });
 
-export const fullSchema = step1Schema
-  .merge(step2Schema)
-  .merge(step3Schema);
+export const fullSchema = step1Schema.merge(step2Schema).merge(step3Schema);
 
 export type RegistrationForm = z.infer<typeof fullSchema>;
