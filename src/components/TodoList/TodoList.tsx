@@ -30,18 +30,18 @@ export function TodoList() {
 
   if (filteredTodos.length === 0) {
     return (
-      <Typography color="text.secondary" sx={{ mt: 4, textAlign: 'center' }}>
+      <Typography color='text.secondary' sx={{ mt: 4, textAlign: 'center' }}>
         Brak zadań. Dodaj pierwsze!
       </Typography>
     );
   }
 
   return (
-    <Paper variant="outlined" sx={{ overflow: 'hidden' }}>
+    <Paper variant='outlined' sx={{ overflow: 'hidden' }}>
       <List disablePadding>
         {filteredTodos.map((todo, idx) => (
           <ListItem
-            className="card"
+            className='card'
             key={todo.id}
             divider={idx < filteredTodos.length - 1}
             onClick={() => dispatch({ type: 'SELECT', payload: todo.id })}
@@ -51,8 +51,8 @@ export function TodoList() {
             }}
             secondaryAction={
               <IconButton
-                edge="end"
-                color="error"
+                edge='end'
+                color='error'
                 onClick={(e) => {
                   e.stopPropagation();
                   dispatch({ type: 'DELETE', payload: todo.id });
@@ -79,7 +79,7 @@ export function TodoList() {
             />
 
             {todo.completed && (
-              <Chip label="Ukończone" size="small" color="success" sx={{ mr: 5 }} />
+              <Chip label='Ukończone' size='small' color='success' sx={{ mr: 5 }} />
             )}
           </ListItem>
         ))}

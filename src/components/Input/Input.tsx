@@ -26,7 +26,7 @@ export function Input({
       placeholder={placeholder}
       disabled={disabled}
       error={variant === 'error'}
-      variant="outlined"
+      variant='outlined'
     />
   );
 }

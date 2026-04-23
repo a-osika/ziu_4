@@ -13,14 +13,18 @@ import {
 
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import TaskIcon from '@mui/icons-material/Task';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 import { Link, useLocation } from 'react-router-dom';
+import { LockOpen } from '@mui/icons-material';
+import { useAuth } from '../../context/AuthContext';
 
 const DRAWER_WIDTH = 240;
 
 const navItems = [
   { label: 'Dashboard', icon: DashboardIcon, path: '/' },
   { label: 'Zadania', icon: TaskIcon, path: '/todos' },
+  { label: 'Zarejestruj się', icon: LockOpen, path: '/register' },
 ];
 
 export default function Sidebar({
@@ -33,6 +37,8 @@ export default function Sidebar({
   variant: 'permanent' | 'temporary';
 }) {
   const location = useLocation();
+
+  const { user, logout } = useAuth();
 
   return (
     <Drawer
@@ -52,38 +58,55 @@ export default function Sidebar({
       }}
     >
       <Toolbar>
-        <Typography variant="h6">32032 TodoApp</Typography>
+        <Typography variant='h6'>32032 TodoApp</Typography>
       </Toolbar>
 
       <Divider />
 
       <List>
-        {navItems.map((item) => {
-          const Icon = item.icon;
+        {navItems
+          .filter((item) => !(user && item.path === '/register'))
+          .map((item) => {
+            const Icon = item.icon;
 
-          return (
-            <ListItemButton
-              key={item.label}
-              component={Link}
-              to={item.path}
-              selected={location.pathname === item.path}
-              aria-label={item.label}
-            >
-              <ListItemIcon sx={{ color: 'white' }}>
-                <Icon />
-              </ListItemIcon>
+            return (
+              <ListItemButton
+                key={item.label}
+                component={Link}
+                to={item.path}
+                selected={location.pathname === item.path}
+                aria-label={item.label}
+              >
+                <ListItemIcon sx={{ color: 'white' }}>
+                  <Icon />
+                </ListItemIcon>
 
-              <ListItemText primary={item.label} />
-            </ListItemButton>
-          );
-        })}
+                <ListItemText primary={item.label} />
+              </ListItemButton>
+            );
+          })}
+        {user && (
+          <ListItemButton onClick={logout} aria-label='Wyloguj się'>
+            <ListItemIcon sx={{ color: 'white' }}>
+              <LogoutIcon />
+            </ListItemIcon>
+            <ListItemText primary='Wyloguj się' />
+          </ListItemButton>
+        )}
       </List>
 
       <Box sx={{ flexGrow: 1 }} />
 
       <Box sx={{ p: 2, display: 'flex', alignItems: 'center', gap: 1 }}>
-        <Avatar sx={{ width: 36, height: 36, bgcolor: 'primary.dark' }}>U</Avatar>
-        <Typography variant="body2">Użytkownik</Typography>
+        <Avatar sx={{ width: 36, height: 36, bgcolor: 'primary.dark' }}>
+          {user ? user.name[0].toUpperCase() : 'G'}
+        </Avatar>
+
+        {user ? (
+          <Typography variant='body2'>{user.name}</Typography>
+        ) : (
+          <Typography sx={{ color: 'white', textDecoration: 'none' }}>Gość</Typography>
+        )}
       </Box>
     </Drawer>
   );

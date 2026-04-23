@@ -10,20 +10,20 @@ export function SearchBar() {
   return (
     <TextField
       fullWidth
-      placeholder="Szukaj zadania..."
+      placeholder='Szukaj zadania...'
       value={query}
       onChange={(e) => setQuery(e.target.value)}
-      variant="outlined"
+      variant='outlined'
       sx={{ mb: 2 }}
       slotProps={{
         input: {
           startAdornment: (
-            <InputAdornment position="start">
+            <InputAdornment position='start'>
               <SearchIcon />
             </InputAdornment>
           ),
           endAdornment: query ? (
-            <InputAdornment position="end">
+            <InputAdornment position='end'>
               <IconButton onClick={() => setQuery('')}>
                 <ClearIcon />
               </IconButton>

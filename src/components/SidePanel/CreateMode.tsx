@@ -23,26 +23,26 @@ export function CreateMode() {
 
   return (
     <Box>
-      <Typography variant="h6" sx={{ mb: 2 }}>
+      <Typography variant='h6' sx={{ mb: 2 }}>
         Nowe zadanie
       </Typography>
 
       <Box sx={{ display: 'flex', gap: 1 }}>
         <Input
-          label="Tytuł"
+          label='Tytuł'
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          placeholder="Np. Zakupy"
+          placeholder='Np. Zakupy'
         />
       </Box>
 
       <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
-        <Button variant="outlined" onClick={() => dispatch({ type: 'CLEAR_SELECTION' })}>
+        <Button variant='outlined' onClick={() => dispatch({ type: 'CLEAR_SELECTION' })}>
           Anuluj
         </Button>
 
         <Button
-          variant="contained"
+          variant='contained'
           startIcon={<AddIcon />}
           onClick={handleAdd}
           disabled={!title.trim()}

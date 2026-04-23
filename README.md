@@ -1,4 +1,4 @@
-# Todo App Lab 5
+# Todo App Lab 7
 
 This is a React-based todo application using Material-UI with custom theming support.
 
@@ -13,6 +13,22 @@ npm run tokens
 ```
 
 This command is automatically run before development and build scripts.
+
+## Build
+
+To build the production bundle, run:
+
+```bash
+npm run build
+```
+
+## Local Serve
+
+After building, you can serve the production output locally with:
+
+```bash
+npx serve -s dist
+```
 
 ## Code Formatting
 
