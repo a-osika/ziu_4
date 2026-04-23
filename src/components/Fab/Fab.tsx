@@ -8,7 +8,7 @@ export function Fab() {
 
   return (
     <MuiFab
-      color="primary"
+      color='primary'
       onClick={() => dispatch({ type: 'OPEN_CREATE' })}
       sx={{
         position: 'fixed',
@@ -16,7 +16,7 @@ export function Fab() {
         right: 24,
         boxShadow: 6,
       }}
-      aria-label="Dodaj zadanie"
+      aria-label='Dodaj zadanie'
     >
       <AddIcon />
     </MuiFab>

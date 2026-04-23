@@ -11,7 +11,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         bgcolor: 'background.default',
       }}
     >
-      <Container maxWidth="sm">
+      <Container maxWidth='sm'>
         <Paper sx={{ p: 4 }}>{children}</Paper>
       </Container>
     </Box>

@@ -15,11 +15,11 @@ export default function StatsCard({ title, value, icon: Icon, color, bgColor }: 
       <CardContent>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
           <Box>
-            <Typography variant="body2" color="text.secondary" gutterBottom>
+            <Typography variant='body2' color='text.secondary' gutterBottom>
               {title}
             </Typography>
 
-            <Typography variant="h4">{value}</Typography>
+            <Typography variant='h4'>{value}</Typography>
           </Box>
 
           <Avatar sx={{ bgcolor: bgColor, color, width: 48, height: 48 }}>

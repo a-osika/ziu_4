@@ -29,9 +29,9 @@ export default function RegisterStep2({ form }: Props) {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-      <Typography variant="h6">Preferencje</Typography>
+      <Typography variant='h6'>Preferencje</Typography>
 
-      <Typography variant="subtitle2">Kategorie</Typography>
+      <Typography variant='subtitle2'>Kategorie</Typography>
 
       {fields.map((field, index) => (
         <Box key={field.id} sx={{ display: 'flex', alignItems: 'flex-start', gap: 1 }}>
@@ -48,44 +48,44 @@ export default function RegisterStep2({ form }: Props) {
         </Box>
       ))}
 
-      <Button variant="outlined" onClick={() => append({ value: '' })}>
+      <Button variant='outlined' onClick={() => append({ value: '' })}>
         Dodaj kategorię
       </Button>
 
       {errors.categories && (
-        <Typography color="error" variant="caption">
+        <Typography color='error' variant='caption'>
           {errors.categories.message?.toString()}
         </Typography>
       )}
 
-      <Typography variant="subtitle2">Powiadomienia</Typography>
+      <Typography variant='subtitle2'>Powiadomienia</Typography>
 
       <Controller
-        name="notifications.email"
+        name='notifications.email'
         control={control}
         render={({ field }) => (
           <FormControlLabel
-            control={<Checkbox {...field} checked={field.value} aria-label="Email notifications" />}
-            label="Email"
+            control={<Checkbox {...field} checked={field.value} aria-label='Email notifications' />}
+            label='Email'
           />
         )}
       />
 
       <Controller
-        name="notifications.push"
+        name='notifications.push'
         control={control}
         render={({ field }) => (
-          <FormControlLabel control={<Checkbox {...field} checked={field.value} />} label="Push" />
+          <FormControlLabel control={<Checkbox {...field} checked={field.value} />} label='Push' />
         )}
       />
 
       <Controller
-        name="newsletter"
+        name='newsletter'
         control={control}
         render={({ field }) => (
           <FormControlLabel
             control={<Checkbox {...field} checked={field.value} />}
-            label="Newsletter (opcjonalnie)"
+            label='Newsletter (opcjonalnie)'
           />
         )}
       />

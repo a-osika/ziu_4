@@ -25,10 +25,10 @@ export default function RegisterStep1({ form }: Props) {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-      <Typography variant="h6">Dane użytkownika</Typography>
+      <Typography variant='h6'>Dane użytkownika</Typography>
 
       <TextField
-        label="Imię"
+        label='Imię'
         {...register('firstName')}
         error={!!errors.firstName}
         helperText={errors.firstName?.message?.toString()}
@@ -36,7 +36,7 @@ export default function RegisterStep1({ form }: Props) {
       />
 
       <TextField
-        label="Nazwisko"
+        label='Nazwisko'
         {...register('lastName')}
         error={!!errors.lastName}
         helperText={errors.lastName?.message?.toString()}
@@ -44,7 +44,7 @@ export default function RegisterStep1({ form }: Props) {
       />
 
       <TextField
-        label="Email"
+        label='Email'
         {...register('email')}
         error={!!errors.email}
         helperText={errors.email?.message?.toString()}
@@ -52,23 +52,44 @@ export default function RegisterStep1({ form }: Props) {
       />
 
       <TextField
-        label="Hasło"
-        type="password"
+        label='Hasło'
+        type='password'
         {...register('password')}
         error={!!errors.password}
         helperText={errors.password?.message?.toString()}
+        slotProps={{
+          formHelperText: {
+            id: 'password-error',
+          },
+          htmlInput: {
+            'aria-describedby': [
+              errors.password ? 'password-error' : null,
+              password ? 'password-strength' : null,
+            ]
+              .filter(Boolean)
+              .join(' '),
+            'aria-invalid': !!errors.password,
+          },
+        }}
         fullWidth
       />
 
       {password && (
-        <Typography variant="caption">
+        <Typography
+          id='password-strength'
+          aria-live='polite'
+          variant='caption'
+          color={
+            strength === 'słabe' ? 'error' : strength === 'silne' ? 'success.main' : 'warning.main'
+          }
+        >
           Siła hasła: <b>{strength}</b>
         </Typography>
       )}
 
       <TextField
-        label="Potwierdź hasło"
-        type="password"
+        label='Potwierdź hasło'
+        type='password'
         {...register('confirmPassword')}
         error={!!errors.confirmPassword}
         helperText={errors.confirmPassword?.message?.toString()}

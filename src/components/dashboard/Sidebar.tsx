@@ -58,7 +58,7 @@ export default function Sidebar({
       }}
     >
       <Toolbar>
-        <Typography variant="h6">32032 TodoApp</Typography>
+        <Typography variant='h6'>32032 TodoApp</Typography>
       </Toolbar>
 
       <Divider />
@@ -86,11 +86,11 @@ export default function Sidebar({
             );
           })}
         {user && (
-          <ListItemButton onClick={logout} aria-label="Wyloguj się">
+          <ListItemButton onClick={logout} aria-label='Wyloguj się'>
             <ListItemIcon sx={{ color: 'white' }}>
               <LogoutIcon />
             </ListItemIcon>
-            <ListItemText primary="Wyloguj się" />
+            <ListItemText primary='Wyloguj się' />
           </ListItemButton>
         )}
       </List>
@@ -103,7 +103,7 @@ export default function Sidebar({
         </Avatar>
 
         {user ? (
-          <Typography variant="body2">{user.name}</Typography>
+          <Typography variant='body2'>{user.name}</Typography>
         ) : (
           <Typography sx={{ color: 'white', textDecoration: 'none' }}>Gość</Typography>
         )}

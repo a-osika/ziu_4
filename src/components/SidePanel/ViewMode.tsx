@@ -9,32 +9,32 @@ export function ViewMode() {
 
   return (
     <Box>
-      <Typography variant="h6" sx={{ mb: 2 }}>
+      <Typography variant='h6' sx={{ mb: 2 }}>
         Szczegóły
       </Typography>
 
       <Stack spacing={2}>
-        <TextField label="Tytuł" value={selectedTodo.title} fullWidth disabled />
+        <TextField label='Tytuł' value={selectedTodo.title} fullWidth disabled />
 
-        <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
+        <Stack direction='row' spacing={1} sx={{ alignItems: 'center' }}>
           <Chip
             label={selectedTodo.completed ? 'Ukończone' : 'Oczekujące'}
             color={selectedTodo.completed ? 'success' : 'default'}
-            size="small"
+            size='small'
           />
 
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant='body2' color='text.secondary'>
             Dodano: {selectedTodo.createdAt.toLocaleDateString()}
           </Typography>
         </Stack>
 
-        <Stack direction="row" spacing={1} sx={{ justifyContent: 'space-between' }}>
-          <Button variant="outlined" onClick={() => dispatch({ type: 'CLEAR_SELECTION' })}>
+        <Stack direction='row' spacing={1} sx={{ justifyContent: 'space-between' }}>
+          <Button variant='outlined' onClick={() => dispatch({ type: 'CLEAR_SELECTION' })}>
             Zamknij
           </Button>
 
           <Button
-            variant="contained"
+            variant='contained'
             onClick={() => dispatch({ type: 'SET_MODE', payload: 'edit' })}
           >
             Edytuj

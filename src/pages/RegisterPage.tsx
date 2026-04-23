@@ -55,28 +55,35 @@ export default function RegisterPage() {
     navigate('/');
   };
 
-  const onSubmit = async (data: any) => {
-    try {
-      if (data.email === 'taken@test.com') {
-        form.setError('email', { message: 'Email zajęty' });
-        setStep(1);
-        return;
-      }
+const onSubmit = async (data: RegistrationForm) => {
+  try {
+    form.clearErrors('root.serverError');
 
-      console.log('REGISTER SUCCESS', data);
+    // await fakeRegister(data);
 
-      login({
-        email: data.email,
-        name: data.firstName + ' ' + data.lastName,
+    login({
+      email: data.email,
+      name: `${data.firstName} ${data.lastName}`,
+    });
+
+    navigate('/');
+  } catch (error: any) {
+    if (error?.status === 409) {
+      form.setError('email', {
+        type: 'server',
+        message: 'Email zajęty',
       });
 
-      navigate('/');
-    } catch {
-      form.setError('root.serverError', {
-        message: 'Błąd serwera…',
-      });
+      setStep(1);
+      return;
     }
-  };
+
+    form.setError('root.serverError', {
+      type: 'server',
+      message: 'Błąd serwera…',
+    });
+  }
+};
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
@@ -86,19 +93,19 @@ export default function RegisterPage() {
 
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
         {step === 1 && (
-          <Button variant="outlined" onClick={cancelRegistration}>
+          <Button variant='outlined' onClick={cancelRegistration}>
             Anuluj
           </Button>
         )}
 
         {step > 1 && (
-          <Button variant="outlined" onClick={prevStep}>
+          <Button variant='outlined' onClick={prevStep}>
             Wstecz
           </Button>
         )}
 
         {step < 3 && (
-          <Button variant="contained" onClick={nextStep}>
+          <Button variant='contained' onClick={nextStep}>
             Dalej
           </Button>
         )}

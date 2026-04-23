@@ -16,7 +16,7 @@ export function SidePanel() {
 
   return (
     <Drawer
-      anchor="right"
+      anchor='right'
       open={isOpen}
       onClose={handleClose}
       slotProps={{

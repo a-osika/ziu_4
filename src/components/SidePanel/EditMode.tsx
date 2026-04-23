@@ -21,34 +21,34 @@ export function EditMode() {
 
   return (
     <Box
-      component="form"
+      component='form'
       onSubmit={(e) => {
         e.preventDefault();
         handleSave();
       }}
     >
-      <Typography variant="h6" sx={{ mb: 2 }}>
+      <Typography variant='h6' sx={{ mb: 2 }}>
         Edycja
       </Typography>
 
       <Stack spacing={2}>
         <TextField
-          label="Tytuł"
+          label='Tytuł'
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          placeholder="Wpisz tekst..."
+          placeholder='Wpisz tekst...'
           fullWidth
         />
 
-        <Stack direction="row" spacing={1} sx={{ justifyContent: 'space-between' }}>
+        <Stack direction='row' spacing={1} sx={{ justifyContent: 'space-between' }}>
           <Button
-            variant="outlined"
+            variant='outlined'
             onClick={() => dispatch({ type: 'SET_MODE', payload: 'view' })}
           >
             Anuluj
           </Button>
 
-          <Button type="submit" variant="contained" disabled={!title.trim()}>
+          <Button type='submit' variant='contained' disabled={!title.trim()}>
             Zapisz
           </Button>
         </Stack>

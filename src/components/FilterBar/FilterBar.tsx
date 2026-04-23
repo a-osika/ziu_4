@@ -12,9 +12,9 @@ export function FilterBar() {
       onChange={(_, value) => value && setFilter(value)}
       sx={{ mb: 2 }}
     >
-      <ToggleButton value="all">Wszystkie</ToggleButton>
-      <ToggleButton value="active">Aktywne</ToggleButton>
-      <ToggleButton value="completed">Zakończone</ToggleButton>
+      <ToggleButton value='all'>Wszystkie</ToggleButton>
+      <ToggleButton value='active'>Aktywne</ToggleButton>
+      <ToggleButton value='completed'>Zakończone</ToggleButton>
     </ToggleButtonGroup>
   );
 }

@@ -18,7 +18,7 @@ export default function RegisterStep3({ form, onSubmit }: Props) {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-      <Typography variant="h4">Zweryfikuj dane</Typography>
+      <Typography variant='h6'>Zweryfikuj dane</Typography>
 
       <Box>
         <Typography>Imię: {values.firstName}</Typography>
@@ -33,27 +33,27 @@ export default function RegisterStep3({ form, onSubmit }: Props) {
       </Box>
 
       <Controller
-        name="rodo"
+        name='rodo'
         control={control}
         render={({ field }) => (
           <FormControlLabel
             control={<Checkbox {...field} checked={field.value} />}
-            label="Akceptuję RODO"
+            label='Akceptuję RODO'
           />
         )}
       />
 
       {errors.rodo && (
-        <Typography color="error" variant="caption">
+        <Typography color='error' variant='caption'>
           {errors.rodo.message as string}
         </Typography>
       )}
 
       {errors.root?.serverError && (
-        <Typography color="error">{errors.root.serverError.message}</Typography>
+        <Typography color='error'>{errors.root.serverError.message}</Typography>
       )}
 
-      <Button variant="contained" onClick={onSubmit}>
+      <Button variant='contained' onClick={onSubmit}>
         Zarejestruj się
       </Button>
     </Box>

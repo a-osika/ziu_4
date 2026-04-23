@@ -45,7 +45,7 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route
-            path="/"
+            path='/'
             element={
               <DashboardLayout>
                 <DashboardPage />
@@ -54,7 +54,7 @@ export default function App() {
           />
 
           <Route
-            path="/todos"
+            path='/todos'
             element={
               <DashboardLayout>
                 <TodosPage />
@@ -63,7 +63,7 @@ export default function App() {
           />
 
           <Route
-            path="/register"
+            path='/register'
             element={
               <AuthLayout>
                 <RegisterPage />

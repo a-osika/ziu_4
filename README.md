@@ -1,4 +1,4 @@
-# Todo App Lab 5
+# Todo App Lab 7
 
 This is a React-based todo application using Material-UI with custom theming support.
 
