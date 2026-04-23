@@ -42,12 +42,4 @@ export const fullSchema = step1Schema
   .merge(step2Schema)
   .merge(step3Schema);
 
-// export const fullSchema = z.object({
-//   ...step1Schema.shape,
-//   ...step2Schema.shape,
-//   ...step3Schema.shape,
-// });
-
-// export const fullSchema = z.intersection(z.intersection(step1Schema, step2Schema), step3Schema);
-
 export type RegistrationForm = z.infer<typeof fullSchema>;

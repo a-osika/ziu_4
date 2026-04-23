@@ -6,9 +6,12 @@ import { Box, Button } from '@mui/material';
 import { useAuth } from '../context/AuthContext';
 
 import { fullSchema, RegistrationForm } from '../schemas/register.schema';
+import { ApiError, fakeRegister } from '../handlers/fakeRegister';
 import RegisterStep1 from '../components/registration/RegisterStep1';
 import RegisterStep2 from '../components/registration/RegisterStep2';
 import RegisterStep3 from '../components/registration/RegisterStep3';
+import { mapApiError } from '../services/formErrorMapper';
+import { isApiError } from '../services/apiErrors';
 
 export default function RegisterPage() {
   const { login } = useAuth();
@@ -55,35 +58,28 @@ export default function RegisterPage() {
     navigate('/');
   };
 
-const onSubmit = async (data: RegistrationForm) => {
-  try {
-    form.clearErrors('root.serverError');
+  const onSubmit = async (data: RegistrationForm) => {
+    try {
+      await fakeRegister(data);
 
-    // await fakeRegister(data);
-
-    login({
-      email: data.email,
-      name: `${data.firstName} ${data.lastName}`,
-    });
-
-    navigate('/');
-  } catch (error: any) {
-    if (error?.status === 409) {
-      form.setError('email', {
-        type: 'server',
-        message: 'Email zajęty',
+      login({
+        email: data.email,
+        name: `${data.firstName} ${data.lastName}`,
       });
 
-      setStep(1);
-      return;
+      navigate('/');
+    } catch (err) {
+      handleError(err);
     }
+  };
 
-    form.setError('root.serverError', {
-      type: 'server',
-      message: 'Błąd serwera…',
-    });
-  }
-};
+  const handleError = (err: unknown) => {
+    if (!isApiError(err)) return;
+
+    mapApiError(err, form);
+
+    if (err.field === 'email') setStep(1);
+  };
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
