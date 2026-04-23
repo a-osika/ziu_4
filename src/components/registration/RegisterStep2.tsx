@@ -27,17 +27,18 @@ export default function RegisterStep2({ form }: Props) {
   });
 
   return (
-    <Box display="flex" flexDirection="column" gap={2}>
+    <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
       <Typography variant="h6">Preferencje</Typography>
 
       <Typography variant="subtitle2">Kategorie</Typography>
 
       {fields.map((field, index) => (
-        <Box key={field.id} display="flex" gap={1}>
+        <Box key={field.id} sx={{ display: "flex", alignItems: "flex-start", gap: 1 }}>
           <TextField
             {...register(`categories.${index}`)}
             fullWidth
-            error={!!errors.categories}
+            error={!!errors.categories?.[index]}
+            helperText={errors.categories?.[index]?.message?.toString()}
           />
 
           <IconButton onClick={() => remove(index)}>
@@ -49,6 +50,12 @@ export default function RegisterStep2({ form }: Props) {
       <Button variant="outlined" onClick={() => append('')}>
         Dodaj kategorię
       </Button>
+
+      {errors.categories && (
+        <Typography color="error" variant="caption">
+          {errors.categories.message?.toString()}
+        </Typography>
+      )}
 
       <Typography variant="subtitle2">Powiadomienia</Typography>
 
@@ -92,11 +99,6 @@ export default function RegisterStep2({ form }: Props) {
         )}
       />
 
-      {errors.categories && (
-        <Typography color="error" variant="caption">
-          {errors.categories.message as string}
-        </Typography>
-      )}
     </Box>
   );
 }

@@ -22,7 +22,7 @@ export default function RegisterStep3({ form, onSubmit }: Props) {
   const values = getValues();
 
   return (
-    <Box display="flex" flexDirection="column" gap={2}>
+    <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
       <Typography variant="h6">Podsumowanie</Typography>
 
       <Box>
@@ -33,12 +33,15 @@ export default function RegisterStep3({ form, onSubmit }: Props) {
           Kategorie: {values.categories?.join(', ')}
         </Typography>
         <Typography>
-          Powiadomienia: {values.notifications?.email ? 'Email ' : ''}
-          {values.notifications?.push ? 'Push' : ''}
+          Powiadomienia:
+          {values.notifications?.email ? ' Email ' : ''}
+          {values.notifications?.push ? 'Push' : ''}          
+        </Typography>
+        <Typography>
+          Newsletter: {values.newsletter ? 'Tak' : 'Nie'}
         </Typography>
       </Box>
 
-      {/* RODO */}
       <Controller
         name="rodo"
         control={control}

@@ -23,14 +23,14 @@ export default function RegisterStep1({ form }: Props) {
   const strength = getStrength(password);
 
   return (
-    <Box display="flex" flexDirection="column" gap={2}>
+    <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
       <Typography variant="h6">Dane użytkownika</Typography>
 
       <TextField
         label="Imię"
         {...register('firstName')}
         error={!!errors.firstName}
-        helperText={errors.firstName?.message}
+        helperText={errors.firstName?.message?.toString()}
         fullWidth
       />
 
@@ -38,7 +38,7 @@ export default function RegisterStep1({ form }: Props) {
         label="Nazwisko"
         {...register('lastName')}
         error={!!errors.lastName}
-        helperText={errors.lastName?.message}
+        helperText={errors.lastName?.message?.toString()}
         fullWidth
       />
 
@@ -46,7 +46,7 @@ export default function RegisterStep1({ form }: Props) {
         label="Email"
         {...register('email')}
         error={!!errors.email}
-        helperText={errors.email?.message}
+        helperText={errors.email?.message?.toString()}
         fullWidth
       />
 
@@ -55,7 +55,7 @@ export default function RegisterStep1({ form }: Props) {
         type="password"
         {...register('password')}
         error={!!errors.password}
-        helperText={errors.password?.message}
+        helperText={errors.password?.message?.toString()}
         fullWidth
       />
 
@@ -70,7 +70,7 @@ export default function RegisterStep1({ form }: Props) {
         type="password"
         {...register('confirmPassword')}
         error={!!errors.confirmPassword}
-        helperText={errors.confirmPassword?.message}
+        helperText={errors.confirmPassword?.message?.toString()}
         fullWidth
       />
     </Box>

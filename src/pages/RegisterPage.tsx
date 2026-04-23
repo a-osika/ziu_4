@@ -78,8 +78,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <Box display="flex" flexDirection="column" gap={3}>
-      {/* STEPS */}
+    <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
       {step === 1 && <RegisterStep1 form={form} />}
       {step === 2 && <RegisterStep2 form={form} />}
       {step === 3 && (
@@ -89,7 +88,7 @@ export default function RegisterPage() {
         />
       )}
 
-      <Box display="flex" justifyContent="space-between">
+      <Box sx={{ display: "flex", justifyContent: step > 1 ? "space-between" : "flex-end" }}>
         {step > 1 && (
           <Button variant="outlined" onClick={prevStep}>
             Wstecz
