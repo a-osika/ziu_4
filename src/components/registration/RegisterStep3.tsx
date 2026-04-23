@@ -6,9 +6,10 @@ import {
   Button,
 } from '@mui/material';
 import { UseFormReturn, Controller } from 'react-hook-form';
+import { RegistrationForm } from '../../schemas/register.schema';
 
 type Props = {
-  form: UseFormReturn<any>;
+  form: UseFormReturn<RegistrationForm>;
   onSubmit: () => void;
 };
 
@@ -22,7 +23,7 @@ export default function RegisterStep3({ form, onSubmit }: Props) {
   const values = getValues();
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
       <Typography variant="h6">Podsumowanie</Typography>
 
       <Box>
@@ -30,7 +31,7 @@ export default function RegisterStep3({ form, onSubmit }: Props) {
         <Typography>Nazwisko: {values.lastName}</Typography>
         <Typography>Email: {values.email}</Typography>
         <Typography>
-          Kategorie: {values.categories?.join(', ')}
+          Kategorie: {values.categories?.map((cat) => cat.value).join(', ')}
         </Typography>
         <Typography>
           Powiadomienia:

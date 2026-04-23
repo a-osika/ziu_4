@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Box, Button } from '@mui/material';
 
-import { fullSchema } from '../schemas/register.schema';
+import { fullSchema, RegistrationForm } from '../schemas/register.schema';
 import RegisterStep1 from '../components/registration/RegisterStep1';
 import RegisterStep2 from '../components/registration/RegisterStep2';
 import RegisterStep3 from '../components/registration/RegisterStep3';
@@ -11,7 +11,7 @@ import RegisterStep3 from '../components/registration/RegisterStep3';
 export default function RegisterPage() {
   const [step, setStep] = useState(1);
 
-  const form = useForm({
+  const form = useForm<RegistrationForm>({
     resolver: zodResolver(fullSchema),
     defaultValues: {
       firstName: '',
@@ -19,7 +19,7 @@ export default function RegisterPage() {
       email: '',
       password: '',
       confirmPassword: '',
-      categories: [''],
+      categories: [{ value: '' }],
       notifications: {
         email: false,
         push: false,

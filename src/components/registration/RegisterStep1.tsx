@@ -1,8 +1,9 @@
 import { TextField, Box, Typography } from '@mui/material';
 import { UseFormReturn } from 'react-hook-form';
+import { RegistrationForm } from '../../schemas/register.schema';
 
 type Props = {
-  form: UseFormReturn<any>;
+  form: UseFormReturn<RegistrationForm>;
 };
 
 const getStrength = (password: string) => {

@@ -19,13 +19,17 @@ export const step1Schema = z
 
 export const step2Schema = z.object({
   categories: z
-    .array(z.string().nonempty({ message: 'Kategoria nie może być pusta' }))
+    .array(
+      z.object({
+        value: z.string().nonempty({ message: 'Kategoria nie może być pusta' }),
+      })
+    )
     .min(1, 'Wybierz co najmniej 1 kategorię'),
   notifications: z.object({
     email: z.boolean(),
     push: z.boolean(),
   }),
-  newsletter: z.boolean().optional(),
+  newsletter: z.boolean(),
 });
 
 export const step3Schema = z.object({
@@ -39,3 +43,5 @@ export const fullSchema = z.object({
   ...step2Schema.shape,
   ...step3Schema.shape,
 });
+
+export type RegistrationForm = z.infer<typeof fullSchema>;

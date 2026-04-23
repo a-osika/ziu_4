@@ -9,9 +9,10 @@ import {
 } from '@mui/material';
 import { UseFormReturn, useFieldArray, Controller } from 'react-hook-form';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { RegistrationForm } from '../../schemas/register.schema';
 
 type Props = {
-  form: UseFormReturn<any>;
+  form: UseFormReturn<RegistrationForm>;
 };
 
 export default function RegisterStep2({ form }: Props) {
@@ -27,18 +28,18 @@ export default function RegisterStep2({ form }: Props) {
   });
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
       <Typography variant="h6">Preferencje</Typography>
 
       <Typography variant="subtitle2">Kategorie</Typography>
 
       {fields.map((field, index) => (
-        <Box key={field.id} sx={{ display: "flex", alignItems: "flex-start", gap: 1 }}>
+        <Box key={field.id} sx={{ display: 'flex', alignItems: 'flex-start', gap: 1 }}>
           <TextField
-            {...register(`categories.${index}`)}
+            {...register(`categories.${index}.value`)}
             fullWidth
-            error={!!errors.categories?.[index]}
-            helperText={errors.categories?.[index]?.message?.toString()}
+            error={!!errors.categories?.[index]?.value}
+            helperText={errors.categories?.[index]?.value?.message?.toString()}
           />
 
           <IconButton onClick={() => remove(index)}>
@@ -47,7 +48,7 @@ export default function RegisterStep2({ form }: Props) {
         </Box>
       ))}
 
-      <Button variant="outlined" onClick={() => append('')}>
+      <Button variant="outlined" onClick={() => append({ value: '' })}>
         Dodaj kategorię
       </Button>
 
@@ -64,13 +65,7 @@ export default function RegisterStep2({ form }: Props) {
         control={control}
         render={({ field }) => (
           <FormControlLabel
-            control={
-              <Checkbox
-                {...field}
-                checked={field.value}
-                aria-label="Email notifications"
-              />
-            }
+            control={<Checkbox {...field} checked={field.value} aria-label="Email notifications" />}
             label="Email"
           />
         )}
@@ -80,13 +75,9 @@ export default function RegisterStep2({ form }: Props) {
         name="notifications.push"
         control={control}
         render={({ field }) => (
-          <FormControlLabel
-            control={<Checkbox {...field} checked={field.value} />}
-            label="Push"
-          />
+          <FormControlLabel control={<Checkbox {...field} checked={field.value} />} label="Push" />
         )}
       />
-
 
       <Controller
         name="newsletter"
@@ -98,7 +89,6 @@ export default function RegisterStep2({ form }: Props) {
           />
         )}
       />
-
     </Box>
   );
 }
