@@ -6,7 +6,7 @@ import { Box, Button } from '@mui/material';
 import { useAuth } from '../context/AuthContext';
 
 import { fullSchema, RegistrationForm } from '../schemas/register.schema';
-import { ApiError, fakeRegister } from '../handlers/fakeRegister';
+import { fakeRegister } from '../handlers/fakeRegister';
 import RegisterStep1 from '../components/registration/RegisterStep1';
 import RegisterStep2 from '../components/registration/RegisterStep2';
 import RegisterStep3 from '../components/registration/RegisterStep3';
