@@ -2,7 +2,7 @@ import { createContext, useContext, useState, ReactNode } from 'react';
 
 type User = {
   email: string;
-  name?: string;
+  name: string;
 };
 
 type AuthContextType = {
@@ -19,11 +19,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const login = (user: User) => setUser(user);
   const logout = () => setUser(null);
 
-  return (
-    <AuthContext.Provider value={{ user, login, logout }}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={{ user, login, logout }}>{children}</AuthContext.Provider>;
 }
 
 export function useAuth() {
