@@ -11,7 +11,7 @@ export default function AppHeader({
   isMobile: boolean;
 }) {
   return (
-    <AppBar position='fixed' color='inherit' elevation={1}>
+    <AppBar position='fixed' color='inherit'>
       <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           {isMobile && (

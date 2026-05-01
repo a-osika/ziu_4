@@ -20,8 +20,8 @@ export const lightTokens = {
 
   text: {
     primary: '#111827',
-    secondary: '#0F172A',
-    disabled: '#CBD5E1',
+    secondary: '#6B7280',
+    disabled: '#6B7280',
     completed: '#9CA3AF',
     onPrimary: '#FFFFFF',
   },
@@ -54,9 +54,9 @@ export const darkTokens = {
 
   text: {
     primary: '#F9FAFB',
-    secondary: '#E2E8F0',
-    disabled: '#334155',
-    completed: '#E0E7FF',
+    secondary: '#CBD5F5',
+    disabled: '#94A3B8',
+    completed: '#C7D2FE',
     onPrimary: '#111827',
   },
 
