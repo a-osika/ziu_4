@@ -1,6 +1,6 @@
 import { useTodoContext } from '../../context/TodoContext';
 
-import { Box, Typography, TextField, Button, Stack, Chip } from '@mui/material';
+import { Typography, TextField, Button, Stack, Chip } from '@mui/material';
 
 export function ViewMode() {
   const { selectedTodo, dispatch } = useTodoContext();
@@ -8,12 +8,12 @@ export function ViewMode() {
   if (!selectedTodo) return null;
 
   return (
-    <Box>
+    <article>
       <Typography variant='h6' sx={{ mb: 2 }}>
         Szczegóły
       </Typography>
 
-      <Stack spacing={2}>
+      <Stack spacing={2} role='region' aria-label='Szczegóły zadania'>
         <TextField label='Tytuł' value={selectedTodo.title} fullWidth disabled />
 
         <Stack direction='row' spacing={1} sx={{ alignItems: 'center' }}>
@@ -41,6 +41,6 @@ export function ViewMode() {
           </Button>
         </Stack>
       </Stack>
-    </Box>
+    </article>
   );
 }

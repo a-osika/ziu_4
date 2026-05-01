@@ -25,7 +25,7 @@ export const createAppTheme = (mode: 'light' | 'dark') => {
       text: {
         primary: t.text.primary,
         secondary: t.text.secondary,
-        // disabled: t.text.disabled,
+        disabled: t.text.disabled,
       },
 
       error: {
@@ -110,6 +110,15 @@ export const createAppTheme = (mode: 'light' | 'dark') => {
     spacing: 8,
 
     components: {
+      MuiCssBaseline: {
+        styleOverrides: {
+          fieldset: {
+            border: 'none',
+            padding: 0,
+          },
+        },
+      },
+
       MuiButton: {
         defaultProps: { disableElevation: true },
         styleOverrides: {
@@ -124,6 +133,15 @@ export const createAppTheme = (mode: 'light' | 'dark') => {
       MuiCard: {
         styleOverrides: {
           root: {
+            boxShadow:
+              mode === 'dark' ? '0 2px 12px rgba(0,0,0,0.5)' : '0 2px 12px rgba(0,0,0,0.08)',
+            borderRadius: 12,
+          },
+        },
+      },
+      MuiPaper: {
+        styleOverrides: {
+          elevation1: {
             boxShadow:
               mode === 'dark' ? '0 2px 12px rgba(0,0,0,0.5)' : '0 2px 12px rgba(0,0,0,0.08)',
             borderRadius: 12,

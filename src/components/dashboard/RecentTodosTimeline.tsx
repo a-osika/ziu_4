@@ -22,29 +22,31 @@ export default function RecentTodosTimeline() {
   }, [todos]);
 
   return (
-    <Paper sx={{ p: 2 }}>
-      <Typography variant='h4' sx={{ mb: 2 }}>
-        Ostatnie zadania
-      </Typography>
+    <section>
+      <Paper sx={{ p: 2 }}>
+        <Typography variant='h4' component='h2' sx={{ mb: 2 }}>
+          Ostatnie zadania
+        </Typography>
 
-      <Timeline>
-        {recentTodos.map((todo, index) => (
-          <TimelineItem key={todo.id}>
-            <TimelineSeparator>
-              <TimelineDot color={todo.completed ? 'success' : 'primary'} />
-              {index < recentTodos.length - 1 && <TimelineConnector />}
-            </TimelineSeparator>
+        <Timeline aria-label='Oś czasu ostatnich zadań'>
+          {recentTodos.map((todo, index) => (
+            <TimelineItem key={todo.id}>
+              <TimelineSeparator>
+                <TimelineDot color={todo.completed ? 'success' : 'primary'} />
+                {index < recentTodos.length - 1 && <TimelineConnector />}
+              </TimelineSeparator>
 
-            <TimelineContent>
-              <Typography variant='body2'>{todo.title}</Typography>
+              <TimelineContent>
+                <Typography variant='body2'>{todo.title}</Typography>
 
-              <Typography variant='caption' color='text.secondary'>
-                {new Date(todo.createdAt).toLocaleDateString()}
-              </Typography>
-            </TimelineContent>
-          </TimelineItem>
-        ))}
-      </Timeline>
-    </Paper>
+                <Typography variant='caption' color='text.secondary'>
+                  {new Date(todo.createdAt).toLocaleDateString()}
+                </Typography>
+              </TimelineContent>
+            </TimelineItem>
+          ))}
+        </Timeline>
+      </Paper>
+    </section>
   );
 }

@@ -15,16 +15,22 @@ export function SearchBar() {
       onChange={(e) => setQuery(e.target.value)}
       variant='outlined'
       sx={{ mb: 2 }}
+      label='Wyszukaj zadania'
+      aria-label='Wyszukaj zadania'
       slotProps={{
         input: {
           startAdornment: (
             <InputAdornment position='start'>
-              <SearchIcon />
+              <SearchIcon aria-hidden='true' />
             </InputAdornment>
           ),
           endAdornment: query ? (
             <InputAdornment position='end'>
-              <IconButton onClick={() => setQuery('')}>
+              <IconButton
+                onClick={() => setQuery('')}
+                aria-label='Wyczyść wyszukiwanie'
+                title='Wyczyść wyszukiwanie'
+              >
                 <ClearIcon />
               </IconButton>
             </InputAdornment>

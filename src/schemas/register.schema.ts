@@ -41,3 +41,13 @@ export const step3Schema = z.object({
 export const fullSchema = step1Schema.merge(step2Schema).merge(step3Schema);
 
 export type RegistrationForm = z.infer<typeof fullSchema>;
+
+export type FormState = {
+  step1?: Step1Data;
+  step2?: Step2Data;
+  step3?: Step3Data;
+};
+
+export type Step1Data = z.infer<typeof step1Schema>;
+export type Step2Data = z.infer<typeof step2Schema>;
+export type Step3Data = z.infer<typeof step3Schema>;

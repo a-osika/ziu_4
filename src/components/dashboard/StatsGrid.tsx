@@ -15,36 +15,38 @@ export default function StatsGrid() {
   const pending = total - completed;
 
   return (
-    <Grid container spacing={3}>
-      <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-        <StatsCard
-          title='Wszystkie zadania'
-          value={total}
-          icon={FormatListBulletedIcon}
-          color='#1565C0'
-          bgColor='#E3F2FD'
-        />
-      </Grid>
+    <section aria-label='Statystyki zadań'>
+      <Grid container spacing={3}>
+        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+          <StatsCard
+            title='Wszystkie zadania'
+            value={total}
+            icon={FormatListBulletedIcon}
+            color='#1565C0'
+            bgColor='#E3F2FD'
+          />
+        </Grid>
 
-      <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-        <StatsCard
-          title='Ukończone'
-          value={completed}
-          icon={CheckCircleIcon}
-          color='#2E7D32'
-          bgColor='#E8F5E9'
-        />
-      </Grid>
+        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+          <StatsCard
+            title='Ukończone'
+            value={completed}
+            icon={CheckCircleIcon}
+            color='#2E7D32'
+            bgColor='#E8F5E9'
+          />
+        </Grid>
 
-      <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-        <StatsCard
-          title='Oczekujące'
-          value={pending}
-          icon={RadioButtonUncheckedIcon}
-          color='#ED6C02'
-          bgColor='#FFF3E0'
-        />
+        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+          <StatsCard
+            title='Oczekujące'
+            value={pending}
+            icon={RadioButtonUncheckedIcon}
+            color='#ED6C02'
+            bgColor='#FFF3E0'
+          />
+        </Grid>
       </Grid>
-    </Grid>
+    </section>
   );
 }

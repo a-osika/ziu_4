@@ -7,8 +7,17 @@ export function ThemeToggle() {
   const { mode, toggleMode } = useThemeMode();
 
   return (
-    <IconButton onClick={toggleMode} color='inherit' aria-label='Przełącz motyw'>
-      {mode === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
+    <IconButton
+      onClick={toggleMode}
+      color='inherit'
+      aria-label={`Przełącz na motyw ${mode === 'light' ? 'ciemny' : 'jasny'}`}
+      aria-pressed={mode === 'dark'}
+    >
+      {mode === 'light' ? (
+        <DarkModeIcon aria-hidden='true' />
+      ) : (
+        <LightModeIcon aria-hidden='true' />
+      )}
     </IconButton>
   );
 }

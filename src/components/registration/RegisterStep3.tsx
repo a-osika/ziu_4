@@ -17,19 +17,41 @@ export default function RegisterStep3({ form, onSubmit }: Props) {
   const values = getValues();
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-      <Typography variant='h6'>Zweryfikuj dane</Typography>
-
-      <Box>
-        <Typography>Imię: {values.firstName}</Typography>
-        <Typography>Nazwisko: {values.lastName}</Typography>
-        <Typography>Email: {values.email}</Typography>
-        <Typography>Kategorie: {values.categories?.map((cat) => cat.value).join(', ')}</Typography>
-        <Typography>
-          Powiadomienia: {values.notifications?.email ? 'Email ' : ''}
+    <Box
+      sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
+      component='section'
+      aria-label='Podsumowanie danych'
+    >
+      <Box component='dl'>
+        <Typography component='dt' sx={{ fontWeight: 'bold' }}>
+          Imię:
+        </Typography>
+        <Typography component='dd'>{values.firstName}</Typography>
+        <Typography component='dt' sx={{ fontWeight: 'bold' }}>
+          Nazwisko:
+        </Typography>
+        <Typography component='dd'>{values.lastName}</Typography>
+        <Typography component='dt' sx={{ fontWeight: 'bold' }}>
+          Email:
+        </Typography>
+        <Typography component='dd'>{values.email}</Typography>
+        <Typography component='dt' sx={{ fontWeight: 'bold' }}>
+          Kategorie:
+        </Typography>
+        <Typography component='dd'>
+          {values.categories?.map((cat) => cat.value).join(', ')}
+        </Typography>
+        <Typography component='dt' sx={{ fontWeight: 'bold' }}>
+          Powiadomienia:
+        </Typography>
+        <Typography component='dd'>
+          {values.notifications?.email ? 'Email ' : ''}
           {values.notifications?.push ? 'Push' : ''}
         </Typography>
-        <Typography>Newsletter: {values.newsletter ? 'Tak' : 'Nie'}</Typography>
+        <Typography component='dt' sx={{ fontWeight: 'bold' }}>
+          Newsletter:
+        </Typography>
+        <Typography component='dd'>{values.newsletter ? 'Tak' : 'Nie'}</Typography>
       </Box>
 
       <Controller
@@ -37,7 +59,13 @@ export default function RegisterStep3({ form, onSubmit }: Props) {
         control={control}
         render={({ field }) => (
           <FormControlLabel
-            control={<Checkbox {...field} checked={field.value} />}
+            control={
+              <Checkbox
+                {...field}
+                checked={field.value}
+                aria-label='Zgoda na przetwarzanie danych osobowych'
+              />
+            }
             label='Akceptuję RODO'
           />
         )}

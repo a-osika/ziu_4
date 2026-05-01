@@ -16,7 +16,7 @@ import TaskIcon from '@mui/icons-material/Task';
 import LogoutIcon from '@mui/icons-material/Logout';
 
 import { Link, useLocation } from 'react-router-dom';
-import { LockOpen } from '@mui/icons-material';
+import LockOpen from '@mui/icons-material/Lock';
 import { useAuth } from '../../context/AuthContext';
 
 const DRAWER_WIDTH = 240;
@@ -46,6 +46,8 @@ export default function Sidebar({
       open={variant === 'temporary' ? open : true}
       onClose={onClose}
       sx={{ width: DRAWER_WIDTH }}
+      role='navigation'
+      aria-label='Menu główne'
       slotProps={{
         paper: {
           sx: {
@@ -54,6 +56,8 @@ export default function Sidebar({
             bgcolor: 'primary.main',
             color: 'white',
           },
+          role: variant === 'temporary' ? 'dialog' : 'navigation',
+          'aria-modal': variant === 'temporary' ? true : undefined,
         },
       }}
     >
@@ -63,7 +67,7 @@ export default function Sidebar({
 
       <Divider />
 
-      <List>
+      <List component='nav'>
         {navItems
           .filter((item) => !(user && item.path === '/register'))
           .map((item) => {
@@ -76,9 +80,10 @@ export default function Sidebar({
                 to={item.path}
                 selected={location.pathname === item.path}
                 aria-label={item.label}
+                aria-current={location.pathname === item.path ? 'page' : undefined}
               >
                 <ListItemIcon sx={{ color: 'white' }}>
-                  <Icon />
+                  <Icon aria-hidden='true' />
                 </ListItemIcon>
 
                 <ListItemText primary={item.label} />

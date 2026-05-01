@@ -11,12 +11,12 @@ export default function AppHeader({
   isMobile: boolean;
 }) {
   return (
-    <AppBar position='fixed' color='inherit' elevation={1}>
+    <AppBar position='fixed' color='inherit' component='header'>
       <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           {isMobile && (
-            <IconButton onClick={onMenuClick} aria-label='Pokaż menu'>
-              <MenuIcon />
+            <IconButton onClick={onMenuClick} aria-label='Pokaż menu' aria-expanded='false'>
+              <MenuIcon aria-hidden='true' />
             </IconButton>
           )}
         </Box>

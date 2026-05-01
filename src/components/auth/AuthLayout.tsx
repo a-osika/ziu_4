@@ -7,6 +7,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
       <AppHeader onMenuClick={() => {}} isMobile={false} />
       <Toolbar />
       <Box
+        id='main-content'
         component='main'
         sx={{
           minHeight: 'calc(100vh - 64px)',
@@ -17,7 +18,9 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         }}
       >
         <Container maxWidth='sm'>
-          <Paper sx={{ p: 4 }}>{children}</Paper>
+          <Paper sx={{ p: 4 }} component='section' aria-label='Zawartość'>
+            {children}
+          </Paper>
         </Container>
       </Box>
     </>

@@ -29,66 +29,82 @@ export default function RegisterStep2({ form }: Props) {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-      <Typography variant='h6'>Preferencje</Typography>
-
-      <Typography variant='subtitle2'>Kategorie</Typography>
-
-      {fields.map((field, index) => (
-        <Box key={field.id} sx={{ display: 'flex', alignItems: 'flex-start', gap: 1 }}>
-          <TextField
-            {...register(`categories.${index}.value`)}
-            fullWidth
-            error={!!errors.categories?.[index]?.value}
-            helperText={errors.categories?.[index]?.value?.message?.toString()}
-          />
-
-          <IconButton onClick={() => remove(index)}>
-            <DeleteIcon />
-          </IconButton>
-        </Box>
-      ))}
-
-      <Button variant='outlined' onClick={() => append({ value: '' })}>
-        Dodaj kategorię
-      </Button>
-
-      {errors.categories && (
-        <Typography color='error' variant='caption'>
-          {errors.categories.message?.toString()}
+      <Box component='fieldset'>
+        <Typography component='legend' variant='subtitle2' sx={{ mb: 1 }}>
+          Kategorie
         </Typography>
-      )}
 
-      <Typography variant='subtitle2'>Powiadomienia</Typography>
+        {fields.map((field, index) => (
+          <Box key={field.id} sx={{ display: 'flex', alignItems: 'flex-start', gap: 1, mb: 1 }}>
+            <TextField
+              {...register(`categories.${index}.value`)}
+              fullWidth
+              error={!!errors.categories?.[index]?.value}
+              helperText={errors.categories?.[index]?.value?.message?.toString()}
+              label={`Kategoria ${index + 1}`}
+            />
 
-      <Controller
-        name='notifications.email'
-        control={control}
-        render={({ field }) => (
-          <FormControlLabel
-            control={<Checkbox {...field} checked={field.value} aria-label='Email notifications' />}
-            label='Email'
-          />
+            <IconButton onClick={() => remove(index)} aria-label={`Usuń kategorię ${index + 1}`}>
+              <DeleteIcon aria-hidden='true' />
+            </IconButton>
+          </Box>
+        ))}
+
+        <Button variant='outlined' onClick={() => append({ value: '' })}>
+          Dodaj kategorię
+        </Button>
+
+        {errors.categories && (
+          <Typography color='error' variant='caption' role='alert'>
+            {errors.categories.message?.toString()}
+          </Typography>
         )}
-      />
+      </Box>
 
-      <Controller
-        name='notifications.push'
-        control={control}
-        render={({ field }) => (
-          <FormControlLabel control={<Checkbox {...field} checked={field.value} />} label='Push' />
-        )}
-      />
+      <Box component='fieldset'>
+        <Typography component='legend' variant='subtitle2' sx={{ mb: 1 }}>
+          Powiadomienia
+        </Typography>
 
-      <Controller
-        name='newsletter'
-        control={control}
-        render={({ field }) => (
-          <FormControlLabel
-            control={<Checkbox {...field} checked={field.value} />}
-            label='Newsletter (opcjonalnie)'
-          />
-        )}
-      />
+        <Controller
+          name='notifications.email'
+          control={control}
+          render={({ field }) => (
+            <FormControlLabel
+              control={
+                <Checkbox {...field} checked={field.value} aria-label='Powiadomienia email' />
+              }
+              label='Email'
+            />
+          )}
+        />
+
+        <Controller
+          name='notifications.push'
+          control={control}
+          render={({ field }) => (
+            <FormControlLabel
+              control={
+                <Checkbox {...field} checked={field.value} aria-label='Powiadomienia push' />
+              }
+              label='Push'
+            />
+          )}
+        />
+
+        <Controller
+          name='newsletter'
+          control={control}
+          render={({ field }) => (
+            <FormControlLabel
+              control={
+                <Checkbox {...field} checked={field.value} aria-label='Subskrypcja newslettera' />
+              }
+              label='Newsletter (opcjonalnie)'
+            />
+          )}
+        />
+      </Box>
     </Box>
   );
 }

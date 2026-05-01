@@ -18,7 +18,11 @@ export default function DashboardLayout({ children }: { children?: React.ReactNo
         variant={isMobile ? 'temporary' : 'permanent'}
       />
 
-      <Box component='main' sx={{ flexGrow: 1, p: 3, bgcolor: 'background.default' }}>
+      <Box
+        id='main-content'
+        component='main'
+        sx={{ flexGrow: 1, p: 3, bgcolor: 'background.default' }}
+      >
         <AppHeader onMenuClick={() => setOpen(true)} isMobile={isMobile} />
         <Toolbar />
 

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useTodoContext } from '../../context/TodoContext';
 
-import { Box, Typography, TextField, Button, Stack } from '@mui/material';
+import { Typography, TextField, Button, Stack } from '@mui/material';
 
 export function EditMode() {
   const { selectedTodo, dispatch } = useTodoContext();
@@ -20,8 +20,7 @@ export function EditMode() {
   };
 
   return (
-    <Box
-      component='form'
+    <form
       onSubmit={(e) => {
         e.preventDefault();
         handleSave();
@@ -31,7 +30,7 @@ export function EditMode() {
         Edycja
       </Typography>
 
-      <Stack spacing={2}>
+      <Stack spacing={2} role='region' aria-label='Edycja zadania'>
         <TextField
           label='Tytuł'
           value={title}
@@ -53,6 +52,6 @@ export function EditMode() {
           </Button>
         </Stack>
       </Stack>
-    </Box>
+    </form>
   );
 }

@@ -24,9 +24,7 @@ export default function RegisterStep1({ form }: Props) {
   const strength = getStrength(password);
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-      <Typography variant='h6'>Dane użytkownika</Typography>
-
+    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }} component='fieldset'>
       <TextField
         label='Imię'
         {...register('firstName')}
@@ -49,6 +47,7 @@ export default function RegisterStep1({ form }: Props) {
         error={!!errors.email}
         helperText={errors.email?.message?.toString()}
         fullWidth
+        type='email'
       />
 
       <TextField
@@ -78,6 +77,7 @@ export default function RegisterStep1({ form }: Props) {
         <Typography
           id='password-strength'
           aria-live='polite'
+          aria-atomic='true'
           variant='caption'
           color={
             strength === 'słabe' ? 'error' : strength === 'silne' ? 'success.main' : 'warning.main'

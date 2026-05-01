@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Box, Button } from '@mui/material';
+import { Box, Button, Breadcrumbs, Typography } from '@mui/material';
 import { useAuth } from '../context/AuthContext';
 
 import { fullSchema, RegistrationForm } from '../schemas/register.schema';
@@ -17,6 +17,12 @@ export default function RegisterPage() {
   const { login } = useAuth();
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
+
+  const headingRef = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    headingRef.current?.focus();
+  }, [step]);
 
   const form = useForm<RegistrationForm>({
     resolver: zodResolver(fullSchema),
@@ -35,6 +41,7 @@ export default function RegisterPage() {
       rodo: false,
     },
     mode: 'onTouched',
+    reValidateMode: 'onChange',
   });
 
   const nextStep = async () => {
@@ -82,7 +89,36 @@ export default function RegisterPage() {
   };
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }} component='form'>
+      <Breadcrumbs separator='›' aria-label='Kroki rejestracji'>
+        <Typography
+          color={step === 1 ? 'textPrimary' : 'textSecondary'}
+          aria-current={step === 1 ? 'step' : undefined}
+        >
+          Dane użytkownika
+        </Typography>
+
+        <Typography
+          color={step === 2 ? 'textPrimary' : 'textSecondary'}
+          aria-current={step === 2 ? 'step' : undefined}
+        >
+          Preferencje
+        </Typography>
+
+        <Typography
+          color={step === 3 ? 'textPrimary' : 'textSecondary'}
+          aria-current={step === 3 ? 'step' : undefined}
+        >
+          Podsumowanie
+        </Typography>
+      </Breadcrumbs>
+
+      <Typography variant='h4' ref={headingRef} tabIndex={-1}>
+        {step === 1 && 'Dane użytkownika'}
+        {step === 2 && 'Preferencje'}
+        {step === 3 && 'Podsumowanie'}
+      </Typography>
+
       {step === 1 && <RegisterStep1 form={form} />}
       {step === 2 && <RegisterStep2 form={form} />}
       {step === 3 && <RegisterStep3 form={form} onSubmit={form.handleSubmit(onSubmit)} />}
