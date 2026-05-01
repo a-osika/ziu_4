@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Box, Button } from '@mui/material';
+import { Box, Button, Breadcrumbs, Typography } from '@mui/material';
 import { useAuth } from '../context/AuthContext';
 
 import { fullSchema, RegistrationForm } from '../schemas/register.schema';
@@ -83,6 +83,30 @@ export default function RegisterPage() {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+      <nav aria-label='Postęp rejestracji'>
+        <Breadcrumbs separator='›' aria-label='breadcrumb'>
+          <Typography
+            color={step === 1 ? 'textPrimary' : 'textSecondary'}
+            aria-current={step === 1 ? 'step' : undefined}
+          >
+            Dane użytkownika
+          </Typography>
+
+          <Typography
+            color={step === 2 ? 'textPrimary' : 'textSecondary'}
+            aria-current={step === 2 ? 'step' : undefined}
+          >
+            Preferencje
+          </Typography>
+
+          <Typography
+            color={step === 3 ? 'textPrimary' : 'textSecondary'}
+            aria-current={step === 3 ? 'step' : undefined}
+          >
+            Podsumowanie
+          </Typography>
+        </Breadcrumbs>
+      </nav>
       {step === 1 && <RegisterStep1 form={form} />}
       {step === 2 && <RegisterStep2 form={form} />}
       {step === 3 && <RegisterStep3 form={form} onSubmit={form.handleSubmit(onSubmit)} />}
