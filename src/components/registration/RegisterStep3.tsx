@@ -18,8 +18,6 @@ export default function RegisterStep3({ form, onSubmit }: Props) {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-      <Typography variant='h6'>Zweryfikuj dane</Typography>
-
       <Box>
         <Typography>Imię: {values.firstName}</Typography>
         <Typography>Nazwisko: {values.lastName}</Typography>

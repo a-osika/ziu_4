@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -18,6 +18,12 @@ export default function RegisterPage() {
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
 
+  const headingRef = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    headingRef.current?.focus();
+  }, [step]);
+
   const form = useForm<RegistrationForm>({
     resolver: zodResolver(fullSchema),
     defaultValues: {
@@ -35,7 +41,7 @@ export default function RegisterPage() {
       rodo: false,
     },
     mode: 'onTouched',
-    reValidateMode: 'onChange'
+    reValidateMode: 'onChange',
   });
 
   const nextStep = async () => {
@@ -108,6 +114,13 @@ export default function RegisterPage() {
           </Typography>
         </Breadcrumbs>
       </nav>
+
+      <Typography variant='h4' ref={headingRef} tabIndex={-1}>
+        {step === 1 && 'Dane użytkownika'}
+        {step === 2 && 'Preferencje'}
+        {step === 3 && 'Podsumowanie'}
+      </Typography>
+
       {step === 1 && <RegisterStep1 form={form} />}
       {step === 2 && <RegisterStep2 form={form} />}
       {step === 3 && <RegisterStep3 form={form} onSubmit={form.handleSubmit(onSubmit)} />}

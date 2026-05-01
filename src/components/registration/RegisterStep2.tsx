@@ -29,8 +29,6 @@ export default function RegisterStep2({ form }: Props) {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-      <Typography variant='h6'>Preferencje</Typography>
-
       <Typography variant='subtitle2'>Kategorie</Typography>
 
       {fields.map((field, index) => (
