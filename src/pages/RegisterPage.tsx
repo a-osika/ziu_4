@@ -35,6 +35,7 @@ export default function RegisterPage() {
       rodo: false,
     },
     mode: 'onTouched',
+    reValidateMode: 'onChange'
   });
 
   const nextStep = async () => {
