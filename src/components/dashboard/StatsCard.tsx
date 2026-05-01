@@ -1,10 +1,10 @@
-import { Card, CardContent, Typography, Box, Avatar } from '@mui/material';
-import { SvgIconComponent } from '@mui/icons-material';
+import { Card, CardContent, Typography, Box, Avatar, SvgIconTypeMap } from '@mui/material';
+import { OverridableComponent } from '@mui/material/OverridableComponent';
 
 interface StatsCardProps {
   title: string;
   value: number;
-  icon: SvgIconComponent;
+  icon: OverridableComponent<SvgIconTypeMap>;
   color: string;
   bgColor: string;
 }

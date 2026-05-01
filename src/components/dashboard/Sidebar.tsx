@@ -16,7 +16,7 @@ import TaskIcon from '@mui/icons-material/Task';
 import LogoutIcon from '@mui/icons-material/Logout';
 
 import { Link, useLocation } from 'react-router-dom';
-import { LockOpen } from '@mui/icons-material';
+import LockOpen from '@mui/icons-material/Lock';
 import { useAuth } from '../../context/AuthContext';
 
 const DRAWER_WIDTH = 240;
