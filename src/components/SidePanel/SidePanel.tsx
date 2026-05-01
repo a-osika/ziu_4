@@ -33,10 +33,7 @@ export function SidePanel() {
         },
       }}
     >
-      <Box
-        component='aside'
-        sx={{ overflowY: 'auto', flex: 1 }}
-      >
+      <Box component='aside' sx={{ overflowY: 'auto', flex: 1 }}>
         {panelMode === 'create' && <CreateMode />}
 
         {panelMode !== 'create' && selectedTodo && (

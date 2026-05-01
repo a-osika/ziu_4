@@ -15,11 +15,7 @@ export default function AppHeader({
       <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           {isMobile && (
-            <IconButton
-              onClick={onMenuClick}
-              aria-label='Pokaż menu'
-              aria-expanded='false'
-            >
+            <IconButton onClick={onMenuClick} aria-label='Pokaż menu' aria-expanded='false'>
               <MenuIcon aria-hidden='true' />
             </IconButton>
           )}

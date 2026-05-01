@@ -19,7 +19,7 @@ export default function DashboardLayout({ children }: { children?: React.ReactNo
       />
 
       <Box
-        id="main-content"
+        id='main-content'
         component='main'
         sx={{ flexGrow: 1, p: 3, bgcolor: 'background.default' }}
       >

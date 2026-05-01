@@ -6,6 +6,7 @@ import {
   ListItem,
   ListItemText,
   ListItemIcon,
+  ListItemButton,
   Checkbox,
   IconButton,
   Typography,
@@ -44,19 +45,38 @@ export function TodoList() {
 
   return (
     <Paper variant='outlined' component='article' sx={{ overflow: 'hidden' }}>
-      <List disablePadding aria-label='Lista zadań' role='list'>
+      <List disablePadding aria-label='Lista zadań'>
         {filteredTodos.map((todo, idx) => (
-          <ListItem
-            className='card'
-            key={todo.id}
-            divider={idx < filteredTodos.length - 1}
-            onClick={() => dispatch({ type: 'SELECT', payload: todo.id })}
-            sx={{
-              cursor: 'pointer',
-              bgcolor: todo.completed ? 'action.hover' : 'background.paper',
-            }}
-            role='listitem'
-            secondaryAction={
+          <ListItem key={todo.id} disablePadding divider={idx < filteredTodos.length - 1}>
+            <ListItemButton
+              onClick={() => dispatch({ type: 'SELECT', payload: todo.id })}
+              sx={{
+                bgcolor: todo.completed ? 'action.hover' : 'background.paper',
+              }}
+            >
+              <ListItemIcon onClick={(e) => e.stopPropagation()}>
+                <Checkbox
+                  checked={todo.completed}
+                  onChange={() => dispatch({ type: 'TOGGLE', payload: todo.id })}
+                  aria-label={`${
+                    todo.completed ? 'Oznacz jako nieukończone' : 'Oznacz jako ukończone'
+                  }: ${todo.title}`}
+                />
+              </ListItemIcon>
+
+              <ListItemText
+                primary={todo.title}
+                secondary={todo.createdAt.toLocaleDateString()}
+                sx={{
+                  textDecoration: todo.completed ? 'line-through' : 'none',
+                  color: todo.completed ? 'text.disabled' : 'text.primary',
+                }}
+              />
+
+              {todo.completed && (
+                <Chip label='Ukończone' size='small' color='success' sx={{ mr: 5 }} />
+              )}
+
               <IconButton
                 edge='end'
                 color='error'
@@ -66,30 +86,9 @@ export function TodoList() {
                 }}
                 aria-label={`Usuń zadanie: ${todo.title}`}
               >
-                <DeleteOutlinedIcon aria-hidden='true' />
+                <DeleteOutlinedIcon />
               </IconButton>
-            }
-          >
-            <ListItemIcon onClick={(e) => e.stopPropagation()}>
-              <Checkbox
-                checked={todo.completed}
-                onChange={() => dispatch({ type: 'TOGGLE', payload: todo.id })}
-                aria-label={`${todo.completed ? 'Oznacz jako nieukończone' : 'Oznacz jako ukończone'}: ${todo.title}`}
-              />
-            </ListItemIcon>
-
-            <ListItemText
-              primary={todo.title}
-              secondary={todo.createdAt.toLocaleDateString()}
-              sx={{
-                textDecoration: todo.completed ? 'line-through' : 'none',
-                color: todo.completed ? 'text.disabled' : 'text.primary',
-              }}
-            />
-
-            {todo.completed && (
-              <Chip label='Ukończone' size='small' color='success' sx={{ mr: 5 }} />
-            )}
+            </ListItemButton>
           </ListItem>
         ))}
       </List>

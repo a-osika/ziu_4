@@ -56,6 +56,8 @@ export default function Sidebar({
             bgcolor: 'primary.main',
             color: 'white',
           },
+          role: variant === 'temporary' ? 'dialog' : 'navigation',
+          'aria-modal': variant === 'temporary' ? true : undefined,
         },
       }}
     >
@@ -65,7 +67,7 @@ export default function Sidebar({
 
       <Divider />
 
-        <List component='nav'>
+      <List component='nav'>
         {navItems
           .filter((item) => !(user && item.path === '/register'))
           .map((item) => {

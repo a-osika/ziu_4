@@ -44,10 +44,7 @@ export default function RegisterStep2({ form }: Props) {
               label={`Kategoria ${index + 1}`}
             />
 
-            <IconButton
-              onClick={() => remove(index)}
-              aria-label={`Usuń kategorię ${index + 1}`}
-            >
+            <IconButton onClick={() => remove(index)} aria-label={`Usuń kategorię ${index + 1}`}>
               <DeleteIcon aria-hidden='true' />
             </IconButton>
           </Box>
@@ -74,7 +71,9 @@ export default function RegisterStep2({ form }: Props) {
           control={control}
           render={({ field }) => (
             <FormControlLabel
-              control={<Checkbox {...field} checked={field.value} aria-label='Powiadomienia email' />}
+              control={
+                <Checkbox {...field} checked={field.value} aria-label='Powiadomienia email' />
+              }
               label='Email'
             />
           )}
@@ -85,7 +84,9 @@ export default function RegisterStep2({ form }: Props) {
           control={control}
           render={({ field }) => (
             <FormControlLabel
-              control={<Checkbox {...field} checked={field.value} aria-label='Powiadomienia push' />}
+              control={
+                <Checkbox {...field} checked={field.value} aria-label='Powiadomienia push' />
+              }
               label='Push'
             />
           )}
@@ -96,7 +97,9 @@ export default function RegisterStep2({ form }: Props) {
           control={control}
           render={({ field }) => (
             <FormControlLabel
-              control={<Checkbox {...field} checked={field.value} aria-label='Subskrypcja newslettera' />}
+              control={
+                <Checkbox {...field} checked={field.value} aria-label='Subskrypcja newslettera' />
+              }
               label='Newsletter (opcjonalnie)'
             />
           )}

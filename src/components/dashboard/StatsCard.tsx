@@ -29,10 +29,7 @@ export default function StatsCard({ title, value, icon: Icon, color, bgColor }: 
               </Typography>
             </Box>
 
-            <Avatar
-              sx={{ bgcolor: bgColor, color, width: 48, height: 48 }}
-              aria-hidden='true'
-            >
+            <Avatar sx={{ bgcolor: bgColor, color, width: 48, height: 48 }} aria-hidden='true'>
               <Icon />
             </Avatar>
           </Box>
