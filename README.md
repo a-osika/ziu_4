@@ -1,6 +1,17 @@
-# Todo App Lab 7
+# Todo App Lab 8
 
 This is a React-based todo application using Material-UI with custom theming support.
+
+## Libraries
+
+- React 18
+- Vite
+- Material-UI
+- React Router
+- React Hook Form
+- Zod
+- TypeScript
+- Prettier
 
 ## Tokens Generation
 
@@ -12,7 +23,23 @@ To regenerate the tokens CSS file, run:
 npm run tokens
 ```
 
-This command is automatically run before development and build scripts.
+## Dev mode
+
+Run project in dev mode:
+
+```bash
+npm run dev
+```
+
+## Code Formatting
+
+The project uses Prettier for code formatting. To format all supported files, run:
+
+```bash
+npm run format
+```
+
+This will format TypeScript, JavaScript, JSON, CSS, Markdown, and HTML files in the project.
 
 ## Build
 
@@ -29,13 +56,3 @@ After building, you can serve the production output locally with:
 ```bash
 npx serve -s dist
 ```
-
-## Code Formatting
-
-The project uses Prettier for code formatting. To format all supported files, run:
-
-```bash
-npm run format
-```
-
-This will format TypeScript, JavaScript, JSON, CSS, Markdown, and HTML files in the project.
