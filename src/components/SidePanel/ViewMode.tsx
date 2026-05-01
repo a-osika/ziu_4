@@ -1,6 +1,6 @@
 import { useTodoContext } from '../../context/TodoContext';
 
-import { Box, Typography, TextField, Button, Stack, Chip } from '@mui/material';
+import { Typography, TextField, Button, Stack, Chip } from '@mui/material';
 
 export function ViewMode() {
   const { selectedTodo, dispatch } = useTodoContext();

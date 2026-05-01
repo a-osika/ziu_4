@@ -19,9 +19,9 @@ export default function DashboardLayout({ children }: { children?: React.ReactNo
       />
 
       <Box
-        component='div'
+        id="main-content"
+        component='main'
         sx={{ flexGrow: 1, p: 3, bgcolor: 'background.default' }}
-        role='main'
       >
         <AppHeader onMenuClick={() => setOpen(true)} isMobile={isMobile} />
         <Toolbar />

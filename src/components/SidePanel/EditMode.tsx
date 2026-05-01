@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useTodoContext } from '../../context/TodoContext';
 
-import { Box, Typography, TextField, Button, Stack } from '@mui/material';
+import { Typography, TextField, Button, Stack } from '@mui/material';
 
 export function EditMode() {
   const { selectedTodo, dispatch } = useTodoContext();

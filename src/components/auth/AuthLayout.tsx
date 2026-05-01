@@ -7,6 +7,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
       <AppHeader onMenuClick={() => {}} isMobile={false} />
       <Toolbar />
       <Box
+        id='main-content'
         component='main'
         sx={{
           minHeight: 'calc(100vh - 64px)',
