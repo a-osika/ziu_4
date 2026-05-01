@@ -11,22 +11,33 @@ interface StatsCardProps {
 
 export default function StatsCard({ title, value, icon: Icon, color, bgColor }: StatsCardProps) {
   return (
-    <Card sx={{ aspectRatio: '16/9' }}>
-      <CardContent>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-          <Box>
-            <Typography variant='body2' color='text.secondary' gutterBottom>
-              {title}
-            </Typography>
+    <article>
+      <Card sx={{ aspectRatio: '16/9' }}>
+        <CardContent>
+          <Box
+            sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}
+            role='region'
+            aria-label={`${title}: ${value}`}
+          >
+            <Box>
+              <Typography variant='body2' color='text.secondary' gutterBottom>
+                {title}
+              </Typography>
 
-            <Typography variant='h4'>{value}</Typography>
+              <Typography variant='h4' aria-label={`Liczba: ${value}`}>
+                {value}
+              </Typography>
+            </Box>
+
+            <Avatar
+              sx={{ bgcolor: bgColor, color, width: 48, height: 48 }}
+              aria-hidden='true'
+            >
+              <Icon />
+            </Avatar>
           </Box>
-
-          <Avatar sx={{ bgcolor: bgColor, color, width: 48, height: 48 }}>
-            <Icon />
-          </Avatar>
-        </Box>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
+    </article>
   );
 }

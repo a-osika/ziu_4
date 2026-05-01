@@ -110,6 +110,15 @@ export const createAppTheme = (mode: 'light' | 'dark') => {
     spacing: 8,
 
     components: {
+      MuiCssBaseline: {
+        styleOverrides: {
+          fieldset: {
+            border: 'none',
+            padding: 0,
+          },
+        },
+      },
+
       MuiButton: {
         defaultProps: { disableElevation: true },
         styleOverrides: {

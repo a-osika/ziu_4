@@ -6,12 +6,16 @@ import { Fab } from '../components/Fab/Fab';
 
 export default function TodosPage() {
   return (
-    <>
-      <SearchBar />
-      <FilterBar />
-      <TodoList />
+    <main>
+      <section aria-label='Wyszukiwanie i filtrowanie zadań'>
+        <SearchBar />
+        <FilterBar />
+      </section>
+      <section aria-label='Lista zadań'>
+        <TodoList />
+      </section>
       <SidePanel />
       <Fab />
-    </>
+    </main>
   );
 }

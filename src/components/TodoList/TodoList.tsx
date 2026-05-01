@@ -30,15 +30,21 @@ export function TodoList() {
 
   if (filteredTodos.length === 0) {
     return (
-      <Typography color='text.secondary' sx={{ mt: 4, textAlign: 'center' }}>
+      <Typography
+        component='article'
+        role='status'
+        aria-live='polite'
+        color='text.secondary'
+        sx={{ mt: 4, textAlign: 'center' }}
+      >
         Brak zadań. Dodaj pierwsze!
       </Typography>
     );
   }
 
   return (
-    <Paper variant='outlined' sx={{ overflow: 'hidden' }}>
-      <List disablePadding>
+    <Paper variant='outlined' component='article' sx={{ overflow: 'hidden' }}>
+      <List disablePadding aria-label='Lista zadań' role='list'>
         {filteredTodos.map((todo, idx) => (
           <ListItem
             className='card'
@@ -49,6 +55,7 @@ export function TodoList() {
               cursor: 'pointer',
               bgcolor: todo.completed ? 'action.hover' : 'background.paper',
             }}
+            role='listitem'
             secondaryAction={
               <IconButton
                 edge='end'
@@ -57,8 +64,9 @@ export function TodoList() {
                   e.stopPropagation();
                   dispatch({ type: 'DELETE', payload: todo.id });
                 }}
+                aria-label={`Usuń zadanie: ${todo.title}`}
               >
-                <DeleteOutlinedIcon />
+                <DeleteOutlinedIcon aria-hidden='true' />
               </IconButton>
             }
           >
@@ -66,6 +74,7 @@ export function TodoList() {
               <Checkbox
                 checked={todo.completed}
                 onChange={() => dispatch({ type: 'TOGGLE', payload: todo.id })}
+                aria-label={`${todo.completed ? 'Oznacz jako nieukończone' : 'Oznacz jako ukończone'}: ${todo.title}`}
               />
             </ListItemIcon>
 

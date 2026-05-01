@@ -19,6 +19,8 @@ export function SidePanel() {
       anchor='right'
       open={isOpen}
       onClose={handleClose}
+      role='complementary'
+      aria-label='Panel szczegółów zadania'
       slotProps={{
         paper: {
           sx: {
@@ -31,7 +33,10 @@ export function SidePanel() {
         },
       }}
     >
-      <Box sx={{ overflowY: 'auto', flex: 1 }}>
+      <Box
+        component='aside'
+        sx={{ overflowY: 'auto', flex: 1 }}
+      >
         {panelMode === 'create' && <CreateMode />}
 
         {panelMode !== 'create' && selectedTodo && (

@@ -22,34 +22,41 @@ export function CreateMode() {
   };
 
   return (
-    <Box>
+    <article>
       <Typography variant='h6' sx={{ mb: 2 }}>
         Nowe zadanie
       </Typography>
 
-      <Box sx={{ display: 'flex', gap: 1 }}>
-        <Input
-          label='Tytuł'
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder='Np. Zakupy'
-        />
-      </Box>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleAdd();
+        }}
+      >
+        <Box sx={{ display: 'flex', gap: 1 }}>
+          <Input
+            label='Tytuł'
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder='Np. Zakupy'
+          />
+        </Box>
 
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
-        <Button variant='outlined' onClick={() => dispatch({ type: 'CLEAR_SELECTION' })}>
-          Anuluj
-        </Button>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
+          <Button variant='outlined' onClick={() => dispatch({ type: 'CLEAR_SELECTION' })}>
+            Anuluj
+          </Button>
 
-        <Button
-          variant='contained'
-          startIcon={<AddIcon />}
-          onClick={handleAdd}
-          disabled={!title.trim()}
-        >
-          Dodaj
-        </Button>
-      </Box>
-    </Box>
+          <Button
+            type='submit'
+            variant='contained'
+            startIcon={<AddIcon aria-hidden='true' />}
+            disabled={!title.trim()}
+          >
+            Dodaj
+          </Button>
+        </Box>
+      </form>
+    </article>
   );
 }

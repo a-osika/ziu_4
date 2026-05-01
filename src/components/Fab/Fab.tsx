@@ -16,9 +16,9 @@ export function Fab() {
         right: 24,
         boxShadow: 6,
       }}
-      aria-label='Dodaj zadanie'
+      aria-label='Dodaj nowe zadanie'
     >
-      <AddIcon />
+      <AddIcon aria-hidden='true' />
     </MuiFab>
   );
 }

@@ -89,31 +89,29 @@ export default function RegisterPage() {
   };
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-      <nav aria-label='Postęp rejestracji'>
-        <Breadcrumbs separator='›' aria-label='breadcrumb'>
-          <Typography
-            color={step === 1 ? 'textPrimary' : 'textSecondary'}
-            aria-current={step === 1 ? 'step' : undefined}
-          >
-            Dane użytkownika
-          </Typography>
+    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }} component='form'>
+      <Breadcrumbs separator='›' aria-label='Kroki rejestracji'>
+        <Typography
+          color={step === 1 ? 'textPrimary' : 'textSecondary'}
+          aria-current={step === 1 ? 'step' : undefined}
+        >
+          Dane użytkownika
+        </Typography>
 
-          <Typography
-            color={step === 2 ? 'textPrimary' : 'textSecondary'}
-            aria-current={step === 2 ? 'step' : undefined}
-          >
-            Preferencje
-          </Typography>
+        <Typography
+          color={step === 2 ? 'textPrimary' : 'textSecondary'}
+          aria-current={step === 2 ? 'step' : undefined}
+        >
+          Preferencje
+        </Typography>
 
-          <Typography
-            color={step === 3 ? 'textPrimary' : 'textSecondary'}
-            aria-current={step === 3 ? 'step' : undefined}
-          >
-            Podsumowanie
-          </Typography>
-        </Breadcrumbs>
-      </nav>
+        <Typography
+          color={step === 3 ? 'textPrimary' : 'textSecondary'}
+          aria-current={step === 3 ? 'step' : undefined}
+        >
+          Podsumowanie
+        </Typography>
+      </Breadcrumbs>
 
       <Typography variant='h4' ref={headingRef} tabIndex={-1}>
         {step === 1 && 'Dane użytkownika'}

@@ -22,12 +22,13 @@ export default function RecentTodosTimeline() {
   }, [todos]);
 
   return (
-    <Paper sx={{ p: 2 }}>
-      <Typography variant='h4' sx={{ mb: 2 }}>
-        Ostatnie zadania
-      </Typography>
+    <section>
+      <Paper sx={{ p: 2 }}>
+        <Typography variant='h4' component='h2' sx={{ mb: 2 }}>
+          Ostatnie zadania
+        </Typography>
 
-      <Timeline>
+        <Timeline aria-label='Oś czasu ostatnich zadań'>
         {recentTodos.map((todo, index) => (
           <TimelineItem key={todo.id}>
             <TimelineSeparator>
@@ -46,5 +47,6 @@ export default function RecentTodosTimeline() {
         ))}
       </Timeline>
     </Paper>
+    </section>
   );
 }
