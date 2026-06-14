@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useTodoContext } from '../../context/TodoContext';
-import { Priority } from '../../types/todo.types'
+import { useSnackbar } from '../../context/SnackbarContext';
+import { Priority } from '../../types/todo.types';
 import { Input } from '../Input/Input';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs, { Dayjs } from 'dayjs';
@@ -9,6 +10,7 @@ import { Typography, TextField, Button, Stack, MenuItem } from '@mui/material';
 
 export function EditMode() {
   const { selectedTodo, dispatch } = useTodoContext();
+  const { showToast } = useSnackbar();
 
   const [title, setTitle] = useState(selectedTodo!.title);
   const [description, setDescription] = useState(selectedTodo!.description || '');
@@ -33,6 +35,8 @@ export function EditMode() {
         dueDate: dueDate ? dueDate.toDate() : null,
       },
     });
+
+    showToast('Zadanie zostało zaktualizowane');
 
     dispatch({ type: 'SET_MODE', payload: 'view' });
   };

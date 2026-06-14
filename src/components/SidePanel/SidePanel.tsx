@@ -4,6 +4,9 @@ import { useTodoContext } from '../../context/TodoContext';
 import { ViewMode } from './ViewMode';
 import { EditMode } from './EditMode';
 import { CreateMode } from './CreateMode';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import 'dayjs/locale/pl';
 
 export function SidePanel() {
   const { selectedTodo, panelMode, dispatch } = useTodoContext();
@@ -15,34 +18,35 @@ export function SidePanel() {
   };
 
   return (
-    <Drawer
-      anchor='right'
-      open={isOpen}
-      onClose={handleClose}
-      role='complementary'
-      aria-label='Panel szczegółów zadania'
-      slotProps={{
-        paper: {
-          sx: {
-            width: { xs: '100%', sm: 420, md: 480 },
-            p: 3,
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 2,
+    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale='pl'>
+      <Drawer
+        anchor='right'
+        open={isOpen}
+        onClose={handleClose}
+        aria-label='Panel szczegółów zadania'
+        slotProps={{
+          paper: {
+            sx: {
+              width: { xs: '100%', sm: 420, md: 480 },
+              p: 3,
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 2,
+            },
           },
-        },
-      }}
-    >
-      <Box component='aside' sx={{ overflowY: 'auto', flex: 1 }}>
-        {panelMode === 'create' && <CreateMode />}
+        }}
+      >
+        <Box component='aside' sx={{ overflowY: 'auto', flex: 1 }}>
+          {panelMode === 'create' && <CreateMode />}
 
-        {panelMode !== 'create' && selectedTodo && (
-          <>
-            {panelMode === 'view' && <ViewMode />}
-            {panelMode === 'edit' && <EditMode />}
-          </>
-        )}
-      </Box>
-    </Drawer>
+          {panelMode !== 'create' && selectedTodo && (
+            <>
+              {panelMode === 'view' && <ViewMode />}
+              {panelMode === 'edit' && <EditMode />}
+            </>
+          )}
+        </Box>
+      </Drawer>
+    </LocalizationProvider>
   );
 }

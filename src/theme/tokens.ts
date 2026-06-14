@@ -20,8 +20,8 @@ export const lightTokens = {
 
   text: {
     primary: '#111827',
-    secondary: '#6B7280',
-    disabled: '#6B7280',
+    secondary: '#4B5563',
+    disabled: '#4B5563',
     completed: '#9CA3AF',
     onPrimary: '#FFFFFF',
   },
@@ -29,6 +29,8 @@ export const lightTokens = {
   semantic: {
     error: '#DC2626',
     success: '#047857',
+    info: '#0057A8',
+    warning: '#B45309',
   },
 };
 
@@ -63,5 +65,7 @@ export const darkTokens = {
   semantic: {
     error: '#F87171',
     success: '#34D399',
+    info: '#60A5FA',
+    warning: '#FBBF24',
   },
 };

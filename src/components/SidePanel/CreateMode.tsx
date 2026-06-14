@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useTodoContext } from '../../context/TodoContext';
-import { Priority } from '../../types/todo.types'
+import { useSnackbar } from '../../context/SnackbarContext';
+import { Priority } from '../../types/todo.types';
 import { Input } from '../Input/Input';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { Dayjs } from 'dayjs';
@@ -10,6 +11,7 @@ import AddIcon from '@mui/icons-material/AddOutlined';
 
 export function CreateMode() {
   const { dispatch, setFilter, setQuery } = useTodoContext();
+  const { showToast } = useSnackbar();
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -19,15 +21,17 @@ export function CreateMode() {
   const handleAdd = () => {
     if (!title.trim()) return;
 
-    dispatch({ 
-      type: 'ADD', 
-      payload: { 
-        title, 
-        description, 
-        priority, 
-        dueDate: dueDate ? dueDate.toDate() : null
-      } 
+    dispatch({
+      type: 'ADD',
+      payload: {
+        title,
+        description,
+        priority,
+        dueDate: dueDate ? dueDate.toDate() : null,
+      },
     });
+
+    showToast('Zadanie zostało dodane');
 
     setFilter('all');
     setQuery('');
@@ -61,33 +65,33 @@ export function CreateMode() {
           />
 
           <TextField
-            label="Opis"
+            label='Opis'
             multiline
             rows={3}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            placeholder="Dodaj szczegóły zadania..."
+            placeholder='Dodaj szczegóły zadania...'
             fullWidth
           />
 
-            <TextField
-              select
-              label="Priorytet"
-              value={priority}
-              onChange={(e) => setPriority(e.target.value as Priority)}
-              fullWidth
-            >
-              <MenuItem value="low">Niski</MenuItem>
-              <MenuItem value="medium">Średni</MenuItem>
-              <MenuItem value="high">Wysoki</MenuItem>
-            </TextField>
+          <TextField
+            select
+            label='Priorytet'
+            value={priority}
+            onChange={(e) => setPriority(e.target.value as Priority)}
+            fullWidth
+          >
+            <MenuItem value='low'>Niski</MenuItem>
+            <MenuItem value='medium'>Średni</MenuItem>
+            <MenuItem value='high'>Wysoki</MenuItem>
+          </TextField>
 
           <DatePicker
-              label="Data realizacji"
-              value={dueDate}
-              onChange={(newValue) => setDueDate(newValue)}
-              slotProps={{ textField: { fullWidth: true } }}
-            />
+            label='Data realizacji'
+            value={dueDate}
+            onChange={(newValue) => setDueDate(newValue)}
+            slotProps={{ textField: { fullWidth: true } }}
+          />
         </Stack>
 
         <Stack direction='row' spacing={1} sx={{ justifyContent: 'space-between', mt: 2 }}>

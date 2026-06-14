@@ -1,10 +1,18 @@
 import { Box, Container, Paper, Toolbar } from '@mui/material';
 import AppHeader from '../dashboard/AppHeader';
 
-export default function AuthLayout({ children }: { children: React.ReactNode }) {
+export default function AuthLayout({
+  children,
+  onMenuClick,
+  isMobile,
+}: {
+  children: React.ReactNode;
+  onMenuClick: () => void;
+  isMobile: boolean;
+}) {
   return (
     <>
-      <AppHeader onMenuClick={() => {}} isMobile={false} />
+      <AppHeader onMenuClick={onMenuClick} isMobile={isMobile} />
       <Toolbar />
       <Box
         id='main-content'
@@ -12,9 +20,10 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         sx={{
           minHeight: 'calc(100vh - 64px)',
           display: 'flex',
-          alignItems: 'center',
+          alignItems: 'flex-start',
           justifyContent: 'center',
           bgcolor: 'background.default',
+          py: 4,
         }}
       >
         <Container maxWidth='sm'>

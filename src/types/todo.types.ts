@@ -2,7 +2,7 @@ export interface Todo {
   id: string;
   title: string;
   description?: string;
-  priority: Priority
+  priority: Priority;
   completed: boolean;
   createdAt: Date;
   dueDate?: Date | null;
@@ -28,7 +28,7 @@ export type TodoAction =
   | { type: 'ADD'; payload: NewTodoEntry }
   | { type: 'TOGGLE'; payload: string }
   | { type: 'DELETE'; payload: string }
-  | { type: 'EDIT'; payload: Partial<NewTodoEntry> & { id: string} }
+  | { type: 'EDIT'; payload: Partial<NewTodoEntry> & { id: string } }
   | { type: 'OPEN_CREATE' }
   | { type: 'SELECT'; payload: string }
   | { type: 'SET_MODE'; payload: PanelMode }

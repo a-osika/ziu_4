@@ -9,6 +9,7 @@ export default function AppHeader({
 }: {
   onMenuClick: () => void;
   isMobile: boolean;
+  backTo?: string;
 }) {
   return (
     <AppBar position='fixed' color='inherit' component='header'>

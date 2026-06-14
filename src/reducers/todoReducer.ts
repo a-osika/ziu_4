@@ -15,7 +15,8 @@ export const DEFAULT_TODOS: Todo[] = [
   {
     id: 'mock-1',
     title: 'Zrobić zakupy spożywcze',
-    description: 'Kupić mleko owsiane, jajka, pierś z kurczaka, świeżą bazylię i składniki na obiad.',
+    description:
+      'Kupić mleko owsiane, jajka, pierś z kurczaka, świeżą bazylię i składniki na obiad.',
     priority: 'high',
     completed: false,
     createdAt: new Date('2026-06-10T10:00:00'),
@@ -33,7 +34,8 @@ export const DEFAULT_TODOS: Todo[] = [
   {
     id: 'mock-3',
     title: 'Opłacić rachunek za internet',
-    description: 'Faktura ze stycznia, kwota 69.99 zł. Przelew do zrobienia na konto bankowe operatora.',
+    description:
+      'Faktura ze stycznia, kwota 69.99 zł. Przelew do zrobienia na konto bankowe operatora.',
     priority: 'low',
     completed: true,
     createdAt: new Date('2026-06-01T09:00:00'),
@@ -47,7 +49,7 @@ export const DEFAULT_TODOS: Todo[] = [
     completed: false,
     createdAt: new Date('2026-06-14T11:00:00'),
     dueDate: null,
-  }
+  },
 ];
 
 export const initialState: TodoState = {

@@ -35,6 +35,14 @@ export const createAppTheme = (mode: 'light' | 'dark') => {
       success: {
         main: t.semantic.success,
       },
+
+      info: {
+        main: t.semantic.info,
+      },
+
+      warning: {
+        main: t.semantic.warning,
+      },
     },
 
     typography: {

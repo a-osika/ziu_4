@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import { ThemeProvider } from './context/ThemeProvider';
 import './index.css';
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
+import '@fontsource/roboto/latin-400.css';
+import '@fontsource/roboto/latin-500.css';
+import '@fontsource/roboto/latin-700.css';
+import '@fontsource/roboto/latin-ext-400.css';
+import '@fontsource/roboto/latin-ext-500.css';
+import '@fontsource/roboto/latin-ext-700.css';
 import { AuthProvider } from './context/AuthContext';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

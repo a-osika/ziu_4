@@ -21,11 +21,11 @@ export function ViewMode() {
       </Typography>
 
       <Stack spacing={2} role='region' aria-label='Szczegóły zadania'>
-        <TextField 
-          label='Tytuł' 
-          value={selectedTodo.title} 
-          fullWidth 
-          slotProps={{ input: { readOnly: true } }} 
+        <TextField
+          label='Tytuł'
+          value={selectedTodo.title}
+          fullWidth
+          slotProps={{ input: { readOnly: true } }}
         />
 
         {selectedTodo.description && (
@@ -40,11 +40,7 @@ export function ViewMode() {
         )}
 
         <Stack direction='row' spacing={1} sx={{ flexWrap: 'wrap', gap: 1 }}>
-          {selectedTodo.completed &&<Chip
-            label={'Ukończone'}
-            color={'success'}
-            size='small'
-          />}
+          {selectedTodo.completed && <Chip label={'Ukończone'} color={'success'} size='small' />}
 
           <Chip
             label={currentPriority.label}
@@ -58,9 +54,13 @@ export function ViewMode() {
           <Typography variant='body2' color='text.secondary'>
             Dodano: {new Date(selectedTodo.createdAt).toLocaleDateString()}
           </Typography>
-          
+
           {selectedTodo.dueDate && (
-            <Typography variant='body2' color={selectedTodo.completed ? 'text.secondary' : 'primary.main'} sx={{ fontWeight: 'bold' }}>
+            <Typography
+              variant='body2'
+              color={selectedTodo.completed ? 'text.secondary' : 'primary.main'}
+              sx={{ fontWeight: 'bold' }}
+            >
               Termin realizacji: {new Date(selectedTodo.dueDate).toLocaleDateString()}
             </Typography>
           )}

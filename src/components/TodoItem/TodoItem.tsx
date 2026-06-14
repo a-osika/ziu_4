@@ -38,6 +38,9 @@ export function TodoItem({ todo, isLast, onSelect, onToggle, onDelete }: TodoIte
     <ListItem disablePadding divider={!isLast}>
       <ListItemButton
         onClick={() => onSelect(todo.id)}
+        onKeyDown={(e) => {
+          if (e.key === 'Delete') onDelete(todo.id);
+        }}
         sx={{
           bgcolor: todo.completed ? 'action.hover' : 'background.paper',
           gap: 1,
@@ -47,9 +50,11 @@ export function TodoItem({ todo, isLast, onSelect, onToggle, onDelete }: TodoIte
           <Checkbox
             checked={todo.completed}
             onChange={() => onToggle(todo.id)}
-            aria-label={`${
-              todo.completed ? 'Oznacz jako nieukończone' : 'Oznacz jako ukończone'
-            }: ${todo.title}`}
+            slotProps={{
+              input: {
+                'aria-label': `${todo.completed ? 'Oznacz jako nieukończone' : 'Oznacz jako ukończone'}: ${todo.title}`,
+              },
+            }}
           />
         </ListItemIcon>
 

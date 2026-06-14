@@ -1,33 +1,26 @@
-import { Box, Toolbar, useMediaQuery, useTheme } from '@mui/material';
-import { useState } from 'react';
-
-import Sidebar from './Sidebar';
+import { Box, Toolbar } from '@mui/material';
 import AppHeader from './AppHeader';
 
-export default function DashboardLayout({ children }: { children?: React.ReactNode }) {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-
-  const [open, setOpen] = useState(false);
-
+export default function DashboardLayout({
+  children,
+  onMenuClick,
+  isMobile,
+}: {
+  children?: React.ReactNode;
+  onMenuClick: () => void;
+  isMobile: boolean;
+}) {
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh' }}>
-      <Sidebar
-        open={open}
-        onClose={() => setOpen(false)}
-        variant={isMobile ? 'temporary' : 'permanent'}
-      />
-
+    <>
+      <AppHeader onMenuClick={onMenuClick} isMobile={isMobile} />
+      <Toolbar />
       <Box
         id='main-content'
         component='main'
-        sx={{ flexGrow: 1, p: 3, bgcolor: 'background.default', minWidth: 0 }}
+        sx={{ p: 3, pb: '88px', bgcolor: 'background.default', minWidth: 0 }}
       >
-        <AppHeader onMenuClick={() => setOpen(true)} isMobile={isMobile} />
-        <Toolbar />
-
         {children}
       </Box>
-    </Box>
+    </>
   );
 }

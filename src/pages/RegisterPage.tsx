@@ -12,11 +12,13 @@ import RegisterStep2 from '../components/registration/RegisterStep2';
 import RegisterStep3 from '../components/registration/RegisterStep3';
 import { mapApiError } from '../services/formErrorMapper';
 import { isApiError } from '../services/apiErrors';
+import { useSnackbar } from '../context/SnackbarContext';
 
 export default function RegisterPage() {
   const { login } = useAuth();
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
+  const { showToast } = useSnackbar();
 
   const headingRef = useRef<HTMLHeadingElement>(null);
 
@@ -74,6 +76,8 @@ export default function RegisterPage() {
         name: `${data.firstName} ${data.lastName}`,
       });
 
+      showToast('Konto zostało utworzone');
+
       navigate('/');
     } catch (err) {
       handleError(err);
@@ -84,6 +88,8 @@ export default function RegisterPage() {
     if (!isApiError(err)) return;
 
     mapApiError(err, form);
+
+    showToast('Nie udało się utworzyć konta', 'error');
 
     if (err.field === 'email') setStep(1);
   };
