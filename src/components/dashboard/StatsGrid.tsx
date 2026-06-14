@@ -1,8 +1,8 @@
 import { Grid } from '@mui/material';
 
-import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulletedOutlined';
+import CheckCircleIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
+import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUncheckedOutlined';
 
 import StatsCard from './StatsCard';
 import { useTodoContext } from '../../context/TodoContext';

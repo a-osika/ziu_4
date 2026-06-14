@@ -14,7 +14,7 @@ import {
   Chip,
 } from '@mui/material';
 
-import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 
 export function TodoList() {
   const { todos, filter, query, dispatch } = useTodoContext();

@@ -12,7 +12,20 @@ import {
 } from '../handlers/todoHandlers';
 
 export const initialState: TodoState = {
-  todos: [],
+  todos: [
+      {
+        id: '1',
+        title: 'Skończone zadanie',
+        completed: true,
+        createdAt: new Date(),
+      },
+      {
+        id: '2',
+        title: 'Nieskończone zadanie',
+        completed: false,
+        createdAt: new Date(Date.now() + 5 * 60 * 1000),
+      },
+    ],
   selectedTodo: null,
   panelMode: null,
 };

@@ -24,7 +24,7 @@ export default function StatsCard({ title, value, icon: Icon, color, bgColor }: 
                 {title}
               </Typography>
 
-              <Typography variant='h4' aria-label={`Liczba: ${value}`}>
+              <Typography component='h2' variant='h4' aria-label={`Liczba: ${value}`}>
                 {value}
               </Typography>
             </Box>

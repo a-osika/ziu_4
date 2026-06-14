@@ -8,7 +8,7 @@ import {
   Button,
 } from '@mui/material';
 import { UseFormReturn, useFieldArray, Controller } from 'react-hook-form';
-import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteIcon from '@mui/icons-material/DeleteForeverOutlined';
 import { RegistrationForm } from '../../schemas/register.schema';
 
 type Props = {
