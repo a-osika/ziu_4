@@ -1,20 +1,7 @@
 import { useMemo } from 'react';
 import { useTodoContext } from '../../context/TodoContext';
-
-import {
-  List,
-  ListItem,
-  ListItemText,
-  ListItemIcon,
-  ListItemButton,
-  Checkbox,
-  IconButton,
-  Typography,
-  Paper,
-  Chip,
-} from '@mui/material';
-
-import DeleteOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
+import { TodoItem } from '../TodoItem/TodoItem';
+import { List, Typography, Paper } from '@mui/material';
 
 export function TodoList() {
   const { todos, filter, query, dispatch } = useTodoContext();
@@ -47,58 +34,14 @@ export function TodoList() {
     <Paper variant='outlined' component='article' sx={{ overflow: 'hidden' }}>
       <List disablePadding aria-label='Lista zadań'>
         {filteredTodos.map((todo, idx) => (
-          <ListItem key={todo.id} disablePadding divider={idx < filteredTodos.length - 1}>
-            <ListItemButton
-              onClick={() => dispatch({ type: 'SELECT', payload: todo.id })}
-              sx={{
-                bgcolor: todo.completed ? 'action.hover' : 'background.paper',
-              }}
-            >
-              <ListItemIcon onClick={(e) => e.stopPropagation()}>
-                <Checkbox
-                  checked={todo.completed}
-                  onChange={() => dispatch({ type: 'TOGGLE', payload: todo.id })}
-                  aria-label={`${
-                    todo.completed ? 'Oznacz jako nieukończone' : 'Oznacz jako ukończone'
-                  }: ${todo.title}`}
-                />
-              </ListItemIcon>
-
-              <ListItemText
-                primary={todo.title}
-                secondary={todo.createdAt.toLocaleDateString()}
-                slotProps={{
-                  primary: {
-                    sx: {
-                      textDecoration: todo.completed ? 'line-through' : 'none',
-                      color: todo.completed ? 'text.disabled' : 'text.primary',
-                    },
-                  },
-                  secondary: {
-                    sx: {
-                      color: todo.completed ? 'text.disabled' : 'text.secondary',
-                    },
-                  },
-                }}
-              />
-
-              {todo.completed && (
-                <Chip label='Ukończone' size='small' color='success' sx={{ mr: 5 }} />
-              )}
-
-              <IconButton
-                edge='end'
-                color='error'
-                onClick={(e) => {
-                  e.stopPropagation();
-                  dispatch({ type: 'DELETE', payload: todo.id });
-                }}
-                aria-label={`Usuń zadanie: ${todo.title}`}
-              >
-                <DeleteOutlinedIcon />
-              </IconButton>
-            </ListItemButton>
-          </ListItem>
+          <TodoItem
+            key={todo.id}
+            todo={todo}
+            isLast={idx === filteredTodos.length - 1}
+            onSelect={(id) => dispatch({ type: 'SELECT', payload: id })}
+            onToggle={(id) => dispatch({ type: 'TOGGLE', payload: id })}
+            onDelete={(id) => dispatch({ type: 'DELETE', payload: id })}
+          />
         ))}
       </List>
     </Paper>

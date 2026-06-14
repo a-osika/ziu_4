@@ -21,7 +21,7 @@ export default function DashboardLayout({ children }: { children?: React.ReactNo
       <Box
         id='main-content'
         component='main'
-        sx={{ flexGrow: 1, p: 3, bgcolor: 'background.default' }}
+        sx={{ flexGrow: 1, p: 3, bgcolor: 'background.default', minWidth: 0 }}
       >
         <AppHeader onMenuClick={() => setOpen(true)} isMobile={isMobile} />
         <Toolbar />
