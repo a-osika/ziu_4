@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import { useTodoContext } from '../../context/TodoContext';
+import { Priority } from '../../types/todo.types'
 import { Input } from '../Input/Input';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { Dayjs } from 'dayjs';
 
-import { Box, Button, Typography, MenuItem, TextField } from '@mui/material';
+import { Button, Typography, MenuItem, TextField, Stack } from '@mui/material';
 import AddIcon from '@mui/icons-material/AddOutlined';
-
-type Priority = 'low' | 'medium' | 'high';
 
 export function CreateMode() {
   const { dispatch, setFilter, setQuery } = useTodoContext();
@@ -52,13 +51,13 @@ export function CreateMode() {
           handleAdd();
         }}
       >
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+        <Stack spacing={2} role='region' aria-label='Nowe zadanie'>
           <Input
             label='Tytuł'
             required
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            placeholder='Np. Zakupy'
+            placeholder='Wpisz tekst...'
           />
 
           <TextField
@@ -89,9 +88,9 @@ export function CreateMode() {
               onChange={(newValue) => setDueDate(newValue)}
               slotProps={{ textField: { fullWidth: true } }}
             />
-        </Box>
+        </Stack>
 
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 3 }}>
+        <Stack direction='row' spacing={1} sx={{ justifyContent: 'space-between', mt: 2 }}>
           <Button variant='outlined' onClick={() => dispatch({ type: 'CLEAR_SELECTION' })}>
             Anuluj
           </Button>
@@ -104,7 +103,7 @@ export function CreateMode() {
           >
             Dodaj
           </Button>
-        </Box>
+        </Stack>
       </form>
     </article>
   );

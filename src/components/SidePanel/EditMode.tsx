@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import { useTodoContext } from '../../context/TodoContext';
+import { Priority } from '../../types/todo.types'
 import { Input } from '../Input/Input';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs, { Dayjs } from 'dayjs';
 
-import { Typography, TextField, Button, Stack, MenuItem, Box } from '@mui/material';
-
-type Priority = 'low' | 'medium' | 'high';
+import { Typography, TextField, Button, Stack, MenuItem } from '@mui/material';
 
 export function EditMode() {
   const { selectedTodo, dispatch } = useTodoContext();
@@ -46,7 +45,7 @@ export function EditMode() {
       }}
     >
       <Typography variant='h6' sx={{ mb: 2 }}>
-        Edycja
+        Edycja zadania
       </Typography>
 
       <Stack spacing={2} role='region' aria-label='Edycja zadania'>
@@ -87,7 +86,7 @@ export function EditMode() {
           slotProps={{ textField: { fullWidth: true } }}
         />
 
-        <Stack direction='row' spacing={1} sx={{ justifyContent: 'space-between', mt: 1 }}>
+        <Stack direction='row' spacing={1} sx={{ justifyContent: 'space-between', mt: 2 }}>
           <Button
             variant='outlined'
             onClick={() => dispatch({ type: 'SET_MODE', payload: 'view' })}
