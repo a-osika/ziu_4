@@ -1,7 +1,7 @@
 import { useTodoContext } from '../../context/TodoContext';
 
 import { Fab as MuiFab } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
+import AddIcon from '@mui/icons-material/AddOutlined';
 
 export function Fab() {
   const { dispatch } = useTodoContext();

@@ -28,7 +28,7 @@ export const lightTokens = {
 
   semantic: {
     error: '#DC2626',
-    success: '#059669',
+    success: '#047857',
   },
 };
 

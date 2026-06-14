@@ -1,5 +1,5 @@
 import { AppBar, Toolbar, IconButton, Box } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
+import MenuIcon from '@mui/icons-material/MenuOutlined';
 
 import { ThemeToggle } from '../../components/ThemeToggle';
 

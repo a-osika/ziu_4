@@ -1,8 +1,8 @@
 import { useTodoContext } from '../../context/TodoContext';
 
 import { TextField, InputAdornment, IconButton } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
-import ClearIcon from '@mui/icons-material/Clear';
+import SearchIcon from '@mui/icons-material/SearchOutlined';
+import ClearIcon from '@mui/icons-material/ClearOutlined';
 
 export function SearchBar() {
   const { query, setQuery } = useTodoContext();

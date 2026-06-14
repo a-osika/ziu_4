@@ -11,12 +11,12 @@ import {
   Box,
 } from '@mui/material';
 
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import TaskIcon from '@mui/icons-material/Task';
-import LogoutIcon from '@mui/icons-material/Logout';
+import DashboardIcon from '@mui/icons-material/DashboardOutlined';
+import TaskIcon from '@mui/icons-material/TaskOutlined';
+import LogoutIcon from '@mui/icons-material/LogoutOutlined';
 
 import { Link, useLocation } from 'react-router-dom';
-import LockOpen from '@mui/icons-material/Lock';
+import LockOpen from '@mui/icons-material/LockOpenOutlined';
 import { useAuth } from '../../context/AuthContext';
 
 const DRAWER_WIDTH = 240;
