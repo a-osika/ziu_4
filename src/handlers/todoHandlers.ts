@@ -1,4 +1,4 @@
-import { TodoState, Todo, PanelMode } from '../types/todo.types';
+import { TodoState, Todo, PanelMode, NewTodoEntry } from '../types/todo.types';
 
 export function openCreate(state: TodoState): TodoState {
   return {
@@ -8,12 +8,12 @@ export function openCreate(state: TodoState): TodoState {
   };
 }
 
-export function addTodo(state: TodoState, title: string): TodoState {
+export function addTodo(state: TodoState, payload: NewTodoEntry): TodoState {
   const newTodo: Todo = {
     id: crypto.randomUUID(),
-    title,
     completed: false,
     createdAt: new Date(),
+    ...payload,
   };
 
   return {
@@ -37,10 +37,11 @@ export function deleteTodo(state: TodoState, id: string): TodoState {
   };
 }
 
-export function editTodo(state: TodoState, payload: { id: string; title: string }): TodoState {
-  const updatedTodos = state.todos.map((t) =>
-    t.id === payload.id ? { ...t, title: payload.title } : t
-  );
+export function editTodo(
+  state: TodoState,
+  payload: Partial<NewTodoEntry> & { id: string }
+): TodoState {
+  const updatedTodos = state.todos.map((t) => (t.id === payload.id ? { ...t, ...payload } : t));
 
   return {
     ...state,

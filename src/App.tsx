@@ -9,6 +9,10 @@ import AuthLayout from './components/auth/AuthLayout';
 
 import DashboardPage from './pages/DashboardPage';
 
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import 'dayjs/locale/pl';
+
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
 const TodosPage = lazy(() => import('./pages/TodosPage'));
 
@@ -22,6 +26,7 @@ function Loader() {
 
 export default function App() {
   return (
+    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="pl">
     <TodoProvider>
       <BrowserRouter>
         <Routes>
@@ -58,5 +63,6 @@ export default function App() {
         </Routes>
       </BrowserRouter>
     </TodoProvider>
+    </LocalizationProvider>
   );
 }

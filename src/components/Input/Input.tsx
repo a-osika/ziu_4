@@ -9,6 +9,7 @@ export function Input({
   placeholder,
   disabled = false,
   variant = 'default',
+  required = false,
 }: {
   label?: string;
   value: string;
@@ -16,10 +17,13 @@ export function Input({
   placeholder?: string;
   disabled?: boolean;
   variant?: InputVariant;
+  required?: boolean;
 }) {
   return (
     <TextField
       fullWidth
+      required={required}
+      aria-required={required}
       label={label}
       value={value}
       onChange={onChange}
