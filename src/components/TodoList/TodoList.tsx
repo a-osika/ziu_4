@@ -67,9 +67,18 @@ export function TodoList() {
               <ListItemText
                 primary={todo.title}
                 secondary={todo.createdAt.toLocaleDateString()}
-                sx={{
-                  textDecoration: todo.completed ? 'line-through' : 'none',
-                  color: todo.completed ? 'text.disabled' : 'text.primary',
+                slotProps={{
+                  primary: {
+                    sx: {
+                      textDecoration: todo.completed ? 'line-through' : 'none',
+                      color: todo.completed ? 'text.disabled' : 'text.primary',
+                    },
+                  },
+                  secondary: {
+                    sx: {
+                      color: todo.completed ? 'text.disabled' : 'text.secondary',
+                    },
+                  },
                 }}
               />
 
