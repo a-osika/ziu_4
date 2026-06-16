@@ -127,7 +127,7 @@ export const createAppTheme = (mode: 'light' | 'dark') => {
           '@media (prefers-reduced-motion: no-preference)': {
             '*, *::before, *::after': {
               transitionProperty: 'background-color, border-color, color, fill',
-              transitionDuration: '300ms',
+              transitionDuration: '450ms',
               transitionTimingFunction: 'ease',
             },
           },
