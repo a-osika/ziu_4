@@ -1,58 +1,50 @@
-# Todo App Lab 8
+# Aplikacja To-Do
 
-This is a React-based todo application using Material-UI with custom theming support.
+Aplikacja webowa do zarządzania zadaniami z dashboardem,
+pełnym CRUD-em zadań. Dane obsługuje mock API (MSW), więc aplikacja działa w całości
+po stronie przeglądarki.
 
-## Libraries
+## 🔗 Demo
 
-- React 18
-- Vite
-- Material-UI
-- React Router
-- React Hook Form
-- Zod
-- TypeScript
-- Prettier
+👉 **[Otwórz demo](https://ziuproject.vercel.app/)**
 
-## Tokens Generation
+## ✨ Funkcje
 
-The application uses design tokens for theming. The tokens are defined in JSON files (`tokens/Light.tokens.json` and `tokens/Dark.tokens.json`) and are processed by `tokens/generateTokens.js` to generate CSS variables in `src/styles/tokens.css`.
+- Pulpit z podsumowaniem zadań i ostatnią aktywnością
+- Tworzenie, edycja i usuwanie zadań (usuwanie z potwierdzeniem)
+- Oznaczanie zadań jako ukończone
+- Nadawanie priorytetów i terminów realizacji
+- Szybkie wyszukiwanie i filtrowanie zadań (wszystkie / aktywne / ukończone)
+- Czytelne komunikaty, gdy w formularzu coś jest nie tak
+- Tryb jasny i ciemny
+- Wygodna obsługa na telefonie i na komputerze
+- Pełna obsługa z klawiatury i czytelne kontrasty
+- Zakładanie konta w prostych krokach
 
-To regenerate the tokens CSS file, run:
+## 🛠️ Technologie
+
+- **React 18** + **TypeScript**
+- **Vite** — bundler i serwer deweloperski
+- **Material UI (MUI v9)** — komponenty, ikony, date pickers
+- **React Router v7** — routing
+- **React Hook Form** + **Zod** — formularze i walidacja
+- **MSW (Mock Service Worker)** — mock API (GET / POST / PUT / DELETE)
+- **Emotion** — silnik stylów MUI
+- **dayjs** — obsługa dat
+- **Prettier** — formatowanie kodu
+
+## 🚀 Uruchomienie
+
+Wymagany **Node.js 18+**.
 
 ```bash
-npm run tokens
-```
+# 1. Sklonuj repozytorium
+git clone https://github.com/a-osika/ziu_4.git
+cd ziu_4
 
-## Dev mode
+# 2. Zainstaluj zależności
+npm install
 
-Run project in dev mode:
-
-```bash
+# 3. Uruchom w trybie deweloperskim
 npm run dev
-```
-
-## Code Formatting
-
-The project uses Prettier for code formatting. To format all supported files, run:
-
-```bash
-npm run format
-```
-
-This will format TypeScript, JavaScript, JSON, CSS, Markdown, and HTML files in the project.
-
-## Build
-
-To build the production bundle, run:
-
-```bash
-npm run build
-```
-
-## Local Serve
-
-After building, you can serve the production output locally with:
-
-```bash
-npx serve -s dist
 ```

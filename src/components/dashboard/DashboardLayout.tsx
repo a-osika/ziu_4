@@ -1,5 +1,6 @@
 import { Box, Toolbar } from '@mui/material';
 import AppHeader from './AppHeader';
+import { PageTransition } from '../PageTransition';
 
 export default function DashboardLayout({
   children,
@@ -19,7 +20,7 @@ export default function DashboardLayout({
         component='main'
         sx={{ p: 3, pb: '88px', bgcolor: 'background.default', minWidth: 0 }}
       >
-        {children}
+        <PageTransition>{children}</PageTransition>
       </Box>
     </>
   );

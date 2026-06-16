@@ -12,6 +12,8 @@ export interface TodoState {
   todos: Todo[];
   selectedTodo: Todo | null;
   panelMode: PanelMode;
+  loading: boolean;
+  error: string | null;
 }
 
 export type PanelMode = 'view' | 'edit' | 'create' | null;
@@ -25,11 +27,14 @@ export type Priority = 'low' | 'medium' | 'high';
 export type NewTodoEntry = Omit<Todo, 'id' | 'completed' | 'createdAt'>;
 
 export type TodoAction =
-  | { type: 'ADD'; payload: NewTodoEntry }
+  | { type: 'ADD'; payload: Todo }
   | { type: 'TOGGLE'; payload: string }
   | { type: 'DELETE'; payload: string }
   | { type: 'EDIT'; payload: Partial<NewTodoEntry> & { id: string } }
   | { type: 'OPEN_CREATE' }
   | { type: 'SELECT'; payload: string }
   | { type: 'SET_MODE'; payload: PanelMode }
-  | { type: 'CLEAR_SELECTION' };
+  | { type: 'CLEAR_SELECTION' }
+  | { type: 'SET_TODOS'; payload: Todo[] }
+  | { type: 'SET_LOADING'; payload: boolean }
+  | { type: 'SET_ERROR'; payload: string | null };

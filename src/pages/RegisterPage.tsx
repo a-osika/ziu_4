@@ -119,7 +119,7 @@ export default function RegisterPage() {
         </Typography>
       </Breadcrumbs>
 
-      <Typography variant='h4' ref={headingRef} tabIndex={-1}>
+      <Typography variant='h4' component='h1' ref={headingRef} tabIndex={-1}>
         {step === 1 && 'Dane użytkownika'}
         {step === 2 && 'Preferencje'}
         {step === 3 && 'Podsumowanie'}

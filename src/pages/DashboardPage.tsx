@@ -1,15 +1,18 @@
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
+import { visuallyHidden } from '@mui/utils';
 import StatsGrid from '../components/dashboard/StatsGrid';
 import RecentTodosTimeline from '../components/dashboard/RecentTodosTimeline';
 
 export default function DashboardPage() {
   return (
-    <main>
-      <h1 style={{ position: 'absolute', left: '-10000px' }}>Dashboard</h1>
+    <>
+      <Typography component='h1' sx={visuallyHidden}>
+        Dashboard
+      </Typography>
       <StatsGrid />
-      <Box sx={{ mt: 4 }} role='region' aria-label='Historia ostatnich zadań'>
+      <Box sx={{ mt: 4 }}>
         <RecentTodosTimeline />
       </Box>
-    </main>
+    </>
   );
 }

@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useTodoContext } from '../../context/TodoContext';
 
-import { Paper, Typography } from '@mui/material';
+import { Box, Paper, Typography } from '@mui/material';
 
 import {
   Timeline,
@@ -22,9 +22,9 @@ export default function RecentTodosTimeline() {
   }, [todos]);
 
   return (
-    <section>
+    <Box component='section' aria-labelledby='recent-todos-heading'>
       <Paper sx={{ p: 2 }}>
-        <Typography variant='h4' component='h2' sx={{ mb: 2 }}>
+        <Typography id='recent-todos-heading' variant='h4' component='h2' sx={{ mb: 2 }}>
           Ostatnie zadania
         </Typography>
 
@@ -47,6 +47,6 @@ export default function RecentTodosTimeline() {
           ))}
         </Timeline>
       </Paper>
-    </section>
+    </Box>
   );
 }
