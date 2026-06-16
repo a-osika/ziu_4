@@ -17,8 +17,16 @@ const DRAWER_WIDTH = 240;
 
 function Loader() {
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'center', mt: 8 }}>
-      <CircularProgress />
+    <Box
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        minHeight: 200,
+        width: '100%',
+      }}
+    >
+      <CircularProgress aria-label='Ładowanie' />
     </Box>
   );
 }
@@ -28,20 +36,29 @@ function AppShell() {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  const desktopOpen = !isMobile;
+
   return (
     <Box sx={{ display: 'flex', minHeight: '100vh' }}>
-      <Sidebar
-        variant='permanent'
-        open={true}
-        onClose={() => {}}
-        paperWidth={isMobile ? 0 : DRAWER_WIDTH}
-      />
+      <Sidebar variant='persistent' open={desktopOpen} onClose={() => {}} />
 
       {isMobile && (
         <Sidebar variant='temporary' open={mobileOpen} onClose={() => setMobileOpen(false)} />
       )}
 
-      <Box sx={{ flexGrow: 1, minWidth: 0 }}>
+      <Box
+        sx={{
+          flexGrow: 1,
+          minWidth: 0,
+          ml: desktopOpen ? 0 : `-${DRAWER_WIDTH}px`,
+          transition: theme.transitions.create('margin', {
+            easing: desktopOpen ? theme.transitions.easing.easeOut : theme.transitions.easing.sharp,
+            duration: desktopOpen
+              ? theme.transitions.duration.enteringScreen
+              : theme.transitions.duration.leavingScreen,
+          }),
+        }}
+      >
         <Routes>
           <Route
             path='/'

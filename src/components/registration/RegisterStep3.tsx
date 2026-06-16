@@ -72,13 +72,15 @@ export default function RegisterStep3({ form, onSubmit }: Props) {
       />
 
       {errors.rodo && (
-        <Typography color='error' variant='caption'>
+        <Typography color='error' variant='caption' role='alert'>
           {errors.rodo.message as string}
         </Typography>
       )}
 
       {errors.root?.serverError && (
-        <Typography color='error'>{errors.root.serverError.message}</Typography>
+        <Typography color='error' role='alert'>
+          {errors.root.serverError.message}
+        </Typography>
       )}
 
       <Button variant='contained' onClick={onSubmit}>

@@ -32,12 +32,10 @@ export default function Sidebar({
   open,
   onClose,
   variant,
-  paperWidth = DRAWER_WIDTH,
 }: {
   open: boolean;
   onClose: () => void;
-  variant: 'permanent' | 'temporary';
-  paperWidth?: number;
+  variant: 'persistent' | 'temporary';
 }) {
   const location = useLocation();
   const { user, logout } = useAuth();
@@ -46,17 +44,15 @@ export default function Sidebar({
   return (
     <Drawer
       variant={variant}
-      open={variant === 'temporary' ? open : true}
+      open={open}
       onClose={onClose}
-      sx={{ width: paperWidth, transition: 'width 225ms cubic-bezier(0.4, 0, 0.6, 1)' }}
+      sx={{ width: DRAWER_WIDTH, flexShrink: 0 }}
       role='navigation'
       aria-label='Menu główne'
       slotProps={{
         paper: {
           sx: {
-            width: paperWidth,
-            overflow: 'hidden',
-            transition: 'width 225ms cubic-bezier(0.4, 0, 0.6, 1)',
+            width: DRAWER_WIDTH,
             boxSizing: 'border-box',
             bgcolor: 'primary.main',
             color: 'white',

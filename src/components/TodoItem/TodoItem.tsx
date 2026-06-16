@@ -9,6 +9,7 @@ import {
   Box,
 } from '@mui/material';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
+import DoneIcon from '@mui/icons-material/DoneOutlined';
 import { Todo } from '../../types/todo.types';
 
 interface TodoItemProps {
@@ -81,7 +82,7 @@ export function TodoItem({ todo, isLast, onSelect, onToggle, onDelete }: TodoIte
         />
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexShrink: 0 }}>
           {todo.completed ? (
-            <Chip label='Ukończone' size='small' color='success' />
+            <Chip label='Ukończone' size='small' color='success' icon={<DoneIcon />} />
           ) : (
             <Chip
               label={currentPriority.label}

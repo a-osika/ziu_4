@@ -1,40 +1,42 @@
 import { Card, CardContent, Typography, Box, Avatar, SvgIconTypeMap } from '@mui/material';
+import { alpha } from '@mui/material/styles';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
+
+type PaletteColor = 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'error';
 
 interface StatsCardProps {
   title: string;
   value: number;
   icon: OverridableComponent<SvgIconTypeMap>;
-  color: string;
-  bgColor: string;
+  color: PaletteColor;
 }
 
-export default function StatsCard({ title, value, icon: Icon, color, bgColor }: StatsCardProps) {
+export default function StatsCard({ title, value, icon: Icon, color }: StatsCardProps) {
   return (
-    <article>
-      <Card sx={{ aspectRatio: '16/9' }}>
-        <CardContent>
-          <Box
-            sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}
-            role='region'
-            aria-label={`${title}: ${value}`}
-          >
-            <Box>
-              <Typography variant='body2' color='text.secondary' gutterBottom>
-                {title}
-              </Typography>
-
-              <Typography component='h2' variant='h4' aria-label={`Liczba: ${value}`}>
-                {value}
-              </Typography>
-            </Box>
-
-            <Avatar sx={{ bgcolor: bgColor, color, width: 48, height: 48 }} aria-hidden='true'>
-              <Icon />
-            </Avatar>
+    <Card sx={{ aspectRatio: '16/9' }}>
+      <CardContent>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+          <Box>
+            <Typography variant='body2' color='text.secondary' gutterBottom>
+              {title}
+            </Typography>
+            <Typography component='p' variant='h4'>
+              {value}
+            </Typography>
           </Box>
-        </CardContent>
-      </Card>
-    </article>
+          <Avatar
+            aria-hidden='true'
+            sx={(theme) => ({
+              bgcolor: alpha(theme.palette[color].main, 0.12),
+              color: theme.palette[color].main,
+              width: 48,
+              height: 48,
+            })}
+          >
+            <Icon />
+          </Avatar>
+        </Box>
+      </CardContent>
+    </Card>
   );
 }

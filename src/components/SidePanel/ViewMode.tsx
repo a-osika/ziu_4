@@ -1,5 +1,6 @@
 import { useTodoContext } from '../../context/TodoContext';
 import { Typography, TextField, Button, Stack, Chip, Box } from '@mui/material';
+import DoneIcon from '@mui/icons-material/DoneOutlined';
 
 const priorityConfig = {
   low: { label: 'Niski priorytet', color: 'info' as const },
@@ -15,12 +16,12 @@ export function ViewMode() {
   const currentPriority = priorityConfig[selectedTodo.priority] || priorityConfig.medium;
 
   return (
-    <article>
+    <Box>
       <Typography variant='h6' sx={{ mb: 2 }}>
         Szczegóły
       </Typography>
 
-      <Stack spacing={2} role='region' aria-label='Szczegóły zadania'>
+      <Stack spacing={2}>
         <TextField
           label='Tytuł'
           value={selectedTodo.title}
@@ -40,7 +41,9 @@ export function ViewMode() {
         )}
 
         <Stack direction='row' spacing={1} sx={{ flexWrap: 'wrap', gap: 1 }}>
-          {selectedTodo.completed && <Chip label={'Ukończone'} color={'success'} size='small' />}
+          {selectedTodo.completed && (
+            <Chip label='Ukończone' size='small' color='success' icon={<DoneIcon />} />
+          )}
 
           <Chip
             label={currentPriority.label}
@@ -79,6 +82,6 @@ export function ViewMode() {
           </Button>
         </Stack>
       </Stack>
-    </article>
+    </Box>
   );
 }

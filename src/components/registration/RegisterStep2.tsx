@@ -8,7 +8,7 @@ import {
   Button,
 } from '@mui/material';
 import { UseFormReturn, useFieldArray, Controller } from 'react-hook-form';
-import DeleteIcon from '@mui/icons-material/DeleteForeverOutlined';
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 import { RegistrationForm } from '../../schemas/register.schema';
 
 type Props = {
@@ -45,7 +45,7 @@ export default function RegisterStep2({ form }: Props) {
             />
 
             <IconButton onClick={() => remove(index)} aria-label={`Usuń kategorię ${index + 1}`}>
-              <DeleteIcon aria-hidden='true' />
+              <DeleteOutlinedIcon color='error' />
             </IconButton>
           </Box>
         ))}

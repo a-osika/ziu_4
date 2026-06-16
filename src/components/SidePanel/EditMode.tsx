@@ -1,93 +1,122 @@
-import { useState } from 'react';
+import { useForm, Controller } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import dayjs from 'dayjs';
 import { useTodoContext } from '../../context/TodoContext';
 import { useSnackbar } from '../../context/SnackbarContext';
-import { Priority } from '../../types/todo.types';
-import { Input } from '../Input/Input';
+import { todoSchema, TodoFormValues } from '../../schemas/todo.schema';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import dayjs, { Dayjs } from 'dayjs';
 
-import { Typography, TextField, Button, Stack, MenuItem } from '@mui/material';
+import {
+  Box,
+  Typography,
+  TextField,
+  Button,
+  Stack,
+  MenuItem,
+  CircularProgress,
+} from '@mui/material';
 
 export function EditMode() {
-  const { selectedTodo, dispatch } = useTodoContext();
+  const { selectedTodo, updateTodo, dispatch } = useTodoContext();
   const { showToast } = useSnackbar();
 
-  const [title, setTitle] = useState(selectedTodo!.title);
-  const [description, setDescription] = useState(selectedTodo!.description || '');
-  const [priority, setPriority] = useState<Priority>(
-    (selectedTodo!.priority as Priority) || 'medium'
-  );
+  const {
+    control,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<TodoFormValues>({
+    resolver: zodResolver(todoSchema),
+    defaultValues: {
+      title: selectedTodo!.title,
+      description: selectedTodo!.description ?? '',
+      priority: selectedTodo!.priority,
+      dueDate: selectedTodo!.dueDate ? dayjs(selectedTodo!.dueDate) : null,
+    },
+    mode: 'onTouched',
+  });
 
-  const [dueDate, setDueDate] = useState<Dayjs | null>(
-    selectedTodo!.dueDate ? dayjs(selectedTodo!.dueDate) : null
-  );
-
-  const handleSave = () => {
-    if (!title.trim()) return;
-
-    dispatch({
-      type: 'EDIT',
-      payload: {
-        id: selectedTodo!.id,
-        title,
-        description,
-        priority,
-        dueDate: dueDate ? dueDate.toDate() : null,
-      },
-    });
-
-    showToast('Zadanie zostało zaktualizowane');
-
-    dispatch({ type: 'SET_MODE', payload: 'view' });
+  const onSubmit = async (data: TodoFormValues) => {
+    try {
+      await updateTodo(selectedTodo!.id, {
+        title: data.title,
+        description: data.description,
+        priority: data.priority,
+        dueDate: data.dueDate ? data.dueDate.toDate() : null,
+      });
+      showToast('Zadanie zostało zaktualizowane');
+      dispatch({ type: 'SET_MODE', payload: 'view' });
+    } catch {}
   };
 
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        handleSave();
-      }}
-    >
+    <Box component='form' onSubmit={handleSubmit(onSubmit)}>
       <Typography variant='h6' sx={{ mb: 2 }}>
         Edycja zadania
       </Typography>
 
-      <Stack spacing={2} role='region' aria-label='Edycja zadania'>
-        <Input
-          label='Tytuł'
-          required
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder='Wpisz tekst...'
+      <Stack spacing={2}>
+        <Controller
+          name='title'
+          control={control}
+          render={({ field }) => (
+            <TextField
+              {...field}
+              label='Tytuł'
+              required
+              placeholder='Wpisz tekst...'
+              error={!!errors.title}
+              helperText={errors.title?.message}
+              fullWidth
+            />
+          )}
         />
 
-        <TextField
-          label='Opis'
-          multiline
-          rows={3}
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          placeholder='Dodaj szczegóły zadania...'
-          fullWidth
+        <Controller
+          name='description'
+          control={control}
+          render={({ field }) => (
+            <TextField
+              {...field}
+              label='Opis'
+              multiline
+              rows={3}
+              placeholder='Dodaj szczegóły zadania...'
+              error={!!errors.description}
+              helperText={errors.description?.message}
+              fullWidth
+            />
+          )}
         />
 
-        <TextField
-          select
-          label='Priorytet'
-          value={priority}
-          onChange={(e) => setPriority(e.target.value as Priority)}
-          fullWidth
-        >
-          <MenuItem value='low'>Niski</MenuItem>
-          <MenuItem value='medium'>Średni</MenuItem>
-          <MenuItem value='high'>Wysoki</MenuItem>
-        </TextField>
+        <Controller
+          name='priority'
+          control={control}
+          render={({ field }) => (
+            <TextField {...field} select label='Priorytet' fullWidth>
+              <MenuItem value='low'>Niski</MenuItem>
+              <MenuItem value='medium'>Średni</MenuItem>
+              <MenuItem value='high'>Wysoki</MenuItem>
+            </TextField>
+          )}
+        />
 
-        <DatePicker
-          label='Data realizacji'
-          value={dueDate}
-          onChange={(newValue) => setDueDate(newValue)}
-          slotProps={{ textField: { fullWidth: true } }}
+        <Controller
+          name='dueDate'
+          control={control}
+          render={({ field }) => (
+            <DatePicker
+              label='Data realizacji'
+              value={field.value}
+              onChange={field.onChange}
+              slotProps={{
+                textField: {
+                  fullWidth: true,
+                  error: !!errors.dueDate,
+                  helperText: errors.dueDate?.message,
+                },
+              }}
+            />
+          )}
         />
 
         <Stack direction='row' spacing={1} sx={{ justifyContent: 'space-between', mt: 2 }}>
@@ -98,11 +127,16 @@ export function EditMode() {
             Anuluj
           </Button>
 
-          <Button type='submit' variant='contained' disabled={!title.trim()}>
+          <Button
+            type='submit'
+            variant='contained'
+            disabled={isSubmitting}
+            startIcon={isSubmitting ? <CircularProgress size={18} color='inherit' /> : undefined}
+          >
             Zapisz
           </Button>
         </Stack>
       </Stack>
-    </form>
+    </Box>
   );
 }

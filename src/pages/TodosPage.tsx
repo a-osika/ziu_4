@@ -1,3 +1,5 @@
+import { Box, Typography } from '@mui/material';
+import { visuallyHidden } from '@mui/utils';
 import { SearchBar } from '../components/SearchBar/SearchBar';
 import { FilterBar } from '../components/FilterBar/FilterBar';
 import { TodoList } from '../components/TodoList/TodoList';
@@ -6,16 +8,23 @@ import { Fab } from '../components/Fab/Fab';
 
 export default function TodosPage() {
   return (
-    <main>
-      <section aria-label='Wyszukiwanie i filtrowanie zadań'>
+    <>
+      <Typography component='h1' sx={visuallyHidden}>
+        Moje zadania
+      </Typography>
+
+      <Box component='section' aria-label='Wyszukiwanie i filtrowanie zadań'>
         <SearchBar />
         <FilterBar />
-      </section>
-      <section aria-label='Lista zadań'>
-        <TodoList />
-      </section>
-      <SidePanel />
+      </Box>
+
       <Fab />
-    </main>
+
+      <Box aria-label='Lista zadań'>
+        <TodoList />
+      </Box>
+
+      <SidePanel />
+    </>
   );
 }

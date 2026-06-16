@@ -11,12 +11,19 @@ import '@fontsource/roboto/latin-ext-500.css';
 import '@fontsource/roboto/latin-ext-700.css';
 import { AuthProvider } from './context/AuthContext';
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <ThemeProvider>
-      <AuthProvider>
-        <App />
-      </AuthProvider>
-    </ThemeProvider>
-  </React.StrictMode>
-);
+async function enableMocking() {
+  const { worker } = await import('./mocks/browser');
+  return worker.start({ onUnhandledRequest: 'bypass' });
+}
+
+enableMocking().then(() => {
+  ReactDOM.createRoot(document.getElementById('root')!).render(
+    <React.StrictMode>
+      <ThemeProvider>
+        <AuthProvider>
+          <App />
+        </AuthProvider>
+      </ThemeProvider>
+    </React.StrictMode>
+  );
+});

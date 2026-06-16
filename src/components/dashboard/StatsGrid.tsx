@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulletedOutlined';
 import CheckCircleIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
@@ -6,35 +6,33 @@ import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUncheckedOu
 
 import StatsCard from './StatsCard';
 import { useTodoContext } from '../../context/TodoContext';
+import StatsGridSkeleton from './StatsGridSkeleton';
 
 export default function StatsGrid() {
-  const { todos } = useTodoContext();
+  const { todos, loading } = useTodoContext();
 
   const total = todos.length;
   const completed = todos.filter((t) => t.completed).length;
   const pending = total - completed;
 
+  if (loading) {
+    return <StatsGridSkeleton />;
+  }
+
   return (
-    <section aria-label='Statystyki zadań'>
+    <Box component='section' aria-label='Statystyki zadań'>
       <Grid container spacing={3}>
         <Grid size={{ xs: 12, sm: 6, md: 4 }}>
           <StatsCard
             title='Wszystkie zadania'
             value={total}
             icon={FormatListBulletedIcon}
-            color='#1565C0'
-            bgColor='#E3F2FD'
+            color='info'
           />
         </Grid>
 
         <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-          <StatsCard
-            title='Ukończone'
-            value={completed}
-            icon={CheckCircleIcon}
-            color='#2E7D32'
-            bgColor='#E8F5E9'
-          />
+          <StatsCard title='Ukończone' value={completed} icon={CheckCircleIcon} color='success' />
         </Grid>
 
         <Grid size={{ xs: 12, sm: 6, md: 4 }}>
@@ -42,11 +40,10 @@ export default function StatsGrid() {
             title='Oczekujące'
             value={pending}
             icon={RadioButtonUncheckedIcon}
-            color='#ED6C02'
-            bgColor='#FFF3E0'
+            color='warning'
           />
         </Grid>
       </Grid>
-    </section>
+    </Box>
   );
 }
