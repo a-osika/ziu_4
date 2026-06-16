@@ -124,6 +124,13 @@ export const createAppTheme = (mode: 'light' | 'dark') => {
             border: 'none',
             padding: 0,
           },
+          '@media (prefers-reduced-motion: no-preference)': {
+            '*, *::before, *::after': {
+              transitionProperty: 'background-color, border-color, color, fill',
+              transitionDuration: '450ms',
+              transitionTimingFunction: 'ease',
+            },
+          },
         },
       },
 
